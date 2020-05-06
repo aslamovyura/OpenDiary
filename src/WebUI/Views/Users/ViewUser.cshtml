@@ -1,0 +1,35 @@
+﻿@model WebUI.ViewModels.Users.ViewUserViewModel
+@{
+    ViewBag.Title = "View user";
+}
+    <div class="form-group row">
+        <div class="col">
+            <img class="mb-4" src="~/User.png" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="250" height="250" />
+        </div>
+        <div class="col">
+            <div class="text-left">
+                <h2 class="display-4">@Model.FirstName @Model.LastName</h2>
+            </div>
+
+            <div>
+                <p>Email : @Model.Email</p>
+                <p>Birth date : @Model.BirthDate (@Model.Age years)</p>
+                <p>Posts : @Model.TotalPostsNumber</p>
+                <p>Comments : @Model.TotalCommentsNumber</p>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr><th>Date</th><th>Title</th><th></th></tr>
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>@post.Date</td>
+                <td>@post.Title</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Read" asp-controller="Posts" asp-route-postId="@post.Id">Read</a>
+                </td>
+            </tr>
+        }
+    </table>

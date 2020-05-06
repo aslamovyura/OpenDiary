@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Domain.Entities.Post>
+@{
+    ViewBag.Title = "All Posts List";
+}
+
+<a class="btn btn-sm btn-primary" asp-action="Create" asp-controller="Posts">Add post</a>
+<table class="table">
+    <tr><th>Date</th><th>Title</th><th>Author</th><th></th></tr>
+    @foreach (var post in Model)
+    {
+        <tr>
+            <td>@post.Date</td>
+            <td>@post.Title</td>
+            <td>@post.User.FirstName @post.User.LastName</td>
+            <td>
+                <form asp-action="Delete" asp-controller="Posts" asp-route-postId="@post.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Posts" asp-route-postId="@post.Id">Edit</a>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

@@ -7,7 +7,6 @@ namespace Infrastructure.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        //public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -64,7 +63,7 @@ namespace Infrastructure.Persistence
                     .WithMany(p => p.Comments)
                     .HasForeignKey(u => u.UserId)
                     .IsRequired()
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.NoAction);
 
                 b.HasOne(e => e.Post)
                     .WithMany(p => p.Comments)
