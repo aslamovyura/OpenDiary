@@ -1,11 +1,11 @@
-﻿using System;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Topic> Topics { get; set; }

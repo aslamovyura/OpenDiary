@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using WebUI.ViewModels.Account;
 using CustomIdentityApp.Services;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Application.Interfaces;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,16 +17,19 @@ namespace WebUI.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IMessageSender _emailService;
 
         /// <summary>
         /// Constructor of account controller.
         /// </summary>
         /// <param name="userManager">Manager of the users in persistence store.</param>
-        /// <param name="signInManager">Manager of users' sing in.</param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        /// <param name="signInManager">Manager of users' sign in.</param>
+        /// <param name="emailService">Service to manage email activities.</param>
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMessageSender emailService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _userManager = userManager ?? throw new ArgumentNullException();
+            _signInManager = signInManager ?? throw new ArgumentNullException();
+            _emailService = emailService ?? throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -69,8 +75,7 @@ namespace WebUI.Controllers
                                                  new { userId = user.Id, code = code },
                                                  protocol: HttpContext.Request.Scheme);
 
-                    EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
+                    await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
                         $"Confirm registration by clicking this link: <a href='{callbackUrl}'>link</a>");
 
                     // Show confirming page
@@ -140,9 +145,11 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
                 if (result.Succeeded)
                 {
+                    //TODO: add check whether email is confirmed.
+
                     // Check if URL is belonging to application.
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                         return Redirect(model.ReturnUrl);
