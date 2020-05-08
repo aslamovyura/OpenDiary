@@ -90,6 +90,22 @@ namespace Masny.QRAnimal.Infrastructure.Services
             return result.ToApplicationResult();
         }
 
+        /// <summary>
+        /// User sign in.
+        /// </summary>
+        /// <param name="email">Email adress.</param>
+        /// <param name="userName">User name.</param>
+        private async Task SignInUserAsync(string email, string userName)
+        {
+            var user = new User
+            {
+                Email = email,
+                UserName = userName
+            };
+
+            await _signInManager.SignInAsync(user, false);
+        }
+
         /// <inheritdoc />
         public async Task LogoutUserAsync()
         {
@@ -191,22 +207,6 @@ namespace Masny.QRAnimal.Infrastructure.Services
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
-        }
-
-        /// <summary>
-        /// User sign in.
-        /// </summary>
-        /// <param name="email">Email adress.</param>
-        /// <param name="userName">User name.</param>
-        private async Task SignInUserAsync(string email, string userName)
-        {
-            var user = new User
-            {
-                Email = email,
-                UserName = userName
-            };
-
-            await _signInManager.SignInAsync(user, false);
         }
     }
 }

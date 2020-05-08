@@ -160,5 +160,92 @@ namespace WebUI.Controllers
             await _identityService.LogoutUserAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        /// <summary>
+        /// Page for recovery of the forgotten password.
+        /// </summary>
+        /// <returns>View for the password recovery.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword() => View();
+
+        /// <summary>
+        /// Recovery of the forgotten password.
+        /// </summary>
+        /// <param name="model">Password recovery model.</param>
+        /// <returns>View for the password recovery confirmation.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            model = model ?? throw new ArgumentNullException(nameof(model));
+
+            if (ModelState.IsValid)
+            {
+                var (result, _, userName, token) = await _identityService.ForgotPassword(model.Email);
+
+                if (!result)
+                {
+                    return View("ForgotPasswordUnknownAccount", model);
+                }
+
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userName, token }, protocol: HttpContext.Request.Scheme);
+
+                //await _emailService.SendEmailAsync(model.Email, ErrorConstants.AccountResetPassword, body);
+                await _emailService.SendEmailAsync(model.Email, "Reset password of OpenDiary account",
+                        $"Reset password by clicking this link: <a href='{callbackUrl}'>link</a>");
+
+                ViewData["IsAccontExist"] = true;
+                return View("ForgotPasswordConfirmation", model);
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Password reset.
+        /// </summary>
+        /// <param name="userName">User name.</param>
+        /// <param name="token">Confirmation Token</param>
+        /// <returns>View to reset password.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string userName = null, string token = null)
+        {
+            if (userName != null || token != null)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Error", "Home");
+        }
+
+        /// <summary>
+        /// Reset password.
+        /// </summary>
+        /// <param name="model">View model for password reset.</param>
+        /// <returns>View for password reset confirmation.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            model = model ?? throw new ArgumentNullException(nameof(model));
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = await _identityService.ResetPassword(model.UserName, model.Password, model.Token);
+
+            if (result == null || result.Succeeded)
+            {
+                return View("ResetPasswordSucceeded");
+            }
+
+            return View(model);
+        }
     }
 }

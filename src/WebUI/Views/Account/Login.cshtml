@@ -3,27 +3,32 @@
     ViewBag.Title = "Login";
 }
 
-<form class="text-center" method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-    <img class="mb-4" src="~/OpenDiary.jpg" alt="" width="200" height="200" />
-    <h2>Please sing in</h2><br />
-    <div class="form-group-col">
-        <div class="row justify-content-center align-items-center" asp-validation-summary="All"></div>
-        <div class="row justify-content-center align-items-center">
-            <input asp-for="Email" placeholder="Email adress" style="width:300px; height:40px">
+    <form class="text-center" method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+        <img class="mb-4" src="~/OpenDiary.jpg" alt="" width="200" height="200" />
+        <h2>Please sing in</h2><br />
+        <div class="form-group-col">
+            <div class="row justify-content-center align-items-center" asp-validation-summary="All"></div>
+            <div class="row justify-content-center align-items-center">
+                <input asp-for="Email" placeholder="Email adress" style="width:300px; height:40px">
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <input asp-for="Password" placeholder="Password" style="width:300px; height:40px"><br />
+            </div>
         </div>
-        <div class="row justify-content-center align-items-center">
-            <input asp-for="Password" placeholder="Password" style="width:300px; height:40px"><br />
+        <div>
+            <input asp-for="RememberMe" />
+            <label asp-for="RememberMe"></label>
         </div>
-    </div>
-    <div>
-        <input asp-for="RememberMe" />
-        <label asp-for="RememberMe"></label>
-    </div>
-    <div>
-        <button class="btn btn-lg btn-primary" style="width:300px" type="submit">Sign in</button>
-    </div>
-    <div class="form-group-row">
-        <label>Not a member?</label>
-        <a asp-area="" asp-controller="Account" asp-action="Register">Sing up now</a>
-    </div>
-</form>
+        <div>
+            <button class="btn btn-lg btn-primary" style="width:300px" type="submit">Sign in</button>
+        </div>
+
+        <div class="form-group-row">
+            <label>Forgot password?</label>
+            <a asp-area="" asp-controller="Account" asp-action="ForgotPassword">Click here</a>
+        </div>
+        <div class="form-group-row">
+            <label>Not a member?</label>
+            <a asp-area="" asp-controller="Account" asp-action="Register">Sing up now</a>
+        </div>
+    </form>
