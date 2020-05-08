@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using WebUI.ViewModels.Account;
-using CustomIdentityApp.Services;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +17,7 @@ namespace WebUI.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMessageSender _emailService;
+        private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
 
         /// <summary>
         /// Constructor of account controller.
@@ -25,11 +25,13 @@ namespace WebUI.Controllers
         /// <param name="userManager">Manager of the users in persistence store.</param>
         /// <param name="signInManager">Manager of users' sign in.</param>
         /// <param name="emailService">Service to manage email activities.</param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMessageSender emailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
+            IMessageSender emailService, IRazorViewToStringRenderer razorViewToStringRenderer)
         {
             _userManager = userManager ?? throw new ArgumentNullException();
             _signInManager = signInManager ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
+            _razorViewToStringRenderer = razorViewToStringRenderer ?? throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -37,13 +39,8 @@ namespace WebUI.Controllers
         /// </summary>
         /// <returns>View for user registration.</returns>
         [HttpGet]
-        public IActionResult Register()
-        {
-            ViewData["OnConfirming"] = "false";
-            return View();
-        }
+        public IActionResult Register() => View();
         
-
         /// <summary>
         /// Process user input on the registration view.
         /// </summary>
@@ -70,17 +67,16 @@ namespace WebUI.Controllers
                 if (result.Succeeded)
                 {
                     // Generate user token
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account",
-                                                 new { userId = user.Id, code = code },
+                                                 new { userId = user.Id, token = token },
                                                  protocol: HttpContext.Request.Scheme);
 
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
                         $"Confirm registration by clicking this link: <a href='{callbackUrl}'>link</a>");
 
-                    // Show confirming page
-                    ViewData["OnConfirming"] = "true";
-                    return View(model);
+
+                    return View("RegisterSucceeded", model);
                 }
                 else
                 {
@@ -90,21 +86,20 @@ namespace WebUI.Controllers
                     }
                 }
             }
-            ViewData["OnConfirming"] = "false";
             return View(model);
         }
 
         /// <summary>
-        /// 
+        /// Confirm email.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="code"></param>
-        /// <returns></returns>
+        /// <param name="userId">User identifier.</param>
+        /// <param name="token">Confirmation token.</param>
+        /// <returns>Certain view.</returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (userId == null || code == null)
+            if (userId == null || token == null)
             {
                 return View("Error");
             }
@@ -115,11 +110,9 @@ namespace WebUI.Controllers
             }
 
             // Mark email as confirmed 
-            var result = await _userManager.ConfirmEmailAsync(user, code);
+            var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                //await _signInManager.SignInAsync(user, false);
-                //return RedirectToAction("Index", "Home");
                 return View();
             }
             else
@@ -143,6 +136,8 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            model = model ?? throw new ArgumentNullException(nameof(model));
+
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);

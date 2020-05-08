@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace CustomIdentityApp.Services
+namespace Infrastructure.Services
 {
     public class CustomUserValidator : IUserValidator<User>
     {

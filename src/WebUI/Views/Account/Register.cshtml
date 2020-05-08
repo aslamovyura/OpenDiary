@@ -3,80 +3,67 @@
     ViewBag.Title = "Register";
 }
 
-@if (ViewData["OnConfirming"].ToString() == "true")
-{
-
-    <h2>Confirm Email Sent.</h2>
-    <p>Hi @Model.FirstName @Model.LastName!</p>
-    <p>
-        You have successfully created an OpenDiary account!
-        To complete the registration, check your email (@Model.Email) and follow the link provided in the letter.
+<div class="py-5 text-center">
+    <img class="mb-4" src="~/OpenDiary.jpg" alt="" width="200" height="200" />
+    <h2>User registration</h2>
+    <p class="lead">
+        Welcome to Open Diary!<br />
+        Please fill-in the fields below to register.
     </p>
-}
-else
-{
-    <div class="py-5 text-center">
-        <img class="mb-4" src="~/OpenDiary.jpg" alt="" width="200" height="200" />
-        <h2>User registration</h2>
-        <p class="lead">
-            Welcome to Open Diary!<br />
-            Please fill-in the fields below to register.
-        </p>
-    </div>
-    <form class="text-center" method="post" asp-controller="Account" asp-action="Register">
-        <div asp-validation-summary="ModelOnly"></div>
+</div>
+<form class="text-center" method="post" asp-controller="Account" asp-action="Register">
+    <div asp-validation-summary="ModelOnly"></div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">First name</span>
-            </div>
-            <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder="Jhon"><br />
-            <span asp-validation-for="FirstName"></span>
-        </div><br />
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Last name</span>
-            </div>
-            <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder="Smith"><br />
-            <span asp-validation-for="LastName"></span>
-        </div><br />
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Email</span>
-            </div>
-            <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder="you@example.com"><br />
-            <span asp-validation-for="Email"></span>
-        </div><br />
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Birth date</span>
-            </div>
-            <input asp-for="BirthDate" placeholder="dd/MM/yyyy" type="date" aria-label="BirthDate" class="form-control"><br />
-            <span asp-validation-for="BirthDate"></span>
-        </div><br />
-
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Password</span>
-            </div>
-            <input asp-for="Password" placeholder="Password" type="password" aria-label="Password" class="form-control"><br />
-            <span asp-validation-for="BirthDate"></span>
-        </div><br />
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Confirm password</span>
-            </div>
-            <input asp-for="PasswordConfirm" placeholder="Password" type="password" aria-label="PasswordConfirm" class="form-control"><br />
-            <span asp-validation-for="PasswordConfirm"></span>
-        </div><br />
-
-        <div>
-            <button class="btn btn-lg btn-primary" style="width:300px" type="submit">Register</button>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">First name</span>
         </div>
-    </form>
-}
+        <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder="Jhon"><br />
+        <span asp-validation-for="FirstName"></span>
+    </div><br />
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Last name</span>
+        </div>
+        <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder="Smith"><br />
+        <span asp-validation-for="LastName"></span>
+    </div><br />
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Email</span>
+        </div>
+        <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder="you@example.com"><br />
+        <span asp-validation-for="Email"></span>
+    </div><br />
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Birth date</span>
+        </div>
+        <input asp-for="BirthDate" placeholder="dd/MM/yyyy" type="date" aria-label="BirthDate" class="form-control"><br />
+        <span asp-validation-for="BirthDate"></span>
+    </div><br />
+
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+        </div>
+        <input asp-for="Password" placeholder="Password" type="password" aria-label="Password" class="form-control"><br />
+        <span asp-validation-for="BirthDate"></span>
+    </div><br />
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Confirm password</span>
+        </div>
+        <input asp-for="PasswordConfirm" placeholder="Password" type="password" aria-label="PasswordConfirm" class="form-control"><br />
+        <span asp-validation-for="PasswordConfirm"></span>
+    </div><br />
+
+    <div>
+        <button class="btn btn-lg btn-primary" style="width:300px" type="submit">Register</button>
+    </div>
+</form>

@@ -23,7 +23,7 @@ namespace Infrastructure.Data
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                User admin = new User { Email = adminEmail, UserName = adminEmail , FirstName="admin", LastName="admin"};
+                User admin = new User { Email = adminEmail, UserName = adminEmail , FirstName = "admin", LastName = "admin", EmailConfirmed = true};
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
@@ -37,7 +37,7 @@ namespace Infrastructure.Data
 
             if (await userManager.FindByNameAsync(userEmail) == null)
             {
-                User user = new User { Email = userEmail, UserName = userEmail, FirstName = "user", LastName = "user" };
+                User user = new User { Email = userEmail, UserName = userEmail, FirstName = "user", LastName = "user", EmailConfirmed = true };
                 IdentityResult result = await userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
