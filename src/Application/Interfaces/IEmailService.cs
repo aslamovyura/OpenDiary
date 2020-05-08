@@ -2,7 +2,7 @@
 
 namespace Application.Interfaces
 {
-    public interface IMessageSender
+    public interface IEmailService
     {
         /// <summary>
         /// Send message to client.

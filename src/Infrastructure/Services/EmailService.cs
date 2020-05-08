@@ -9,7 +9,7 @@ using MimeKit;
 
 namespace Infrastructure.Services
 {
-    public class EmailService : IMessageSender
+    public class EmailService : IEmailService
     {
         private readonly EmailSettings _emailSettings;
         private readonly ILogger _logger;

@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
+using Masny.QRAnimal.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,7 +34,8 @@ namespace Infrastructure
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddDefaultTokenProviders();
 
-            services.AddScoped<IMessageSender, EmailService>();
+            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
 
             return services;

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using WebUI.ViewModels.Account;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Application.Interfaces;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,9 +11,8 @@ namespace WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly IMessageSender _emailService;
+        private readonly IIdentityService _identityService;
+        private readonly IEmailService _emailService;
         private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
 
         /// <summary>
@@ -25,11 +21,10 @@ namespace WebUI.Controllers
         /// <param name="userManager">Manager of the users in persistence store.</param>
         /// <param name="signInManager">Manager of users' sign in.</param>
         /// <param name="emailService">Service to manage email activities.</param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
-            IMessageSender emailService, IRazorViewToStringRenderer razorViewToStringRenderer)
+        public AccountController(IIdentityService identityService,
+            IEmailService emailService, IRazorViewToStringRenderer razorViewToStringRenderer)
         {
-            _userManager = userManager ?? throw new ArgumentNullException();
-            _signInManager = signInManager ?? throw new ArgumentNullException();
+            _identityService = identityService ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
             _razorViewToStringRenderer = razorViewToStringRenderer ?? throw new ArgumentNullException();
         }
@@ -46,35 +41,34 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="model">User registration view model.</param>
         /// <returns>Redirection to main page.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            model = model ?? throw new ArgumentNullException();
+
             if (ModelState.IsValid)
             {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    UserName = model.Email,
-                    BirthDate = model.BirthDate
-                };
 
-                // Add new user
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var (result, userId, token) = await _identityService.CreateUserAsync(model.FirstName, model.LastName, model.Email, model.Email, model.BirthDate, model.Password);
+
+                if (result == null)
+                {
+                    ModelState.AddModelError(string.Empty, "User is already exists!");
+                    return View(model);
+                }
+
+                //// Add new user
                 if (result.Succeeded)
                 {
-                    // Generate user token
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account",
-                                                 new { userId = user.Id, token = token },
+                                                 new { userId = userId, token = token },
                                                  protocol: HttpContext.Request.Scheme);
 
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
                         $"Confirm registration by clicking this link: <a href='{callbackUrl}'>link</a>");
-
 
                     return View("RegisterSucceeded", model);
                 }
@@ -82,7 +76,7 @@ namespace WebUI.Controllers
                 {
                     foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
+                        ModelState.AddModelError(string.Empty, error);
                     }
                 }
             }
@@ -99,24 +93,16 @@ namespace WebUI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (userId == null || token == null)
+
+            if (userId != null && token != null)
             {
-                return View("Error");
-            }
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return View("Error");
+                var (result, _) = await _identityService.ConfirmEmail(userId, token);
+
+                if (result.Succeeded)
+                    return View();
             }
 
-            // Mark email as confirmed 
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            if (result.Succeeded)
-            {
-                return View();
-            }
-            else
-                return View("Error");
+            return View("Error");
         }
 
         /// <summary>
@@ -128,7 +114,7 @@ namespace WebUI.Controllers
         public IActionResult Login(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
 
         /// <summary>
-        /// Process user input on the user login page.
+        /// Process user input on the login page.
         /// </summary>
         /// <param name="model">User login view model.</param>
         /// <returns></returns>
@@ -140,20 +126,26 @@ namespace WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
-                if (result.Succeeded)
-                {
-                    //TODO: add check whether email is confirmed.
+                var (result, message) = await _identityService.EmailConfirmCheckerAsync(model.Email);
 
-                    // Check if URL is belonging to application.
+                if (!result)
+                {
+                    ModelState.AddModelError(string.Empty, message);
+                    return View(model);
+                }
+
+                var isSignIn = await _identityService.LoginUserAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
+                if (isSignIn.Succeeded)
+                {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                         return Redirect(model.ReturnUrl);
                     else
                         return RedirectToAction("Index", "Home");
                 }
-                else
-                    ModelState.AddModelError("", "Incorrect email or password!");
             }
+            else
+                ModelState.AddModelError("", "Incorrect email or password!");
+
             return View(model);
         }
 
@@ -165,8 +157,7 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            // Delete authentification cookies.
-            await _signInManager.SignOutAsync();
+            await _identityService.LogoutUserAsync();
             return RedirectToAction("Index", "Home");
         }
     }
