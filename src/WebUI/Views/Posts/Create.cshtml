@@ -5,19 +5,37 @@
 
 <form asp-action="Create" asp-controller="Posts">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Title" class="control-label">Title</label>
-        <input type="text" asp-for="Title" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Text" class="control-label">Text</label>
-        <input type="text" asp-for="Text" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Topic" class="control-label">Topic</label>
-        <input type="text" asp-for="Topic" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Publish" class="btn btn-outline-secondary" />
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Title</span>
+        </div>
+        <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder="Title of the post" required><br />
+        <span asp-validation-for="Title"></span>
+        <div class="invalid-feedback">
+            Please enter a Title of your post.
+        </div>
+    </div><br />
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Topic</span>
+        </div>
+        <input asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder="Topic of the post" required><br />
+        <span asp-validation-for="Topic"></span>
+        <div class="invalid-feedback">
+            Please enter a Topic of your post.
+        </div>
+    </div><br />
+
+    <div class="mb-3">
+        <textarea asp-for="Text" class="form-control article-input" placeholder="Write your post here." required></textarea>
+        <span asp-validation-for="Text"></span>
+        <div class="invalid-feedback">
+            Please enter your article in the textarea.
+        </div>
+    </div><br />
+
+    <div>
+        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">Publish</button>
     </div>
 </form>

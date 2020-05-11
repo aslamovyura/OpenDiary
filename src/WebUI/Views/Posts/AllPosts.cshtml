@@ -4,7 +4,8 @@
 }
 
 <a class="btn btn-sm btn-primary" asp-action="Create" asp-controller="Posts">Add post</a>
-<table class="table">
+<table id="table" class="table">
+    <caption>Posts list.</caption>
     <tr><th>Date</th><th>Title</th><th>Author</th><th></th></tr>
     @foreach (var post in Model)
     {

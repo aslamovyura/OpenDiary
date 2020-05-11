@@ -7,39 +7,40 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </head>
+
     <body>
         <!--<header>-->
+        <header id="header">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-5" style="background-color: #C0C0C0;">
                 <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/OpenDiary.jpg" width="50" height="50" class="d-inline-block align-top" alt="">
+                    <a id="logo-text" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img id="logo-img" src="~/OpenDiary.jpg" class="d-inline-block align-top" alt="" />
                         OPEN DIARY
                     </a>
-
-                    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>-->
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <!--<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">-->
+                    <div class="navbar-brand">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
             </nav>
+        </header>
         <!--</header>-->
-
-        <div class="row">
-            <div style="width:250px">
-                <partial name="_AdminPanelPartial" />
-            </div>
-            <div class="col">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
-            <div style="width:250px"></div>
+        
+        <!--</sidebar>-->
+        <div id="leftSidebar">
+            <partial name="_LeftSidebar" />
         </div>
+        <!--</sidebar>-->
 
-        <footer class="border-top footer text-muted">
+        <!--</main>-->
+        <div id="main">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <!--</main>-->
+
+        <footer id="footer" class="border-top footer text-muted">
             <div class="container">
                 &copy; 2020 - Open Diary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>

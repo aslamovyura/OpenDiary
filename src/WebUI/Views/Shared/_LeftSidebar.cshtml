@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Domain.Entities;
+@inject SignInManager<User> SignInManager
+
+@if (SignInManager.IsSignedIn(User) && @User.IsInRole("admin"))
+{
+    <!--<div class="bg-light border-right" id="sidebar-wrapper">-->
+    <div class="bg-light">
+        <!--<div class="list-group list-group-flush">-->
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action bg-wight" asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a>
+            <a class="list-group-item list-group-item-action bg-wight" asp-area="Admin" asp-controller="Roles" asp-action="Index">Roles</a>
+            <a class="list-group-item list-group-item-action bg-wight" asp-area="Admin" asp-controller="Posts" asp-action="AllPosts">Posts</a>
+        </div>
+    </div>
+}
+<!--else
+{
+    <div id="sidebar-wrapper"></div>
+}-->
