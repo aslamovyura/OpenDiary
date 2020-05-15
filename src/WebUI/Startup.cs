@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +27,8 @@ namespace WebUI
 
 
             services.AddInfrastructure();
+
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
             services.AddControllersWithViews();
         }

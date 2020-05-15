@@ -22,7 +22,9 @@ namespace WebUI.Controllers
         public IActionResult Index()
         {
             //return RedirectToAction("Index", "Posts");
-            return Content("Hello World!");
+            //return Content("Hello World!");
+            //return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public IActionResult Privacy()

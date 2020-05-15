@@ -4,6 +4,8 @@ using WebUI.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces;
+using Domain.Entities;
+using System.Threading;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +16,7 @@ namespace WebUI.Controllers
         private readonly IIdentityService _identityService;
         private readonly IEmailService _emailService;
         private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
+        private readonly IApplicationDbContext _context;
 
         /// <summary>
         /// Constructor of account controller.
@@ -22,11 +25,15 @@ namespace WebUI.Controllers
         /// <param name="signInManager">Manager of users' sign in.</param>
         /// <param name="emailService">Service to manage email activities.</param>
         public AccountController(IIdentityService identityService,
-            IEmailService emailService, IRazorViewToStringRenderer razorViewToStringRenderer)
+                                 IEmailService emailService,
+                                 IRazorViewToStringRenderer razorViewToStringRenderer,
+                                 IApplicationDbContext context)
         {
             _identityService = identityService ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
             _razorViewToStringRenderer = razorViewToStringRenderer ?? throw new ArgumentNullException();
+
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         /// <summary>
@@ -53,6 +60,16 @@ namespace WebUI.Controllers
             {
 
                 var (result, userId, token) = await _identityService.CreateUserAsync(model.FirstName, model.LastName, model.Email, model.Email, model.BirthDate, model.Password);
+
+                Author author = new Author
+                {
+                    UserId = userId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    BirthDate = model.BirthDate
+                };
+                _context.Authors.Add(author);
+                await _context.SaveChangesAsync(new CancellationToken());
 
                 if (result == null)
                 {

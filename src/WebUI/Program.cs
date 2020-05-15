@@ -17,9 +17,6 @@ namespace WebUI
     {
         public static async Task Main(string[] args)
         {
-
-            //CreateHostBuilder(args).Build().Run();
-
             var host = CreateHostBuilder(args).Build();
 
             using (IServiceScope scope = host.Services.CreateScope())
