@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Application.DTO.AuthorDTO>
+@{
+    ViewBag.Title = "User list";
+}
+
+<a asp-action="Create">Add user</a>
+
+<table class="table captionTop">
+    <caption>Application users.</caption>
+    <tr><th>Name</th><th>Email</th><th>Birth date</th><th></th></tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.FirstName @user.LastName</td>
+            <td>@user.Email</td>
+            <td>@user.BirthDate</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.UserId" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.UserId">Edit</a>
+                    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.UserId">Change password</a>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

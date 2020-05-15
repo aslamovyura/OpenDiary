@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure.Identity;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +10,7 @@ namespace Infrastructure.Data
 {
     public class RoleInitializer
     {
-        public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             string adminEmail = "admin@gmail.com";
             string userEmail = "user@gmail.com";
@@ -24,11 +25,16 @@ namespace Infrastructure.Data
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail, EmailConfirmed = true};
+                var admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail, EmailConfirmed = true};
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
+
+                    var adminAuthor = new Author { UserId = admin.Id, FirstName = "admin", LastName = "admin", BirthDate = DateTime.Now };
+                    context.Authors.Add(adminAuthor);
+                    await context.SaveChangesAsync();
+
                 }
                 else
                 {
@@ -43,6 +49,10 @@ namespace Infrastructure.Data
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "user");
+
+                    var userAuthor = new Author { UserId = user.Id, FirstName = "user", LastName = "user", BirthDate = DateTime.Now };
+                    context.Authors.Add(userAuthor);
+                    await context.SaveChangesAsync();
                 }
                 else
                 {
