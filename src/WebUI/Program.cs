@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,9 @@ namespace WebUI
     {
         public static async Task Main(string[] args)
         {
+
+            //CreateHostBuilder(args).Build().Run();
+
             var host = CreateHostBuilder(args).Build();
 
             using (IServiceScope scope = host.Services.CreateScope())
@@ -23,7 +27,7 @@ namespace WebUI
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await RoleInitializer.InitializeAsync(userManager, rolesManager);
                 }

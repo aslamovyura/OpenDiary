@@ -35,11 +35,11 @@ namespace Domain.Entities
         /// <summary>
         /// Author identifier.
         /// </summary>
-        public virtual string UserId { get; set; }
+        public int AuthorId { get; set; }
 
         /// <summary>
         /// Author.
         /// </summary>
-        public virtual User User { get; set; }
+        public Author Author { get; set; }
     }
 }

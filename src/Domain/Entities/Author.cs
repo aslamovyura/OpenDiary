@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
 {
     /// <summary>
-    /// Define application user.
+    /// Author.
     /// </summary>
-    public class User : IdentityUser
+    public class Author
     {
+        /// <summary>
+        /// Identifier.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// User Identifier.
+        /// </summary>
+        public string UserId { get; set; }
 
         /// <summary>
         /// User first name.
@@ -38,7 +46,7 @@ namespace Domain.Entities
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public User()
+        public Author()
         {
             Posts = new List<Post>();
             Comments = new List<Comment>();

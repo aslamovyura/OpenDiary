@@ -11,6 +11,11 @@ namespace Application.Interfaces
     public interface IApplicationDbContext
     {
         /// <summary>
+        /// Authors.
+        /// </summary>
+        DbSet<Author> Authors { get; set; }
+
+        /// <summary>
         /// User posts.
         /// </summary>
         DbSet<Post> Posts { get; set; }

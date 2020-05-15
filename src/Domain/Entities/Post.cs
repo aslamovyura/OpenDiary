@@ -31,12 +31,12 @@ namespace Domain.Entities
         ///// <summary>
         ///// User Identifier.
         ///// </summary>
-        public virtual string UserId { get; set; }
+        public int AuthorId { get; set; }
 
         /// <summary>
         /// Author of the post.
         /// </summary>
-        public virtual User User { get; set; }
+        public Author Author { get; set; }
 
         /// <summary>
         /// Identifier of the post topic.

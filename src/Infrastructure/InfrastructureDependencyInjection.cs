@@ -1,6 +1,7 @@
 ﻿using System;
 using Application.Interfaces;
 using Domain.Entities;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
 using Masny.QRAnimal.Infrastructure.Services;
@@ -21,7 +22,7 @@ namespace Infrastructure
         /// <returns>Services.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
                 options.User.AllowedUserNameCharacters = ".@abcdefghijklmnopqrstuvwxyz";
