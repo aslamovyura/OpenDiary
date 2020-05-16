@@ -17,6 +17,9 @@
     <Folder Include="CQRS\Queries\" />
     <Folder Include="CQRS\Commands\Create\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="CQRS\Commands\Delete\" />
+    <Folder Include="CQRS\Commands\Update\" />
+    <Folder Include="CQRS\Queries\Get\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

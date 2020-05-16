@@ -9,7 +9,7 @@ namespace WebUI.ViewModels.Users
         /// <summary>
         /// User identifier.
         /// </summary>
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// User's first name.

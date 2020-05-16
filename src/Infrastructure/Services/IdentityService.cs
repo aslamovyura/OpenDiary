@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Models;
 using Infrastructure.Extentions;
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Masny.QRAnimal.Infrastructure.Services
 {
@@ -32,23 +33,39 @@ namespace Masny.QRAnimal.Infrastructure.Services
         }
 
         /// <inheritdoc />
+        /// <exception cref="ArgumentNullException"></exception>
         public async Task<string> GetUserIdByNameAsync(string userName)
         {
+            userName = userName ?? throw new ArgumentNullException(nameof(userName));
+
             var user = await _userManager.Users.FirstAsync(u => u.UserName == userName);
 
             return user.Id;
         }
 
         /// <inheritdoc />
-        public async Task<(Result result, string userId, string token)> CreateUserAsync(string firstName, string lastName, string email, string userName, DateTime birthDate, string password)
+        /// <exception cref="ArgumentNullException"></exception>
+        public async Task<string> GetEmailByIdAsync(string userId)
+        {
+            userId = userId ?? throw new ArgumentNullException(nameof(userId));
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.Email;
+        }
+
+        /// <inheritdoc />
+        public async Task<(Result result, string userId, string token)> CreateUserAsync(string email, string userName, string password)
         {
             var user = new ApplicationUser
             {
-                //FirstName = firstName,
-                //LastName = lastName,
                 Email = email,
                 UserName = userName,
-                //BirthDate = birthDate
             };
 
             var isExist = await _userManager.FindByEmailAsync(email);

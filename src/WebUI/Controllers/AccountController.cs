@@ -4,12 +4,10 @@ using WebUI.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces;
-using Domain.Entities;
-using System.Threading;
 using Application.DTO;
 using Application.CQRS.Commands.Create;
-using MediatR;
 using Application.Exceptions;
+using MediatR;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,15 +18,15 @@ namespace WebUI.Controllers
         private readonly IIdentityService _identityService;
         private readonly IEmailService _emailService;
         private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
-        //private readonly IApplicationDbContext _context;
         private readonly IMediator _mediator;
 
         /// <summary>
         /// Constructor of account controller.
         /// </summary>
-        /// <param name="userManager">Manager of the users in persistence store.</param>
-        /// <param name="signInManager">Manager of users' sign in.</param>
+        /// <param name="identityService">Application identity service.</param>
+        /// <param name="mediator">Mediator to access application entities.</param>
         /// <param name="emailService">Service to manage email activities.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public AccountController(IIdentityService identityService,
                                  IEmailService emailService,
                                  IRazorViewToStringRenderer razorViewToStringRenderer,
@@ -63,7 +61,7 @@ namespace WebUI.Controllers
             if (ModelState.IsValid)
             {
                 // Create new application user.
-                var (result, userId, token) = await _identityService.CreateUserAsync(model.FirstName, model.LastName, model.Email, model.Email, model.BirthDate, model.Password);
+                var (result, userId, token) = await _identityService.CreateUserAsync(model.Email, model.Email, model.Password);
                 if (result == null)
                 {
                     ModelState.AddModelError(string.Empty, "User is already exists!");
@@ -82,16 +80,11 @@ namespace WebUI.Controllers
                         Email = model.Email
                     };
 
-                    var authorCommand = new CreateAuthorCommand
-                    {
-                        Model = authorDTO,
-                    };
-
-                    int authorId;
+                    var authorCommand = new CreateAuthorCommand { Model = authorDTO };
 
                     try
                     {
-                        authorId = await _mediator.Send(authorCommand);
+                        await _mediator.Send(authorCommand);
                     }
                     catch (RequestValidationException failures)
                     {
@@ -102,18 +95,7 @@ namespace WebUI.Controllers
                         return View(model);
                     }
 
-
-                    //Author author = new Author
-                    //{
-                    //    UserId = userId,
-                    //    FirstName = model.FirstName,
-                    //    LastName = model.LastName,
-                    //    BirthDate = model.BirthDate
-                    //};
-                    //_context.Authors.Add(author);
-                    //await _context.SaveChangesAsync(new CancellationToken());
-
-                    // Send confirmation.
+                    // Send confirmation letter to user email.
                     var callbackUrl = Url.Action("ConfirmEmail", "Account",
                                                  new { userId = userId, token = token },
                                                  protocol: HttpContext.Request.Scheme);
@@ -131,6 +113,7 @@ namespace WebUI.Controllers
                     }
                 }
             }
+
             return View(model);
         }
 
@@ -144,7 +127,6 @@ namespace WebUI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-
             if (userId != null && token != null)
             {
                 var (result, _) = await _identityService.ConfirmEmail(userId, token);

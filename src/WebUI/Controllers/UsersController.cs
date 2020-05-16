@@ -13,6 +13,11 @@ using Infrastructure.Identity;
 using System.Threading;
 using System.Collections.Generic;
 using Application.DTO;
+using Application.CQRS.Queries.Get;
+using MediatR;
+using Application.CQRS.Commands.Create;
+using Application.Exceptions;
+using Application.CQRS.Commands.Update;
 
 namespace CustomIdentityApp.Controllers
 {
@@ -20,44 +25,42 @@ namespace CustomIdentityApp.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationDbContext _db;
+        private readonly IIdentityService _identityService;
+        private readonly IMediator _mediator;
 
         /// <summary>
         /// Constructor of user controller.
         /// </summary>
-        public UsersController(UserManager<ApplicationUser> userManager, IApplicationDbContext context, IIdentityService identityService)
+        /// <exception cref="ArgumentNullException"></exception>
+        public UsersController(UserManager<ApplicationUser> userManager, IApplicationDbContext context, IIdentityService identityService, IMediator mediator)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _db = context ?? throw new ArgumentNullException(nameof(context));
+            _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         /// <summary>
-        /// Show page with user list.
+        /// Show page with user/aurhors list.
         /// </summary>
         /// <returns>Page with list of users.</returns>
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
-            var models = new List<AuthorDTO>();
+            var authorsQuery = new GetAuthorsQuery();
 
-            var users = _userManager.Users.ToList();
-            if (users != null)
+            var authors = await _mediator.Send(authorsQuery);
+            if (authors == null)
             {
-                foreach(var user in users)
-                {
-                    var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == user.Id);
-                    models.Add(new AuthorDTO
-                    {
-                        FirstName = author.FirstName,
-                        LastName = author.LastName,
-                        BirthDate = author.BirthDate,
-                        Email = user.Email,
-                        UserId = user.Id
-                    });
-                }
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(models);
-            //return View(_userManager.Users.ToList());
+            foreach (var author in authors)
+            {
+                author.Email = await _identityService.GetEmailByIdAsync(author.UserId);
+            }
+
+            return View(authors);
         }
 
         /// <summary>
@@ -76,6 +79,62 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+
+            //// Create user.
+            //var (result, userId, token) = await _identityService.CreateUserAsync(model.Email, model.Email, model.Password);
+
+            //if (result == null)
+            //{
+            //    ModelState.AddModelError(string.Empty, "User is already exists!");
+            //    return View(model);
+            //}
+
+            //if (result.Succeeded)
+            //{
+            //    await _identityService.ConfirmEmail(userId, token);
+            //}
+            //else
+            //{
+            //    foreach (var error in result.Errors)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error);
+            //    }
+            //    return View(model);
+            //}
+
+            //// Create author.
+            //var authorDTO = new AuthorDTO
+            //{
+            //    UserId = userId,
+            //    FirstName = model.FirstName,
+            //    LastName = model.LastName,
+            //    BirthDate = model.BirthDate,
+            //    Email = model.Email
+            //};
+
+            //var authorCommand = new CreateAuthorCommand { Model = authorDTO };
+
+            //try
+            //{
+            //    await _mediator.Send(authorCommand);
+            //}
+            //catch (RequestValidationException failures)
+            //{
+            //    foreach (var error in failures.Failures)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error.Value[0]);
+            //    }
+            //    return View(model);
+            //}
+
+            //return RedirectToAction("Index", "Users");
+
+
+
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser
@@ -85,7 +144,6 @@ namespace CustomIdentityApp.Controllers
                     EmailConfirmed = true
                 };
 
-                //(var result, var userId, var token) = await _identityService.CreateUserAsync(model.FirstName, model.LastName, model.Email, model.Email, model.BirthDate, model.Password);
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -120,68 +178,39 @@ namespace CustomIdentityApp.Controllers
         /// </summary>
         /// <param name="id">User identifier.</param>
         /// <returns>View with EditUserViewModel.</returns>
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+            var authorQuery = new GetAuthorQuery { Id = id };
 
-            var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == id);
-            if (author == null)
+            var authorDTO = await _mediator.Send(authorQuery);
+
+            if (authorDTO == null)
                 return NotFound();
 
-            EditUserViewModel model = new EditUserViewModel
-            {
-                Id = user.Id,
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                Email = user.Email,
-                BirthDate = author.BirthDate
-            };
-            return View(model);
+            var email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
+            authorDTO.Email = email;
+
+            return View(authorDTO);
         }
 
         /// <summary>
         /// Process input date to edit application user.
         /// </summary>
-        /// <param name="model">View model to edit user.</param>
+        /// <param name="authorDTO">View model to edit user.</param>
         /// <returns>View with EditUserViewModel.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<IActionResult> Edit(AuthorDTO authorDTO)
         {
-            if (ModelState.IsValid)
+            if (! ModelState.IsValid)
             {
-                var user = await _userManager.FindByIdAsync(model.Id);
-                var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == model.Id);
-
-                if (user != null && author != null)
-                {
-                    author.FirstName = model.FirstName;
-                    author.LastName = model.LastName;
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
-                    author.BirthDate = model.BirthDate;
-
-                    var result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-
-                    _db.Authors.Update(author);
-                    await _db.SaveChangesAsync(new CancellationToken());
-                }
+                return View(authorDTO);
             }
-            return View(model);
+
+            var authorQuery = new UpdateAuthorCommand { Model = authorDTO };
+            await _mediator.Send(authorQuery);
+
+            return RedirectToAction("Index");
+
         }
 
         /// <summary>
@@ -193,6 +222,8 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
+
+
             var user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {

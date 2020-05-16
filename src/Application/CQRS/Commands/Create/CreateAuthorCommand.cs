@@ -23,7 +23,6 @@ namespace Application.CQRS.Commands.Create
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
-            private readonly IIdentityService _identityService;
 
             /// <summary>
             /// Constructor with parameters.
@@ -35,7 +34,6 @@ namespace Application.CQRS.Commands.Create
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-                _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
             }
 
             /// <summary>

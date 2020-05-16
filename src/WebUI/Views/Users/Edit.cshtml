@@ -1,4 +1,4 @@
-﻿@model WebUI.ViewModels.Users.EditUserViewModel
+﻿@model Application.DTO.AuthorDTO
 @{
     ViewBag.Title = "Edit user";
 }
@@ -6,6 +6,9 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
             <input type="hidden" asp-for="Id" />
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="UserId" />
         </div>
         <div class="form-group">
             <label asp-for="FirstName" class="control-label">First name</label>
@@ -17,13 +20,13 @@
         </div>
         <div class="form-group">
             <label asp-for="Email" class="control-label">Email</label>
-            <input type="text" asp-for="Email" class="form-control" />
+            <input type="text" asp-for="Email" class="form-control" readonly="readonly"/>
         </div>
         <div class="form-group">
             <label asp-for="BirthDate" class="control-label">Birth Date</label>
             <input type="date" asp-for="BirthDate" class="form-control" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+            <input type="submit" value="Save" class="btn btn-outline-secondary" />
         </div>
     </form>

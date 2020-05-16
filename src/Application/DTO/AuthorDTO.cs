@@ -8,6 +8,11 @@ namespace Application.DTO
     public class AuthorDTO
     {
         /// <summary>
+        /// Author Identifier.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// User Identifier.
         /// </summary>
         public string UserId { get; set; }
