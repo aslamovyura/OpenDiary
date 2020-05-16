@@ -20,7 +20,6 @@ namespace CustomIdentityApp.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationDbContext _db;
-        private readonly IIdentityService _identityService;
 
         /// <summary>
         /// Constructor of user controller.
@@ -29,7 +28,6 @@ namespace CustomIdentityApp.Controllers
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _db = context ?? throw new ArgumentNullException(nameof(context));
-            _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
         }
 
         /// <summary>
@@ -52,8 +50,6 @@ namespace CustomIdentityApp.Controllers
                         FirstName = author.FirstName,
                         LastName = author.LastName,
                         BirthDate = author.BirthDate,
-                        Posts = author.Posts,
-                        Comments = author.Comments,
                         Email = user.Email,
                         UserId = user.Id
                     });

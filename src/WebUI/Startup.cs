@@ -1,3 +1,4 @@
+using Application;
 using Application.Interfaces;
 using Infrastructure;
 using Infrastructure.Persistence;
@@ -25,7 +26,7 @@ namespace WebUI
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            services.AddApplication();
             services.AddInfrastructure();
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
