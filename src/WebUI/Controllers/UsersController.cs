@@ -193,7 +193,7 @@ namespace CustomIdentityApp.Controllers
             var email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
             authorDTO.Email = email;
 
-            var model = _mapper.Map<AuthorDTO, EditUserViewModel>(authorDTO);
+            var model = _mapper.Map<AuthorDTO, AuthorViewModel>(authorDTO);
 
             return View(model);
         }
@@ -204,14 +204,14 @@ namespace CustomIdentityApp.Controllers
         /// <param name="authorDTO">View model to edit user.</param>
         /// <returns>View with EditUserViewModel.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<IActionResult> Edit(AuthorViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var authorDTO = _mapper.Map<EditUserViewModel, AuthorDTO>(model);
+            var authorDTO = _mapper.Map<AuthorViewModel, AuthorDTO>(model);
 
             var authorCommand = new UpdateAuthorCommand { Model = authorDTO };
             await _mediator.Send(authorCommand);

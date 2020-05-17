@@ -206,16 +206,9 @@ namespace WebUI.Controllers
             var topicQuery = new GetTopicQuery { Id = topicId };
             var topicDTO = await _mediator.Send(topicQuery);
 
-            // Create view model.
-            var model = new EditPostViewModel
-            {
-                Id = postDTO.Id,
-                TopicId = postDTO.TopicId,
-                Title = postDTO.Title,
-                Text = postDTO.Text,
-                Topic = topicDTO.Text,
-                Date = postDTO.Date
-            };
+            var model = _mapper.Map<PostDTO, PostViewModel>(postDTO);
+            model.Topic = topicDTO.Text;
+
             return View(model);
         }
 
@@ -226,19 +219,11 @@ namespace WebUI.Controllers
         /// <returns>List of posts.</returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> Edit(EditPostViewModel model)
+        public async Task<IActionResult> Edit(PostViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Update post.
-                var postDTO = new PostDTO
-                {
-                    Id = model.Id,
-                    Title = model.Title,
-                    Text = model.Text,
-                    Date = model.Date, 
-                };
-
+                var postDTO = _mapper.Map<PostViewModel, PostDTO>(model);
                 var postCommand = new UpdatePostCommand { Model = postDTO };
 
                 try

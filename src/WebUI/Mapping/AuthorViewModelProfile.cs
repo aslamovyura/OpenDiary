@@ -5,7 +5,7 @@ using WebUI.ViewModels.Users;
 namespace Application.Mapping
 {
     /// <summary>
-    /// Author-AuthorDTO mapping rule.
+    /// AuthorDTO-EditUserViewModel mapping rule.
     /// </summary>
     public class AuthorProfile : Profile
     {
@@ -14,8 +14,7 @@ namespace Application.Mapping
         /// </summary>
         public AuthorProfile()
         {
-            //CreateMap<AuthorDTO, EditUserViewModel>().ReverseMap();
-            CreateMap<EditUserViewModel, AuthorDTO>()
+            CreateMap<AuthorViewModel, AuthorDTO>()
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(model => model.AuthorId))
                 .ReverseMap()
                 .ForPath(model => model.AuthorId, opt => opt.MapFrom(dto => dto.Id));

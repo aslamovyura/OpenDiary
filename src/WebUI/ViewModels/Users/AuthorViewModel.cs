@@ -4,7 +4,7 @@ namespace WebUI.ViewModels.Users
     /// <summary>
     /// View model for `edit user` page.
     /// </summary>
-    public class EditUserViewModel
+    public class AuthorViewModel
     {
         /// <summary>
         /// Author identifier.
