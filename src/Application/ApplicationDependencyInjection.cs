@@ -19,7 +19,9 @@ namespace Application
         /// <returns>Services collection.</returns>
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             // Add validation behavior.

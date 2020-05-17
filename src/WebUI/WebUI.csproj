@@ -21,5 +21,7 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Profile\" />
+    <Folder Include="Views\Profile\" />
+    <Folder Include="Mapping\" />
   </ItemGroup>
 </Project>

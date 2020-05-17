@@ -7,9 +7,14 @@ namespace WebUI.ViewModels.Users
     public class EditUserViewModel
     {
         /// <summary>
+        /// Author identifier.
+        /// </summary>
+        public int AuthorId { get; set; }
+
+        /// <summary>
         /// User identifier.
         /// </summary>
-        public int Id { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// User's first name.

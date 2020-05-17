@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Domain.Entities;
+using Application.DTO;
 
-namespace WebUI.ViewModels.Users
+namespace WebUI.ViewModels.Profile
 {
-    public class ViewUserViewModel
+    public class ProfileViewModel
     {
         /// <summary>
         /// User first name.
@@ -43,14 +43,6 @@ namespace WebUI.ViewModels.Users
         /// <summary>
         /// Latest posts
         /// </summary>
-        public IList<Post> Posts { get; set; }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public ViewUserViewModel()
-        {
-            Posts = new List<Post>();
-        }
+        public ICollection<PostDTO> Posts { get; set; }
     }
 }

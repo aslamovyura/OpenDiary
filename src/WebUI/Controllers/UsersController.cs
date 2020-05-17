@@ -19,6 +19,7 @@ using Application.CQRS.Commands.Create;
 using Application.Exceptions;
 using Application.CQRS.Commands.Update;
 using Application.CQRS.Commands.Delete;
+using AutoMapper;
 
 namespace CustomIdentityApp.Controllers
 {
@@ -28,17 +29,19 @@ namespace CustomIdentityApp.Controllers
         private readonly IApplicationDbContext _db;
         private readonly IIdentityService _identityService;
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Constructor of user controller.
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception>
-        public UsersController(UserManager<ApplicationUser> userManager, IApplicationDbContext context, IIdentityService identityService, IMediator mediator)
+        public UsersController(UserManager<ApplicationUser> userManager, IApplicationDbContext context, IIdentityService identityService, IMediator mediator, IMapper mapper)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _db = context ?? throw new ArgumentNullException(nameof(context));
             _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         /// <summary>
@@ -179,9 +182,9 @@ namespace CustomIdentityApp.Controllers
         /// </summary>
         /// <param name="id">User identifier.</param>
         /// <returns>View with EditUserViewModel.</returns>
-        public async Task<IActionResult> Edit(string userId)
+        public async Task<IActionResult> Edit(string id)
         {
-            var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
+            var authorQuery = new GetAuthorByUserIdQuery { UserId = id };
             var authorDTO = await _mediator.Send(authorQuery);
 
             if (authorDTO == null)
@@ -190,7 +193,9 @@ namespace CustomIdentityApp.Controllers
             var email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
             authorDTO.Email = email;
 
-            return View(authorDTO);
+            var model = _mapper.Map<AuthorDTO, EditUserViewModel>(authorDTO);
+
+            return View(model);
         }
 
         /// <summary>
@@ -199,18 +204,19 @@ namespace CustomIdentityApp.Controllers
         /// <param name="authorDTO">View model to edit user.</param>
         /// <returns>View with EditUserViewModel.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(AuthorDTO authorDTO)
+        public async Task<IActionResult> Edit(EditUserViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View(authorDTO);
+                return View(model);
             }
 
-            var authorQuery = new UpdateAuthorCommand { Model = authorDTO };
-            await _mediator.Send(authorQuery);
+            var authorDTO = _mapper.Map<EditUserViewModel, AuthorDTO>(model);
+
+            var authorCommand = new UpdateAuthorCommand { Model = authorDTO };
+            await _mediator.Send(authorCommand);
 
             return RedirectToAction("Index");
-
         }
 
         /// <summary>
@@ -234,21 +240,6 @@ namespace CustomIdentityApp.Controllers
                 var authorCommand = new DeleteAuthorCommand { Id = id };
                 await _mediator.Send(authorCommand);
             }
-
-
-            //var user = await _userManager.FindByIdAsync(authorDTO.UserId);
-            //if (user != null)
-            //{
-            //    IdentityResult result = await _userManager.DeleteAsync(user);
-            //}
-
-            //var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == id);
-            //if (author != null)
-            //{
-            //    _db.Authors.Remove(author);
-            //    await _db.SaveChangesAsync(new CancellationToken());
-
-            //}
 
             return RedirectToAction("Index");
         }
@@ -308,57 +299,6 @@ namespace CustomIdentityApp.Controllers
                 ModelState.AddModelError(string.Empty, "User is not found.");
             }
             return View(model);
-        }
-
-        /// <summary>
-        /// View user page
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns></returns>
-        public async Task<IActionResult> ViewUser(string userName)
-        {
-            if (userName == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _userManager.FindByNameAsync(userName);
-
-            if (user != null)
-            {
-                var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == user.Id);
-
-                // Calculate user
-                DateTime zeroTime = new DateTime(1, 1, 1);
-                TimeSpan span = DateTime.Now - author.BirthDate;
-                int ageYears = (zeroTime + span).Year - 1;
-
-                // Calculate statistics
-                var posts = await _db.Posts.Where(post => post.AuthorId == author.Id)
-                    .OrderByDescending(post => post.Date)
-                    .ToListAsync();
-
-                var postsNumber = posts.Count;
-                var commentsNumber = _db.Comments.Where(post => post.AuthorId == author.Id)
-                    .OrderByDescending(post => post.Date)
-                    .ToListAsync().GetAwaiter().GetResult().Count;
-
-                ViewUserViewModel model = new ViewUserViewModel
-                {
-                    FirstName = author.FirstName,
-                    LastName = author.LastName,
-                    Email = user.Email,
-                    BirthDate = author.BirthDate.ToString("MMMM d, yyyy"),
-                    Age = ageYears,
-                    TotalPostsNumber = postsNumber,
-                    TotalCommentsNumber = commentsNumber,
-                    Posts = posts
-                };
-                return View(model);
-            }
-
-            // Default action
-            return RedirectToAction("Index", "Home");
         }
     }
 }
