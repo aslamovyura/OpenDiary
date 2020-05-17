@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Application.DTO.PostDTO>
+@{
+    ViewBag.Title = "Post List";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Open Diary</h1>
+    <p>Read the latest most significant posts and write your own! Enjoy!</p>
+</div>
+
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="bg-white border-bottom box-shadow mb-5">
+            <a class="nav-link btn" asp-route-postId="@post.Id" asp-controller="Posts" asp-action="Read">
+                <article>
+                    <h2 class="text-center">@post.Title</h2>
+                    <p class="text-center">@post.Author,  @post.Date.ToString("MMMM d, yyyy")</p>
+                    @if (post.Text.Length > 400)
+                    {
+                        <p class="text-justify">
+                            @post.Text?.Substring(0, 400) ...
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-justify">@post.Text</p>
+                    }
+                </article>
+            </a>
+        </div>
+    }
+</div>

@@ -5,12 +5,12 @@ namespace Application.CQRS.Commands.Create
     /// <summary>
     /// Validation of Author DTO.
     /// </summary>
-    public class CreatePostCommandValidator : AbstractValidator<CreateAuthorCommand>
+    public class CreateAuthorCommandValidator : AbstractValidator<CreateAuthorCommand>
     {
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public CreatePostCommandValidator()
+        public CreateAuthorCommandValidator()
         {
             RuleFor(author => author.Model.UserId).NotEmpty();
             RuleFor(author => author.Model.FirstName).MaximumLength(50).NotEmpty();

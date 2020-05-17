@@ -18,6 +18,7 @@ using MediatR;
 using Application.CQRS.Commands.Create;
 using Application.Exceptions;
 using Application.CQRS.Commands.Update;
+using Application.CQRS.Commands.Delete;
 
 namespace CustomIdentityApp.Controllers
 {
@@ -178,10 +179,9 @@ namespace CustomIdentityApp.Controllers
         /// </summary>
         /// <param name="id">User identifier.</param>
         /// <returns>View with EditUserViewModel.</returns>
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(string userId)
         {
-            var authorQuery = new GetAuthorQuery { Id = id };
-
+            var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
             var authorDTO = await _mediator.Send(authorQuery);
 
             if (authorDTO == null)
@@ -201,7 +201,7 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(AuthorDTO authorDTO)
         {
-            if (! ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(authorDTO);
             }
@@ -220,23 +220,35 @@ namespace CustomIdentityApp.Controllers
         /// <returns></returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var authorQuery = new GetAuthorQuery { Id = id };
+            var authorDTO = await _mediator.Send(authorQuery);
 
+            if (authorDTO == null)
+                return NotFound();
 
-            var user = await _userManager.FindByIdAsync(id);
-            if (user != null)
+            var result = await _identityService.DeleteUserAsync(authorDTO.UserId);
+            if( result.Succeeded )
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                var authorCommand = new DeleteAuthorCommand { Id = id };
+                await _mediator.Send(authorCommand);
             }
 
-            var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == id);
-            if (author != null)
-            {
-                _db.Authors.Remove(author);
-                await _db.SaveChangesAsync(new CancellationToken());
 
-            }
+            //var user = await _userManager.FindByIdAsync(authorDTO.UserId);
+            //if (user != null)
+            //{
+            //    IdentityResult result = await _userManager.DeleteAsync(user);
+            //}
+
+            //var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == id);
+            //if (author != null)
+            //{
+            //    _db.Authors.Remove(author);
+            //    await _db.SaveChangesAsync(new CancellationToken());
+
+            //}
 
             return RedirectToAction("Index");
         }
@@ -346,7 +358,7 @@ namespace CustomIdentityApp.Controllers
             }
 
             // Default action
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

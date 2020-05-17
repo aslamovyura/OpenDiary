@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Interfaces
 {

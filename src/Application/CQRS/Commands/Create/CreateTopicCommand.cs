@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.DTO;
@@ -9,27 +8,19 @@ using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.CQRS.Queries.Get
+namespace Application.CQRS.Commands.Create
 {
     /// <summary>
-    /// Defice class to get post info.
+    /// Create new topic.
     /// </summary>
-    public class GetAuthorQuery : IRequest<AuthorDTO>
+    public class CreateTopicCommand : IRequest<int>
     {
         /// <summary>
-        /// Id.
+        /// Topic DTO.
         /// </summary>
-        public int Id { get; set; }
+        public TopicDTO Model { get; set; }
 
-        ///// <summary>
-        ///// User Id.
-        ///// </summary>
-        //public string UserId { get; set; }
-
-        /// <summary>
-        /// Handler of the author queries.
-        /// </summary>
-        public class GetAuthorQueryHandler : IRequestHandler<GetAuthorQuery, AuthorDTO>
+        public class CreateTopicCommandHandler : IRequestHandler<CreateTopicCommand, int>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -38,27 +29,34 @@ namespace Application.CQRS.Queries.Get
             /// Constructor with parameters.
             /// </summary>
             /// <param name="context">Application context.</param>
-            /// <param name="mapper">Model mapper.</param>
-            public GetAuthorQueryHandler(IApplicationDbContext context, IMapper mapper)
+            /// <param name="mapper">Mapper.</param>
+            /// <exception cref="ArgumentNullException"></exception>
+            public CreateTopicCommandHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             }
 
             /// <summary>
-            /// Get data for authors.
+            /// Create new topic.
             /// </summary>
             /// <param name="request">Request.</param>
             /// <param name="cancellationToken">Cancellation token.</param>
-            /// <returns>Collection of authors DTO.</returns>
-            public async Task<AuthorDTO> Handle(GetAuthorQuery request, CancellationToken cancellationToken)
+            /// <returns>New post Id.</returns>
+            public async Task<int> Handle(CreateTopicCommand request, CancellationToken cancellationToken)
             {
                 request = request ?? throw new ArgumentNullException(nameof(request));
 
-                var entity = await _context.Authors.Where(a => a.Id == request.Id).SingleOrDefaultAsync();
-                var author = _mapper.Map<AuthorDTO>(entity);
+                var entity = await _context.Topics.FirstOrDefaultAsync(t => t.Text == request.Model.Text);
 
-                return author;
+                if (entity == null)
+                {
+                    entity = _mapper.Map<Topic>(request.Model);
+                    _context.Topics.Add(entity);
+                    await _context.SaveChangesAsync(cancellationToken);
+                }
+
+                return entity.Id;
             }
         }
     }

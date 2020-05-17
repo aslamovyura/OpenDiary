@@ -14,22 +14,17 @@ namespace Application.CQRS.Queries.Get
     /// <summary>
     /// Defice class to get post info.
     /// </summary>
-    public class GetAuthorQuery : IRequest<AuthorDTO>
+    public class GetAuthorByUserIdQuery : IRequest<AuthorDTO>
     {
         /// <summary>
-        /// Id.
+        /// User Id.
         /// </summary>
-        public int Id { get; set; }
-
-        ///// <summary>
-        ///// User Id.
-        ///// </summary>
-        //public string UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Handler of the author queries.
         /// </summary>
-        public class GetAuthorQueryHandler : IRequestHandler<GetAuthorQuery, AuthorDTO>
+        public class GetAuthorByUserIdQueryHandler : IRequestHandler<GetAuthorByUserIdQuery, AuthorDTO>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -39,7 +34,7 @@ namespace Application.CQRS.Queries.Get
             /// </summary>
             /// <param name="context">Application context.</param>
             /// <param name="mapper">Model mapper.</param>
-            public GetAuthorQueryHandler(IApplicationDbContext context, IMapper mapper)
+            public GetAuthorByUserIdQueryHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -51,11 +46,11 @@ namespace Application.CQRS.Queries.Get
             /// <param name="request">Request.</param>
             /// <param name="cancellationToken">Cancellation token.</param>
             /// <returns>Collection of authors DTO.</returns>
-            public async Task<AuthorDTO> Handle(GetAuthorQuery request, CancellationToken cancellationToken)
+            public async Task<AuthorDTO> Handle(GetAuthorByUserIdQuery request, CancellationToken cancellationToken)
             {
                 request = request ?? throw new ArgumentNullException(nameof(request));
 
-                var entity = await _context.Authors.Where(a => a.Id == request.Id).SingleOrDefaultAsync();
+                var entity = await _context.Authors.Where(a => a.UserId == request.UserId).SingleOrDefaultAsync();
                 var author = _mapper.Map<AuthorDTO>(entity);
 
                 return author;

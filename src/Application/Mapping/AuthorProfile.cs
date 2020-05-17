@@ -15,6 +15,9 @@ namespace Application.Mapping
         public AuthorProfile()
         {
             CreateMap<Author, AuthorDTO>().ReverseMap();
+            //CreateMap<Author, AuthorDTO>().ReverseMap()
+            //    .ForMember(p => p.Comments, opt => opt.Ignore())
+            //    .ForMember(p => p.Posts, opt => opt.Ignore());
         }
     }
 }

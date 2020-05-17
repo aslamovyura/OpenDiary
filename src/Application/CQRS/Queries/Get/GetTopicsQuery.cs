@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.CQRS.Queries.Get
 {
-    public class GetAuthorsQuery : IRequest<IEnumerable<AuthorDTO>>
+    public class GetTopicsQuery : IRequest<IEnumerable<TopicDTO>>
     {
         /// <summary>
-        /// Define class to get info on the whole posts in app.
+        /// Define topics query.
         /// </summary>
-        public class GetAuthorsQueryHandler : IRequestHandler<GetAuthorsQuery, IEnumerable<AuthorDTO>>
+        public class GetTopicsQueryHandler : IRequestHandler<GetTopicsQuery, IEnumerable<TopicDTO>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -24,25 +24,25 @@ namespace Application.CQRS.Queries.Get
             /// Constructor with parameters.
             /// </summary>
             /// <param name="context">Application context.</param>
-            /// <param name="mapper">Automapper.</param>
-            public GetAuthorsQueryHandler(IApplicationDbContext context, IMapper mapper)
+            /// <param name="mapper">Model mapper.</param>
+            public GetTopicsQueryHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             }
 
             /// <summary>
-            /// Get authors info.
+            /// Get topics info.
             /// </summary>
             /// <param name="request">Info request.</param>
             /// <param name="cancellationToken">Cancellation token.</param>
-            /// <returns>Number of authors DTO.</returns>
-            public async Task<IEnumerable<AuthorDTO>> Handle(GetAuthorsQuery request, CancellationToken cancellationToken)
+            /// <returns>Number of posts DTO.</returns>
+            public async Task<IEnumerable<TopicDTO>> Handle(GetTopicsQuery request, CancellationToken cancellationToken)
             {
-                var entites = await _context.Authors.ToArrayAsync(cancellationToken);
-                var authors = _mapper.Map<IEnumerable<AuthorDTO>>(entites);
+                var entities = await _context.Topics.ToArrayAsync(cancellationToken);
+                var topics = _mapper.Map<IEnumerable<TopicDTO>>(entities);
 
-                return authors;
+                return topics;
             }
         }
     }
