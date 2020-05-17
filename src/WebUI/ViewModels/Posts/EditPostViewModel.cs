@@ -10,6 +10,11 @@ namespace WebUI.ViewModels.Posts
         public int Id { get; set; }
 
         /// <summary>
+        /// Topic identifier.
+        /// </summary>
+        public int TopicId { get; set; }
+
+        /// <summary>
         /// Post title.
         /// </summary>
         public string Title { get; set; }

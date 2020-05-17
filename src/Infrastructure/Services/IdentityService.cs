@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Models;
 using Infrastructure.Extentions;
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Masny.QRAnimal.Infrastructure.Services
 {
@@ -15,39 +17,55 @@ namespace Masny.QRAnimal.Infrastructure.Services
     /// </summary>
     public class IdentityService : IIdentityService
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         /// <summary>
         /// Constructor with parameters..
         /// </summary>
         /// <param name="userManager">User manager.</param>
         /// <param name="signInManager">Manager of the user sing in.</param>
-        public IdentityService(UserManager<User> userManager,
-                               SignInManager<User> signInManager)
+        public IdentityService(UserManager<ApplicationUser> userManager,
+                               SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
         /// <inheritdoc />
+        /// <exception cref="ArgumentNullException"></exception>
         public async Task<string> GetUserIdByNameAsync(string userName)
         {
+            userName = userName ?? throw new ArgumentNullException(nameof(userName));
+
             var user = await _userManager.Users.FirstAsync(u => u.UserName == userName);
 
             return user.Id;
         }
 
         /// <inheritdoc />
-        public async Task<(Result result, string userId, string token)> CreateUserAsync(string firstName, string lastName, string email, string userName, DateTime birthDate, string password)
+        /// <exception cref="ArgumentNullException"></exception>
+        public async Task<string> GetEmailByIdAsync(string userId)
         {
-            var user = new User
+            userId = userId ?? throw new ArgumentNullException(nameof(userId));
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
             {
-                FirstName = firstName,
-                LastName = lastName,
+                return null;
+            }
+
+            return user.Email;
+        }
+
+        /// <inheritdoc />
+        public async Task<(Result result, string userId, string token)> CreateUserAsync(string email, string userName, string password)
+        {
+            var user = new ApplicationUser
+            {
                 Email = email,
                 UserName = userName,
-                BirthDate = birthDate
             };
 
             var isExist = await _userManager.FindByEmailAsync(email);
@@ -97,7 +115,7 @@ namespace Masny.QRAnimal.Infrastructure.Services
         /// <param name="userName">User name.</param>
         private async Task SignInUserAsync(string email, string userName)
         {
-            var user = new User
+            var user = new ApplicationUser
             {
                 Email = email,
                 UserName = userName
@@ -202,7 +220,7 @@ namespace Masny.QRAnimal.Infrastructure.Services
         /// </summary>
         /// <param name="user">User.</param>
         /// <returns>Operation result.</returns>
-        private async Task<Result> DeleteUserAsync(User user)
+        private async Task<Result> DeleteUserAsync(ApplicationUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 

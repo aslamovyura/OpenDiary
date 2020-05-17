@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Interfaces
 {
@@ -17,16 +18,20 @@ namespace Application.Interfaces
         Task<string> GetUserIdByNameAsync(string userName);
 
         /// <summary>
+        /// Get user email by id.
+        /// </summary>
+        /// <param name="userId">User Identifier.</param>
+        /// <returns>User email (string).</returns>
+        Task<string> GetEmailByIdAsync(string userId);
+
+        /// <summary>
         /// Create user.
         /// </summary>
-        /// <param name="firstName">User first name.</param>
-        /// <param name="lastName">User last name.</param>
         /// <param name="email">Email adress.</param>
         /// <param name="userName">User name.</param>
         /// <param name="password">Password.</param>
-        /// <param name="birthDate">User date of birth.</param>
         /// <returns>Operation result, user Id and confirmation token.</returns>
-        Task<(Result result, string userId, string token)> CreateUserAsync(string firstName, string lastName, string email, string userName, DateTime birthDate, string password);
+        Task<(Result result, string userId, string token)> CreateUserAsync(string email, string userName, string password);
 
         /// <summary>
         /// Delete user.

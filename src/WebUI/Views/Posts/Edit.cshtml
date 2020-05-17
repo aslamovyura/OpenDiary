@@ -1,23 +1,29 @@
-﻿@model WebUI.ViewModels.Posts.EditPostViewModel
+﻿@model WebUI.ViewModels.Posts.PostViewModel
 @{
     ViewBag.Tirle = "Edit post";
 }
 
-<form asp-action="Edit" asp-controller="Posts">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Title" class="control-label">Title</label>
-        <input type="text" asp-for="Title" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Text" class="control-label">Text</label>
-        <input type="text" asp-for="Text" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Topic" class="control-label">Topic</label>
-        <input type="text" asp-for="Topic" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Done" class="btn btn-outline-secondary" />
-    </div>
-</form>
+    <form asp-action="Edit" asp-controller="Posts">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" />
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="TopicId" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label">Title</label>
+            <input type="text" asp-for="Title" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Text" class="control-label">Text</label>
+            <input type="text" asp-for="Text" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Topic" class="control-label">Topic</label>
+            <input type="text" asp-for="Topic" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Done" class="btn btn-outline-secondary" />
+        </div>
+    </form>

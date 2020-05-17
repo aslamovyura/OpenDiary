@@ -2,31 +2,37 @@
 using System.Linq;
 using System.Threading.Tasks;
 using WebUI.ViewModels.Posts;
-using Domain.Entities;
-using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Application.DTO;
+using Application.CQRS.Commands.Create;
+using MediatR;
+using Application.Interfaces;
+using Application.CQRS.Queries.Get;
+using Application.Exceptions;
+using Application.CQRS.Commands.Update;
+using Application.CQRS.Commands.Delete;
+using AutoMapper;
 
 namespace WebUI.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly ApplicationDbContext _db;
+        private readonly IMediator _mediator;
+        private readonly IIdentityService _identityService;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="signInManager"></param>
-        /// <param name="context"></param>
-        public PostsController(SignInManager<User> signInManager, ApplicationDbContext context)
+        /// <param name="mediator"></param>
+        /// <param name="identityService"></param>
+        /// <param name="mapper"></param>
+        public PostsController(IMediator mediator, IIdentityService identityService, IMapper mapper)
         {
-            _userManager = signInManager.UserManager;
-            _db = context;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         /// <summary>
@@ -35,16 +41,26 @@ namespace WebUI.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            var posts = await _db.Posts.ToListAsync();
-            foreach (var post in posts)
+            // Get all posts.
+            var postsQuery = new GetPostsQuery();
+            var posts = await _mediator.Send(postsQuery);
+            var models = posts.OrderByDescending(post => post.Date);
+
+            //var models = _mapper.Map<IEnumerable<PostViewModel>>(postsSorted);
+
+            foreach (var model in models)
             {
-                post.User = await _db.Users.FirstOrDefaultAsync(user => user.Id == post.UserId);
-                post.Topic = await _db.Topics.FirstOrDefaultAsync(topic => topic.Id == post.TopicId);
+                var authorQuery = new GetAuthorQuery { Id = model.AuthorId };
+                var author = await _mediator.Send(authorQuery);
+
+                var topicQuery = new GetTopicQuery { Id = model.TopicId };
+                var topic = await _mediator.Send(topicQuery);
+
+                model.Author = author.FirstName + " " + author.LastName;
+                model.Topic = topic.Text;
             }
 
-            var postsSorted = posts.OrderByDescending(post => post.Date);
-
-            return View(postsSorted);
+            return View(models);
         }
 
         /// <summary>
@@ -54,14 +70,22 @@ namespace WebUI.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Read(int postId)
         {
-            var post = await _db.Posts.FirstOrDefaultAsync(post => post.Id == postId);
-            if (post == null)
-            {
-                return NotFound();
-            }
-            
-            post.User = await _db.Users.FirstOrDefaultAsync(user => user.Id == post.UserId);
-            post.Topic = await _db.Topics.FirstOrDefaultAsync(topic => topic.Id == post.TopicId);
+            // Get post.
+            var postQuery = new GetPostQuery { Id = postId };
+            var post = await _mediator.Send(postQuery);
+
+            //var model = _mapper.Map<PostViewModel>(post);
+
+            // Add author information.
+            var authorQuery = new GetAuthorQuery { Id = post.AuthorId };
+            var author = await _mediator.Send(authorQuery);
+            post.Author = author.FirstName + " " + author.LastName;
+
+            // Add topic information.
+            var topicQuery = new GetTopicQuery { Id = post.TopicId };
+            var topic = await _mediator.Send(topicQuery);
+            post.Topic = topic.Text;
+
             return View(post);
         }
 
@@ -72,16 +96,26 @@ namespace WebUI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AllPosts()
         {
-            var posts = await _db.Posts.ToListAsync();
-            foreach (var post in posts)
+            // Get all posts.
+            var postsQuery = new GetPostsQuery();
+            var postsDTO = await _mediator.Send(postsQuery);
+            var models = postsDTO.OrderByDescending(post => post.Date);
+
+            //var models = _mapper.Map<IEnumerable<PostViewModel>>(posts);
+
+            foreach (var model in models)
             {
-                post.User = await _db.Users.FirstOrDefaultAsync(user => user.Id == post.UserId);
-                post.Topic = await _db.Topics.FirstOrDefaultAsync(topic => topic.Id == post.TopicId);
+                var authorQuery = new GetAuthorQuery { Id = model.AuthorId };
+                var author = await _mediator.Send(authorQuery);
+
+                var topicQuery = new GetTopicQuery { Id = model.TopicId };
+                var topic = await _mediator.Send(topicQuery);
+
+                model.Author = author.FirstName + " " + author.LastName;
+                model.Topic = topic.Text;
             }
 
-            posts.OrderByDescending(post => post.Date);
-
-            return View(posts);
+            return View(models);
         }
 
         /// <summary>
@@ -98,27 +132,60 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                Topic topic = new Topic
-                {
-                    Text = model.Topic
-                };
-                _db.Topics.Add(topic); 
+                // Add new topic.
+                var topicDTO = new TopicDTO { Text = model.Topic };
+                var topicCommand = new CreateTopicCommand { Model = topicDTO };
 
-                Post post = new Post
+                int topicId;
+
+                try
+                {
+                    topicId = await _mediator.Send(topicCommand);
+                }
+                catch (RequestValidationException failures)
+                {
+                    foreach (var error in failures.Failures)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Value[0]);
+                    }
+                    return View(model);
+                }
+
+                // Get current author.
+                var userId = await _identityService.GetUserIdByNameAsync(HttpContext.User.Identity.Name);
+                var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
+                var author = await _mediator.Send(authorQuery);
+
+                // Create new post.
+                var postDTO = new PostDTO
                 {
                     Title = model.Title,
                     Text = model.Text,
-                    Topic = topic,
-                    User = await GetUser(),
-                    Date = DateTime.Now
+                    AuthorId = author.Id,
+                    TopicId = topicId,
+                    Date = DateTime.Now,
                 };
 
-                _db.Posts.Add(post);
-                await _db.SaveChangesAsync();
+                var postCommand = new CreatePostCommand { Model = postDTO };
+
+                try
+                {
+                    await _mediator.Send(postCommand);
+                }
+                catch (RequestValidationException failures)
+                {
+                    foreach (var error in failures.Failures)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Value[0]);
+                    }
+                    return View(model);
+                }
+                
                 return RedirectToAction("Index", "Home");
             }
+
             return View(model);
         }
 
@@ -130,22 +197,18 @@ namespace WebUI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int postId)
         {
-            var post = await _db.Posts.FirstOrDefaultAsync(post => post.Id == postId);
-            if (post == null)
-            {
-                return NotFound();
-            }
+            // Get post.
+            var postQuery = new GetPostQuery { Id = postId };
+            var postDTO = await _mediator.Send(postQuery);
 
-            var topic = await _db.Topics.FirstOrDefaultAsync(topic => topic.Id == post.TopicId);
+            // Get topic.
+            var topicId = postDTO.TopicId;
+            var topicQuery = new GetTopicQuery { Id = topicId };
+            var topicDTO = await _mediator.Send(topicQuery);
 
-            EditPostViewModel model = new EditPostViewModel
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Text = post.Text,
-                Topic = topic.Text,
-                Date = post.Date
-            };
+            var model = _mapper.Map<PostDTO, PostViewModel>(postDTO);
+            model.Topic = topicDTO.Text;
+
             return View(model);
         }
 
@@ -156,34 +219,52 @@ namespace WebUI.Controllers
         /// <returns>List of posts.</returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> Edit(EditPostViewModel model)
+        public async Task<IActionResult> Edit(PostViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var post = await _db.Posts.FirstOrDefaultAsync(post => post.Id == model.Id);
-                if (post != null)
+                var postDTO = _mapper.Map<PostViewModel, PostDTO>(model);
+                var postCommand = new UpdatePostCommand { Model = postDTO };
+
+                try
                 {
-                    // Update topic
-                    var topic = await _db.Topics.FirstOrDefaultAsync(topic => topic.Id == post.TopicId);
-                    if (topic != null)
-                    {
-                        topic.Text = model.Text;
-                        _db.Topics.Update(topic);
-                    }
-
-                    // Update post
-                    post.Title = model.Title;
-                    post.Text = model.Text;
-                    post.Date = model.Date;
-                    _db.Posts.Update(post);
-
-                    // Save changes
-                    await _db.SaveChangesAsync();
-
-                    // TODO : Redirect to admin list
-                    return RedirectToAction("Index");
+                    await _mediator.Send(postCommand);
                 }
+                catch (RequestValidationException failures)
+                {
+                    foreach (var error in failures.Failures)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Value[0]);
+                    }
+                    return View(model);
+                }
+
+                // Update topic of the post.
+                var topicDTO = new TopicDTO
+                {
+                    Id = model.TopicId,
+                    Text = model.Topic,
+                };
+
+                // TODO : Use "CreateTopicCommand" instead or modify "UpdateTopicCommand" (to avoid dublicates).
+                var topicCommand = new UpdateTopicCommand { Model = topicDTO };
+
+                try
+                {
+                    await _mediator.Send(topicCommand);
+                }
+                catch (RequestValidationException failures)
+                {
+                    foreach (var error in failures.Failures)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Value[0]);
+                    }
+                    return View(model);
+                }
+
+                return RedirectToAction("Index");
             }
+
             return View(model);
         }
 
@@ -196,18 +277,10 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int postId)
         {
-            var post = await _db.Posts.FirstOrDefaultAsync(post => post.Id == postId);
-            if (post != null)
-            {
-                _db.Posts.Remove(post);
-               await _db.SaveChangesAsync();
-            }
-            return RedirectToAction("AllPosts", "Posts");
-        }
+            var postCommand = new DeletePostCommand { Id = postId };
+            await _mediator.Send(postCommand);
 
-            private async Task<User> GetUser()
-        {
-            return await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            return RedirectToAction("AllPosts", "Posts");
         }
     }
 }

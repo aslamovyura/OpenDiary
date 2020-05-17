@@ -22,6 +22,8 @@ namespace WebUI.Controllers
         public IActionResult Index()
         {
             return RedirectToAction("Index", "Posts");
+
+            //return View();
         }
 
         public IActionResult Privacy()

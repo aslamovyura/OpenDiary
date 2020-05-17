@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Domain.Entities;
-@inject SignInManager<User> SignInManager
+@using Infrastructure.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
 
     <ul class="navbar-nav">
         @if (SignInManager.IsSignedIn(User))
@@ -12,9 +12,9 @@
                 <div class="dropdown">
                     <img class="mb-4" src="~/User.png" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="50" height="50" />
                     <div class="dropdown-menu" aria-labelledby="UserMenu">
-                        <a class="dropdown-item" asp-action="ViewUser" asp-controller="Users" asp-route-userName="@User.Identity.Name">@User.Identity.Name</a>
+                        <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name">@User.Identity.Name</a>
                         <div class="dropdown-divider"></div>
-                        <form class="dropdown-item form-inline" asp-area="Identity">
+                        <form class="dropdown-item form-inline" asp-area="">
                             <button type="submit" class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="Logout">Logout</button>
                         </form>
                     </div>

@@ -8,30 +8,64 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Infrastructure.Identity;
+using System.Threading;
+using System.Collections.Generic;
+using Application.DTO;
+using Application.CQRS.Queries.Get;
+using MediatR;
+using Application.CQRS.Commands.Create;
+using Application.Exceptions;
+using Application.CQRS.Commands.Update;
+using Application.CQRS.Commands.Delete;
+using AutoMapper;
 
 namespace CustomIdentityApp.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationDbContext _db;
+        private readonly IIdentityService _identityService;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Constructor of user controller.
         /// </summary>
-        /// <param name="userManager">Object to deal with application users.</param>
-        public UsersController(UserManager<User> userManager, ApplicationDbContext context)
+        /// <exception cref="ArgumentNullException"></exception>
+        public UsersController(UserManager<ApplicationUser> userManager, IApplicationDbContext context, IIdentityService identityService, IMediator mediator, IMapper mapper)
         {
-            _userManager = userManager;
-            _db = context;
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _db = context ?? throw new ArgumentNullException(nameof(context));
+            _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         /// <summary>
-        /// Show page with user list.
+        /// Show page with user/aurhors list.
         /// </summary>
         /// <returns>Page with list of users.</returns>
         [Authorize(Roles = "admin")]
-        public IActionResult Index() => View(_userManager.Users.ToList());
+        public async Task<IActionResult> Index()
+        {
+            var authorsQuery = new GetAuthorsQuery();
+
+            var authors = await _mediator.Send(authorsQuery);
+            if (authors == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var author in authors)
+            {
+                author.Email = await _identityService.GetEmailByIdAsync(author.UserId);
+            }
+
+            return View(authors);
+        }
 
         /// <summary>
         /// Show page to add new user. 
@@ -49,20 +83,87 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+
+            //// Create user.
+            //var (result, userId, token) = await _identityService.CreateUserAsync(model.Email, model.Email, model.Password);
+
+            //if (result == null)
+            //{
+            //    ModelState.AddModelError(string.Empty, "User is already exists!");
+            //    return View(model);
+            //}
+
+            //if (result.Succeeded)
+            //{
+            //    await _identityService.ConfirmEmail(userId, token);
+            //}
+            //else
+            //{
+            //    foreach (var error in result.Errors)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error);
+            //    }
+            //    return View(model);
+            //}
+
+            //// Create author.
+            //var authorDTO = new AuthorDTO
+            //{
+            //    UserId = userId,
+            //    FirstName = model.FirstName,
+            //    LastName = model.LastName,
+            //    BirthDate = model.BirthDate,
+            //    Email = model.Email
+            //};
+
+            //var authorCommand = new CreateAuthorCommand { Model = authorDTO };
+
+            //try
+            //{
+            //    await _mediator.Send(authorCommand);
+            //}
+            //catch (RequestValidationException failures)
+            //{
+            //    foreach (var error in failures.Failures)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error.Value[0]);
+            //    }
+            //    return View(model);
+            //}
+
+            //return RedirectToAction("Index", "Users");
+
+
+
             if (ModelState.IsValid)
             {
-                User user = new User
+                ApplicationUser user = new ApplicationUser
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
                     Email = model.Email,
                     UserName = model.Email,
-                    BirthDate = model.BirthDate
+                    EmailConfirmed = true
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+
+                    var author = new Author
+                    {
+                        UserId = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        BirthDate = model.BirthDate,
+                    };
+
+                    _db.Authors.Add(author);
+                    await _db.SaveChangesAsync(new CancellationToken());
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -83,56 +184,39 @@ namespace CustomIdentityApp.Controllers
         /// <returns>View with EditUserViewModel.</returns>
         public async Task<IActionResult> Edit(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
+            var authorQuery = new GetAuthorByUserIdQuery { UserId = id };
+            var authorDTO = await _mediator.Send(authorQuery);
+
+            if (authorDTO == null)
                 return NotFound();
-            }
-            EditUserViewModel model = new EditUserViewModel
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                BirthDate = user.BirthDate
-            };
+
+            var email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
+            authorDTO.Email = email;
+
+            var model = _mapper.Map<AuthorDTO, AuthorViewModel>(authorDTO);
+
             return View(model);
         }
 
         /// <summary>
         /// Process input date to edit application user.
         /// </summary>
-        /// <param name="model">View model to edit user.</param>
+        /// <param name="authorDTO">View model to edit user.</param>
         /// <returns>View with EditUserViewModel.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<IActionResult> Edit(AuthorViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
-                if (user != null)
-                {
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
-                    user.BirthDate = model.BirthDate;
-
-                    var result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-                }
+                return View(model);
             }
-            return View(model);
+
+            var authorDTO = _mapper.Map<AuthorViewModel, AuthorDTO>(model);
+
+            var authorCommand = new UpdateAuthorCommand { Model = authorDTO };
+            await _mediator.Send(authorCommand);
+
+            return RedirectToAction("Index");
         }
 
         /// <summary>
@@ -142,13 +226,21 @@ namespace CustomIdentityApp.Controllers
         /// <returns></returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            User user = await _userManager.FindByIdAsync(id);
-            if (user != null)
+            var authorQuery = new GetAuthorQuery { Id = id };
+            var authorDTO = await _mediator.Send(authorQuery);
+
+            if (authorDTO == null)
+                return NotFound();
+
+            var result = await _identityService.DeleteUserAsync(authorDTO.UserId);
+            if( result.Succeeded )
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                var authorCommand = new DeleteAuthorCommand { Id = id };
+                await _mediator.Send(authorCommand);
             }
+
             return RedirectToAction("Index");
         }
 
@@ -159,7 +251,7 @@ namespace CustomIdentityApp.Controllers
         /// <returns></returns>
         public async Task<IActionResult> ChangePassword(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -180,11 +272,11 @@ namespace CustomIdentityApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                var user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
-                    var _passwordValidator = HttpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
-                    var _passwordHasher = HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
+                    var _passwordValidator = HttpContext.RequestServices.GetService(typeof(IPasswordValidator<ApplicationUser>)) as IPasswordValidator<ApplicationUser>;
+                    var _passwordHasher = HttpContext.RequestServices.GetService(typeof(IPasswordHasher<ApplicationUser>)) as IPasswordHasher<ApplicationUser>;
 
                     IdentityResult result = await _passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
                     if (result.Succeeded)
@@ -207,54 +299,6 @@ namespace CustomIdentityApp.Controllers
                 ModelState.AddModelError(string.Empty, "User is not found.");
             }
             return View(model);
-        }
-
-        /// <summary>
-        /// View user page
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns></returns>
-        public async Task<IActionResult> ViewUser(string userName)
-        {
-            if (userName == null)
-            {
-                return NotFound();
-            }
-
-            User user = await _db.Users.FirstOrDefaultAsync(user => user.UserName == userName);
-            if (user != null)
-            {
-                // Calculate user
-                DateTime zeroTime = new DateTime(1, 1, 1);
-                TimeSpan span = DateTime.Now - user.BirthDate;
-                int ageYears = (zeroTime + span).Year - 1;
-
-                // Calculate statistics
-                var posts = await _db.Posts.Where(post => post.UserId == user.Id)
-                    .OrderByDescending(post => post.Date)
-                    .ToListAsync();
-
-                var postsNumber = posts.Count;
-                var commentsNumber = _db.Comments.Where(post => post.UserId == user.Id)
-                    .OrderByDescending(post => post.Date)
-                    .ToListAsync().GetAwaiter().GetResult().Count;
-
-                ViewUserViewModel model = new ViewUserViewModel
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    BirthDate = user.BirthDate.ToString("MMMM d, yyyy"),
-                    Age = ageYears,
-                    TotalPostsNumber = postsNumber,
-                    TotalCommentsNumber = commentsNumber,
-                    Posts = posts
-                };
-                return View(model);
-            }
-
-            // Default action
-            return RedirectToAction("Index","Home");
         }
     }
 }

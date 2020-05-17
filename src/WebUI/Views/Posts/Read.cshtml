@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.Post
+﻿@model Application.DTO.PostDTO
 @{
     ViewBag.Title = "Read Post";
 }
@@ -6,7 +6,7 @@
 <form class="text-center">
     <article>
         <h2>@Model.Title</h2>
-        <p>@Model.User.FirstName @Model.User.LastName</p>
+        <p>@Model.Author</p>
         <p class="text-justify">@Model.Text</p>
         <p>@Model.Date.ToString("MMMM d, yyyy")</p>
     </article>

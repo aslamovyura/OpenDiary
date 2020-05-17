@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Entities.Post>
+﻿@model IEnumerable<Application.DTO.PostDTO>
 @{
     ViewBag.Title = "Post List";
 }
@@ -15,7 +15,7 @@
             <a class="nav-link btn" asp-route-postId="@post.Id" asp-controller="Posts" asp-action="Read">
                 <article>
                     <h2 class="text-center">@post.Title</h2>
-                    <p class="text-center">@post.User.FirstName @post.User.LastName,  @post.Date.ToString("MMMM d, yyyy")</p>
+                    <p class="text-center">@post.Author,  @post.Date.ToString("MMMM d, yyyy")</p>
                     @if (post.Text.Length > 400)
                     {
                         <p class="text-justify">

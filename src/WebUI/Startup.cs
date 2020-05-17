@@ -1,3 +1,7 @@
+using System.Reflection;
+using Application;
+using Application.Interfaces;
+using AutoMapper;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +28,12 @@ namespace WebUI
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            services.AddApplication();
             services.AddInfrastructure();
+
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
             services.AddControllersWithViews();
         }
