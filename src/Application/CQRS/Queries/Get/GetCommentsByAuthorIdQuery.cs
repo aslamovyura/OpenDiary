@@ -12,19 +12,19 @@ using Microsoft.EntityFrameworkCore;
 namespace Application.CQRS.Queries.Get
 {
     /// <summary>
-    /// Query for comments of the certain post.
+    /// Query for comments of the certain author.
     /// </summary>
-    public class GetCommentsByPostIdQuery : IRequest<ICollection<CommentDTO>>
+    public class GetCommentsByAuthorIdQuery : IRequest<ICollection<CommentDTO>>
     {
         /// <summary>
-        /// Post identifier.
+        /// Author identifier.
         /// </summary>
-        public int PostId { get; set; }
+        public int AuthorId { get; set; }
 
         /// <summary>
-        /// Define class to get comments for the posts.
+        /// Define class to get comments for the certain author.
         /// </summary>
-        public class GetCommentsByPostIdQueryHandler : IRequestHandler<GetCommentsByPostIdQuery, ICollection<CommentDTO>>
+        public class GetCommentsByAuthorIdQueryHandler : IRequestHandler<GetCommentsByAuthorIdQuery, ICollection<CommentDTO>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -34,22 +34,22 @@ namespace Application.CQRS.Queries.Get
             /// </summary>
             /// <param name="context">Application context.</param>
             /// <param name="mapper">Model mapper.</param>
-            public GetCommentsByPostIdQueryHandler(IApplicationDbContext context, IMapper mapper)
+            public GetCommentsByAuthorIdQueryHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             }
 
             /// <summary>
-            /// Get comments for the post.
+            /// Get comments for the certain author.
             /// </summary>
             /// <param name="request">Comments request.</param>
             /// <param name="cancellationToken">Cancellation token.</param>
             /// <returns>Collection of comments DTO.</returns>
-            public async Task<ICollection<CommentDTO>> Handle(GetCommentsByPostIdQuery request, CancellationToken cancellationToken)
+            public async Task<ICollection<CommentDTO>> Handle(GetCommentsByAuthorIdQuery request, CancellationToken cancellationToken)
             {
                 var entities = await _context.Comments
-                    .Where(p => p.PostId == request.PostId)
+                    .Where(p => p.AuthorId == request.AuthorId)
                     .OrderByDescending(p => p.Date)
                     .ToListAsync(cancellationToken);
 

@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using WebUI.ViewModels.Comment;
+
 namespace WebUI.ViewModels.Posts
 {
+    /// <summary>
+    /// View model for post object.
+    /// </summary>
     public class PostViewModel
     {
         /// <summary>
@@ -42,5 +48,18 @@ namespace WebUI.ViewModels.Posts
         /// Author name.
         /// </summary>
         public string Author { get; set; }
+
+        /// <summary>
+        /// Collection of post comments.
+        /// </summary>
+        public ICollection<CommentViewModel> Comments { get; set; }
+
+        /// <summary>
+        /// Constructor without parameters.
+        /// </summary>
+        public PostViewModel()
+        {
+            Comments = new List<CommentViewModel>();
+        }
     }
 }

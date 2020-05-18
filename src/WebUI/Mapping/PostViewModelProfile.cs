@@ -7,12 +7,12 @@ namespace Application.Mapping
     /// <summary>
     /// Post-PostDTO mapping rule.
     /// </summary>
-    public class PostProfile : Profile
+    public class PostViewModelProfile : Profile
     {
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public PostProfile()
+        public PostViewModelProfile()
         {
             CreateMap<PostDTO, PostViewModel>().ReverseMap();
         }

@@ -19,7 +19,7 @@ namespace Application.DTO
         /// <summary>
         /// Publication date.
         /// </summary>
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Post identifier.
@@ -30,5 +30,10 @@ namespace Application.DTO
         /// Author identifier.
         /// </summary>
         public int AuthorId { get; set; }
+
+        ///// <summary>
+        ///// Comment author.
+        ///// </summary>
+        //public string Author { get; set; }
     }
 }

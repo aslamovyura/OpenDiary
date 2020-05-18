@@ -1,13 +1,28 @@
-﻿@model Application.DTO.PostDTO
+﻿@model WebUI.ViewModels.Posts.PostViewModel
 @{
     ViewBag.Title = "Read Post";
 }
 
-<form class="text-center">
-    <article>
-        <h2>@Model.Title</h2>
-        <p>@Model.Author</p>
-        <p class="text-justify">@Model.Text</p>
-        <p>@Model.Date.ToString("MMMM d, yyyy")</p>
-    </article>
-</form>
+    <form class="text-center">
+        <article>
+            <h2>@Model.Title</h2>
+            <p>@Model.Author</p>
+            <p class="text-justify">@Model.Text</p>
+            <p>@Model.Date.ToString("MMMM d, yyyy")</p>
+        </article>
+
+        @await Component.InvokeAsync("AddComment", new { postId = Model.Id })
+
+        <article>
+            @foreach (var comment in Model.Comments)
+            {
+                <div>
+                    <div class="form-inline">
+                        <p style="font-weight:bold">@comment.Author </p>
+                        <p>(@comment.Age  @comment.AgeUnits.ToString() ago)</p>
+                    </div>     
+                    <p>@comment.Text</p>
+                </div>
+            }
+        </article>
+    </form>

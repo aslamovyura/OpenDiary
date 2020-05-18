@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.CQRS.Queries.Get;
+using Application.Enums;
 using Application.Interfaces;
+using Infrastructure.Extentions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.ViewModels.Profile;
@@ -44,18 +46,14 @@ namespace WebUI.Controllers
             var authorDTO = await _mediator.Send(authorQuery);
             authorDTO.Email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
 
-            // Calculate author age.
-            DateTime zeroTime = new DateTime(1, 1, 1);
-            TimeSpan span = DateTime.Now - authorDTO.BirthDate;
-            int ageYears = (zeroTime + span).Year - 1;
-
             // Calculate author statistics.
             var postsQuery = new GetPostsByAuthorIdQuery { AuthorId = authorDTO.Id };
             var postsDTO = await _mediator.Send(postsQuery);
             var postsNumber = postsDTO.Count;
 
-            // TODO : add comments query.
-            var commentsNumber = 0;
+            var commentsQuery = new GetCommentsByAuthorIdQuery { AuthorId = authorDTO.Id };
+            var commentsDTO = await _mediator.Send(commentsQuery);
+            var commentsNumber = commentsDTO.Count;
 
             // Create view model.
             var model = new ProfileViewModel
@@ -64,7 +62,7 @@ namespace WebUI.Controllers
                 LastName = authorDTO.LastName,
                 Email = authorDTO.Email,
                 BirthDate = authorDTO.BirthDate.ToString("MMMM d, yyyy"),
-                Age = ageYears,
+                Age = authorDTO.BirthDate.Age(AgeUnits.Year),
                 TotalPostsNumber = postsNumber,
                 TotalCommentsNumber = commentsNumber,
                 Posts = postsDTO,

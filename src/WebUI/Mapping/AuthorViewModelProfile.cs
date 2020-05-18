@@ -7,12 +7,12 @@ namespace Application.Mapping
     /// <summary>
     /// AuthorDTO-EditUserViewModel mapping rule.
     /// </summary>
-    public class AuthorProfile : Profile
+    public class AuthorViewModelProfile : Profile
     {
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public AuthorProfile()
+        public AuthorViewModelProfile()
         {
             CreateMap<AuthorViewModel, AuthorDTO>()
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(model => model.AuthorId))

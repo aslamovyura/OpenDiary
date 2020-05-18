@@ -1,11 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Application.Enums;
 
-namespace Domain.Entities
+namespace WebUI.ViewModels.Comment
 {
     /// <summary>
-    /// Initialize object of comment class.
+    /// View model for comment object.
     /// </summary>
-    public class Comment
+    public class CommentViewModel
     {
         /// <summary>
         /// Comment identifier.
@@ -15,6 +17,7 @@ namespace Domain.Entities
         /// <summary>
         /// Comment main content.
         /// </summary>
+        [Required]
         public string Text { get; set; }
 
         /// <summary>
@@ -28,18 +31,23 @@ namespace Domain.Entities
         public int PostId { get; set; }
 
         /// <summary>
-        /// Post.
-        /// </summary>
-        public Post Post { get; set; }
-
-        /// <summary>
         /// Author identifier.
         /// </summary>
         public int AuthorId { get; set; }
 
         /// <summary>
-        /// Author.
+        /// Comment author.
         /// </summary>
-        public Author Author { get; set; }
+        public string Author { get; set; }
+
+        /// <summary>
+        /// Comment Age [ceil].
+        /// </summary>
+        public int Age { get; set; }
+
+        /// <summary>
+        /// Units of comment age.
+        /// </summary>
+        public AgeUnits AgeUnits { get; set; }
     }
 }

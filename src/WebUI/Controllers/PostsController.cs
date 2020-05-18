@@ -13,6 +13,9 @@ using Application.Exceptions;
 using Application.CQRS.Commands.Update;
 using Application.CQRS.Commands.Delete;
 using AutoMapper;
+using System.Collections.Generic;
+using WebUI.ViewModels.Comment;
+using Infrastructure.Extentions;
 
 namespace WebUI.Controllers
 {
@@ -28,7 +31,9 @@ namespace WebUI.Controllers
         /// <param name="mediator"></param>
         /// <param name="identityService"></param>
         /// <param name="mapper"></param>
-        public PostsController(IMediator mediator, IIdentityService identityService, IMapper mapper)
+        public PostsController( IMediator mediator,
+                                IIdentityService identityService,
+                                IMapper mapper)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
@@ -74,8 +79,6 @@ namespace WebUI.Controllers
             var postQuery = new GetPostQuery { Id = postId };
             var post = await _mediator.Send(postQuery);
 
-            //var model = _mapper.Map<PostViewModel>(post);
-
             // Add author information.
             var authorQuery = new GetAuthorQuery { Id = post.AuthorId };
             var author = await _mediator.Send(authorQuery);
@@ -86,7 +89,27 @@ namespace WebUI.Controllers
             var topic = await _mediator.Send(topicQuery);
             post.Topic = topic.Text;
 
-            return View(post);
+            // Get comments for current post.
+            var commentsQuery = new GetCommentsByPostIdQuery { PostId = post.Id };
+            var comments = await _mediator.Send(commentsQuery);
+
+            // Create post view model.
+            var model = _mapper.Map<PostDTO, PostViewModel>(post);
+            model.Comments = _mapper.Map<ICollection<CommentDTO>, ICollection<CommentViewModel>>(comments);
+
+            foreach(var comment in model.Comments)
+            {
+                var commentAuthorQuery = new GetAuthorQuery { Id = comment.AuthorId };
+                var commentAuthor = await _mediator.Send(commentAuthorQuery);
+
+                comment.Author = commentAuthor.FirstName + " " + commentAuthor.LastName;
+
+                (var age, var units) = comment.Date.Age();
+                comment.Age = age;
+                comment.AgeUnits = units;
+            }
+
+            return View(model);
         }
 
         /// <summary>
@@ -281,6 +304,34 @@ namespace WebUI.Controllers
             await _mediator.Send(postCommand);
 
             return RedirectToAction("AllPosts", "Posts");
+        }
+
+        /// <summary>
+        /// Method to add new comment.
+        /// </summary>
+        /// <param name="model">View model of comment.</param>
+        /// <returns>Page with post.</returns>
+        //[HttpPost]
+        public async Task<IActionResult> AddComment(CommentViewModel model)
+        {
+            var commentDTO = _mapper.Map<CommentViewModel, CommentDTO>(model);
+            commentDTO.Date = DateTime.Now;
+
+            var commentCommand = new CreateCommentCommand { Model = commentDTO };
+
+            try
+            {
+                await _mediator.Send(commentCommand);
+            }
+            catch (RequestValidationException failures)
+            {
+                foreach (var error in failures.Failures)
+                {
+                    ModelState.AddModelError(string.Empty, error.Value[0]);
+                }
+            }
+
+            return RedirectToAction("Read", "Posts", new { postId = commentDTO.PostId } );
         }
     }
 }
