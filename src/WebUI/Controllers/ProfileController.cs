@@ -8,11 +8,19 @@ using WebUI.ViewModels.Profile;
 
 namespace WebUI.Controllers
 {
+    /// <summary>
+    /// Controller to manage user profile page.
+    /// </summary>
     public class ProfileController : Controller
     {
         private readonly IIdentityService _identityService;
         private readonly IMediator _mediator;
 
+        /// <summary>
+        /// Constructor with parameters.
+        /// </summary>
+        /// <param name="identityService">Application identity service.</param>
+        /// <param name="mediator">Layers mediator.</param>
         public ProfileController(IIdentityService identityService, IMediator mediator)
         {
             _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
@@ -20,19 +28,16 @@ namespace WebUI.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Show user profile page.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<ActionResult> Index(string userName)
+        /// <param name="userId">Application user identifier.</param>
+        /// <returns>User profile page.</returns>
+        public async Task<ActionResult> Index(string userId)
         {
-            if (userName == null)
+            if (userId == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            // Get id of application user.
-            var userId = await _identityService.GetUserIdByNameAsync(userName);
 
             // Get author current author.
             var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
@@ -66,45 +71,6 @@ namespace WebUI.Controllers
             };
 
             return View(model);
-
-
-            //var user = await _userManager.FindByNameAsync(userName);
-
-            //if (user != null)
-            //{
-            //    var author = await _db.Authors.FirstOrDefaultAsync(a => a.UserId == user.Id);
-
-            //    // Calculate user age.
-            //    DateTime zeroTime = new DateTime(1, 1, 1);
-            //    TimeSpan span = DateTime.Now - author.BirthDate;
-            //    int ageYears = (zeroTime + span).Year - 1;
-
-            //    // Calculate user statistics.
-            //    var posts = await _db.Posts.Where(post => post.AuthorId == author.Id)
-            //        .OrderByDescending(post => post.Date)
-            //        .ToListAsync();
-
-            //    var postsNumber = posts.Count;
-            //    var commentsNumber = _db.Comments.Where(post => post.AuthorId == author.Id)
-            //        .OrderByDescending(post => post.Date)
-            //        .ToListAsync().GetAwaiter().GetResult().Count;
-
-            //    ViewUserViewModel model = new ViewUserViewModel
-            //    {
-            //        FirstName = author.FirstName,
-            //        LastName = author.LastName,
-            //        Email = user.Email,
-            //        BirthDate = author.BirthDate.ToString("MMMM d, yyyy"),
-            //        Age = ageYears,
-            //        TotalPostsNumber = postsNumber,
-            //        TotalCommentsNumber = commentsNumber,
-            //        Posts = posts
-            //    };
-            //    return View(model);
-            //}
-
-            //// Default action
-            //return RedirectToAction("Index", "Home");
         }
     }
 }

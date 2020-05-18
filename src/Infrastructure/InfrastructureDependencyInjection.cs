@@ -1,10 +1,7 @@
-﻿using System;
-using Application.Interfaces;
-using Domain.Entities;
+﻿using Application.Interfaces;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
-using Masny.QRAnimal.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -34,6 +34,28 @@ a {
     border-color: #1861ac;
 }
 
+/* Font parameters
+-------------------------------------------------- */
+
+.txt-normal {
+    font-weight: normal;
+}
+
+.txt-bold {
+    font-weight: bold;
+}
+
+.txt-bolder {
+    font-weight: 900;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+}
+
 /* Styles for validation helpers
 -------------------------------------------------- */
 

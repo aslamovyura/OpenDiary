@@ -19,7 +19,8 @@
                     </a>
                     <!--<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">-->
                     <div class="navbar-brand">
-                        <partial name="_LoginPartial" />
+                        <!---<partial name="_LoginPartial" />-->
+                        @await Component.InvokeAsync("Login")
                     </div>
                 </div>
             </nav>

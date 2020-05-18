@@ -7,10 +7,8 @@ using Infrastructure.Extentions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
-namespace Masny.QRAnimal.Infrastructure.Services
+namespace Infrastructure.Services
 {
     /// <summary>
     /// Service to manage user authentication.

@@ -3,7 +3,7 @@ using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebUI.Models;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {

@@ -23,5 +23,8 @@
     <Folder Include="ViewModels\Profile\" />
     <Folder Include="Views\Profile\" />
     <Folder Include="Mapping\" />
+    <Folder Include="Components\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\Login\" />
   </ItemGroup>
 </Project>
