@@ -11,19 +11,19 @@ using MediatR;
 namespace Application.CQRS.Commands.Update
 {
     /// <summary>
-    /// Update author.
+    /// Update comment.
     /// </summary>
-    public class UpdateAuthorCommand : IRequest
+    public class UpdateCommentCommand : IRequest
     {
         /// <summary>
-        /// Author data transfer object.
+        /// Comment Data Transfer Object (DTO).
         /// </summary>
-        public AuthorDTO Model { get; set; }
+        public CommentDTO Model { get; set; }
 
         /// <summary>
-        /// Update author.
+        /// Update comment.
         /// </summary>
-        public class UpdateAuthorCommandHandler : IRequestHandler<UpdateAuthorCommand>
+        public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand>
         {
             private readonly IApplicationDbContext _context;
 
@@ -32,31 +32,29 @@ namespace Application.CQRS.Commands.Update
             /// </summary>
             /// <param name="context">Application context.</param>
             /// <exception cref="ArgumentNullException"></exception>
-            public UpdateAuthorCommandHandler(IApplicationDbContext context)
+            public UpdateCommentCommandHandler(IApplicationDbContext context)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
             }
 
             /// <summary>
-            /// Update author.
+            /// Update comment.
             /// </summary>
             /// <param name="request"></param>
             /// <param name="cancellationToken"></param>
             /// <returns>Void value.</returns>
             /// <exception cref="ArgumentNullException"></exception>
-            public async Task<Unit> Handle(UpdateAuthorCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommentCommand request, CancellationToken cancellationToken)
             {
                 request = request ?? throw new ArgumentNullException(nameof(request));
 
-                var author = _context.Authors.Where(a => a.Id == request.Model.Id).SingleOrDefault();
-                if (author == null)
+                var comment = _context.Comments.Where(a => a.Id == request.Model.Id).SingleOrDefault();
+                if (comment == null)
                 {
-                    throw new NotFoundException(nameof(Author), author.Id);
+                    throw new NotFoundException(nameof(Comment), comment.Id);
                 }
 
-                author.FirstName = request.Model.FirstName;
-                author.LastName = request.Model.LastName;
-                author.BirthDate = request.Model.BirthDate;
+                comment.Text = request.Model.Text;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

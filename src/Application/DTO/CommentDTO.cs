@@ -1,11 +1,10 @@
 ﻿using System;
-
-namespace Domain.Entities
+namespace Application.DTO
 {
     /// <summary>
-    /// Initialize object of comment class.
+    /// Comment data transfer object (DTO).
     /// </summary>
-    public class Comment
+    public class CommentDTO
     {
         /// <summary>
         /// Comment identifier.
@@ -28,18 +27,8 @@ namespace Domain.Entities
         public int PostId { get; set; }
 
         /// <summary>
-        /// Post.
-        /// </summary>
-        public Post Post { get; set; }
-
-        /// <summary>
         /// Author identifier.
         /// </summary>
         public int AuthorId { get; set; }
-
-        /// <summary>
-        /// Author.
-        /// </summary>
-        public Author Author { get; set; }
     }
 }
