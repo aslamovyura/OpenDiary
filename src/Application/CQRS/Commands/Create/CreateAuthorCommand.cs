@@ -19,7 +19,7 @@ namespace Application.CQRS.Commands.Create
         /// </summary>
         public AuthorDTO Model { get; set; }
 
-        public class CreatePostCommandHandler : IRequestHandler<CreateAuthorCommand, int>
+        public class CreateAuthorCommandHandler : IRequestHandler<CreateAuthorCommand, int>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ namespace Application.CQRS.Commands.Create
             /// <param name="context">Application context.</param>
             /// <param name="mapper">Mapper.</param>
             /// <exception cref="ArgumentNullException"></exception>
-            public CreatePostCommandHandler(IApplicationDbContext context, IMapper mapper, IIdentityService identityService)
+            public CreateAuthorCommandHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
                 _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
