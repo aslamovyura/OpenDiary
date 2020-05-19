@@ -1,7 +1,5 @@
-using System.Reflection;
 using Application;
 using Application.Interfaces;
-using AutoMapper;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -26,12 +24,11 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("WebUI")));
 
             services.AddApplication();
             services.AddInfrastructure();
-
-            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 

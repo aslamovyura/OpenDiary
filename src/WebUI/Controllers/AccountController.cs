@@ -9,15 +9,12 @@ using Application.CQRS.Commands.Create;
 using Application.Exceptions;
 using MediatR;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebUI.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IIdentityService _identityService;
         private readonly IEmailService _emailService;
-        private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
         private readonly IMediator _mediator;
 
         /// <summary>
@@ -34,7 +31,6 @@ namespace WebUI.Controllers
         {
             _identityService = identityService ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
-            _razorViewToStringRenderer = razorViewToStringRenderer ?? throw new ArgumentNullException();
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 

@@ -1,12 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using Domain.Entities;
-using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -27,7 +24,7 @@ namespace WebUI
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     var context = services.GetRequiredService<ApplicationDbContext>();
-                    await RoleInitializer.InitializeAsync(userManager, rolesManager, context);
+                    await ApplicationDbContextSeed.SeedAsync(userManager, rolesManager, context);
                 }
                 catch (Exception ex)
                 {

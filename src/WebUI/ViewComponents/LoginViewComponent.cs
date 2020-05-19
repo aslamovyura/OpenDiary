@@ -5,7 +5,7 @@ using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebUI.Components
+namespace WebUI.ViewComponents
 {
     /// <summary>
     /// View component for user login panel.

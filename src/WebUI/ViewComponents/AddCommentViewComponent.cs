@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.ViewModels.Comment;
 
-namespace WebUI.Components
+namespace WebUI.ViewComponents
 {
     /// <summary>
     /// View component to add new comment.

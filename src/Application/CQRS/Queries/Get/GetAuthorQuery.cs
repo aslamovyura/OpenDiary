@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Application.DTO;
 using Application.Interfaces;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,11 +19,6 @@ namespace Application.CQRS.Queries.Get
         /// Id.
         /// </summary>
         public int Id { get; set; }
-
-        ///// <summary>
-        ///// User Id.
-        ///// </summary>
-        //public string UserId { get; set; }
 
         /// <summary>
         /// Handler of the author queries.

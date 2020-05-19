@@ -2,19 +2,31 @@
 using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure.Identity;
-using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Persistence
 {
-    public class RoleInitializer
+    /// <summary>
+    /// Class to seed the context.
+    /// </summary>
+    public class ApplicationDbContextSeed
     {
-        public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
+        /// <summary>
+        /// Fill database with seed data.
+        /// </summary>
+        /// <param name="userManager">Manager of application users.</param>
+        /// <param name="roleManager">Manager of user roles.</param>
+        /// <param name="context">Applicatino context.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static async Task SeedAsync( UserManager<ApplicationUser> userManager,
+                                                  RoleManager<IdentityRole> roleManager,
+                                                  ApplicationDbContext context)
         {
-            string adminEmail = "admin@gmail.com";
-            string userEmail = "user@gmail.com";
-            string password = "ctyjdfkbnh";
+            userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
+            context = context ?? throw new ArgumentNullException(nameof(context));
+
             if (await roleManager.FindByNameAsync("admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
@@ -23,10 +35,17 @@ namespace Infrastructure.Data
             {
                 await roleManager.CreateAsync(new IdentityRole("user"));
             }
+
+            string adminEmail = "admin@gmail.com";
+            string userEmail = "user@gmail.com";
+            string password = "ctyjdfkbnh";
+
+            // Add admin user.
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
                 var admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail, EmailConfirmed = true};
-                IdentityResult result = await userManager.CreateAsync(admin, password);
+                var result = await userManager.CreateAsync(admin, password);
+
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
@@ -34,14 +53,10 @@ namespace Infrastructure.Data
                     var adminAuthor = new Author { UserId = admin.Id, FirstName = "admin", LastName = "admin", BirthDate = DateTime.Now };
                     context.Authors.Add(adminAuthor);
                     await context.SaveChangesAsync();
-
-                }
-                else
-                {
-                    throw new Exception("Impossible to set admin role!");
                 }
             }
 
+            // Add demo user.
             if (await userManager.FindByNameAsync(userEmail) == null)
             {
                 ApplicationUser user = new ApplicationUser { Email = userEmail, UserName = userEmail, EmailConfirmed = true };
@@ -53,10 +68,6 @@ namespace Infrastructure.Data
                     var userAuthor = new Author { UserId = user.Id, FirstName = "user", LastName = "user", BirthDate = DateTime.Now };
                     context.Authors.Add(userAuthor);
                     await context.SaveChangesAsync();
-                }
-                else
-                {
-                    throw new Exception("Impossible to set user role!");
                 }
             }
         }
