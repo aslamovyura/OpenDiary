@@ -15,7 +15,7 @@ namespace Application.CQRS.Commands.Create
     public class CreateAuthorCommand : IRequest<int>
     {
         /// <summary>
-        /// Post DTO.
+        /// Author DTO.
         /// </summary>
         public AuthorDTO Model { get; set; }
 
@@ -37,7 +37,7 @@ namespace Application.CQRS.Commands.Create
             }
 
             /// <summary>
-            /// Create new post.
+            /// Create new author.
             /// </summary>
             /// <param name="request">Request.</param>
             /// <param name="cancellationToken">Cancellation token.</param>

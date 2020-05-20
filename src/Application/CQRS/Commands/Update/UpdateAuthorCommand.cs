@@ -51,7 +51,7 @@ namespace Application.CQRS.Commands.Update
                 var author = _context.Authors.Where(a => a.Id == request.Model.Id).SingleOrDefault();
                 if (author == null)
                 {
-                    throw new NotFoundException(nameof(Author), author.Id);
+                    throw new NotFoundException(nameof(Author), request.Model.Id);
                 }
 
                 author.FirstName = request.Model.FirstName;

@@ -17,10 +17,10 @@
             @foreach (var comment in Model.Comments)
             {
                 <div>
-                    <div class="form-inline">
-                        <p style="font-weight:bold">@comment.Author </p>
-                        <p>(@comment.Age  @comment.AgeUnits.ToString() ago)</p>
-                    </div>     
+                    <p>
+                        <b>@comment.Author</b>
+                        (@comment.Age  @comment.AgeUnits.ToString() ago)
+                    </p>
                     <p>@comment.Text</p>
                 </div>
             }

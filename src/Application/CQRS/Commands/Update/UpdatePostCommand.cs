@@ -39,8 +39,8 @@ namespace Application.CQRS.Commands.Update
             /// <summary>
             /// Update post.
             /// </summary>
-            /// <param name="request"></param>
-            /// <param name="cancellationToken"></param>
+            /// <param name="request">Update request.</param>
+            /// <param name="cancellationToken">Cancellation token.</param>
             /// <returns>Void value.</returns>
             public async Task<Unit> Handle(UpdatePostCommand request, CancellationToken cancellationToken)
             {

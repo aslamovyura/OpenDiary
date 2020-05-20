@@ -51,7 +51,7 @@ namespace Application.CQRS.Commands.Update
                 var comment = _context.Comments.Where(a => a.Id == request.Model.Id).SingleOrDefault();
                 if (comment == null)
                 {
-                    throw new NotFoundException(nameof(Comment), comment.Id);
+                    throw new NotFoundException(nameof(Comment), request.Model.Id);
                 }
 
                 comment.Text = request.Model.Text;

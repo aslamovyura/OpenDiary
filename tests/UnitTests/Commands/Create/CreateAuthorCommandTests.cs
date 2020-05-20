@@ -36,10 +36,9 @@ namespace UnitTests.Commands.Create
 
             entity.Id.ShouldBe(command.Model.Id);
             entity.UserId.ShouldBe(command.Model.UserId);
-            entity.FirstName = (command.Model.FirstName);
-            entity.LastName = (command.Model.LastName);
-            entity.BirthDate = (command.Model.BirthDate);
-            entity.FirstName = (command.Model.FirstName);
+            entity.FirstName.ShouldBe(command.Model.FirstName);
+            entity.LastName.ShouldBe(command.Model.LastName);
+            entity.BirthDate.ShouldBe(command.Model.BirthDate);
         }
     }
 }
