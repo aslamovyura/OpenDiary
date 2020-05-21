@@ -2,7 +2,7 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link btn btn-lg btn-dark text-light" asp-area="" asp-controller="Posts" asp-action="Create">Write New Post</a>
+            <a class="nav-link btn btn-lg btn-dark text-light" asp-area="" asp-controller="Posts" asp-action="Create">@Localizer["WriteNew"]</a>
         </li>
         <li class="nav-item">
             <div class="dropdown">
@@ -11,18 +11,18 @@
                 <div class="dropdown-menu" aria-labelledby="UserMenu">
 
                     <div class="dropdown-item">
-                        <div>Signed in as</div>
+                        <div>@Localizer["SignedInAs"]</div>
                         <div style="font-weight:bold">@Model.FirstName @Model.LastName </div>
                     </div>
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-userId="@Model.UserId">Profile</a>
-                    <a class="dropdown-item" asp-action="=" asp-controller="">Posts</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-userId="@Model.UserId">@Localizer["Profile"]</a>
+                    <a class="dropdown-item" asp-action="=" asp-controller="">@Localizer["Posts"]</a>
 
                     <div class="dropdown-divider"></div>
                     <form class="dropdown-item form-inline" asp-area="">
-                        <button type="submit" class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="Logout">Logout</button>
+                        <button type="submit" class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</button>
                     </form>
                 </div>
             </div>

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebUI.Extensions;
 
 namespace WebUI
 {
@@ -24,15 +25,12 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("WebUI")));
 
             services.AddApplication();
             services.AddInfrastructure();
-
-            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
-
-            services.AddControllersWithViews();
+            services.AddWebUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,9 +43,11 @@ namespace WebUI
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseLocalization();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

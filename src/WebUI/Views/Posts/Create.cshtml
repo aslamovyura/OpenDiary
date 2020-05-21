@@ -1,41 +1,41 @@
 ﻿@model WebUI.ViewModels.Posts.CreatePostViewModel
 @{
-    ViewBag.Tirle = "Create new post";
+    ViewBag.Tirle = Localizer["Title"];
 }
 
 <form asp-action="Create" asp-controller="Posts">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Title</span>
+            <span class="input-group-text">@Localizer["PostTitle"]</span>
         </div>
-        <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder="Title of the post" required><br />
+        <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder=@Localizer["TitlePlaceholder"] required><br />
         <span asp-validation-for="Title"></span>
         <div class="invalid-feedback">
-            Please enter a Title of your post.
+            @Localizer["TitleInvalidFeedback"]
         </div>
     </div><br />
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Topic</span>
+            <span class="input-group-text">@Localizer["Topic"]</span>
         </div>
-        <input asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder="Topic of the post" required><br />
+        <input asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder=@Localizer["TopicPlaceholder"] required><br />
         <span asp-validation-for="Topic"></span>
         <div class="invalid-feedback">
-            Please enter a Topic of your post.
+            @Localizer["TopicInvalidFeedback"]
         </div>
     </div><br />
 
     <div class="mb-3">
-        <textarea asp-for="Text" class="form-control article-input" placeholder="Write your post here." required></textarea>
+        <textarea asp-for="Text" class="form-control article-input" placeholder=@Localizer["TextPlaceholder"] required></textarea>
         <span asp-validation-for="Text"></span>
         <div class="invalid-feedback">
-            Please enter your article in the textarea.
+            @Localizer["TextInvalidFeedback"]
         </div>
     </div><br />
 
     <div>
-        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">Publish</button>
+        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">@Localizer["Publish"]</button>
     </div>
 </form>

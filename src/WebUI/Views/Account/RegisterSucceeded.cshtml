@@ -1,11 +1,11 @@
 ﻿@model WebUI.ViewModels.Account.RegisterViewModel
 @{
-    ViewBag.Title = "Register Succeeded";
+    ViewBag.Title = Localizer["Title"];
 }
 
-<h2>Confirm Email Sent.</h2>
+<h2>@Localizer["ConfirmationSend"]</h2>
 <p>Hi @Model.FirstName @Model.LastName!</p>
 <p>
-    You have successfully created an OpenDiary account! <br />
-    To complete the registration, check your email (@Model.Email) and follow the link provided in the letter.
+    @Localizer["RegisterSucceeded"]<br />
+    @Localizer["CheckEmail", Model.Email]
 </p>

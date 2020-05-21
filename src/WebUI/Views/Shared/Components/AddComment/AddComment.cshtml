@@ -14,9 +14,9 @@
         <input type="hidden" asp-for="Author" />
     </div>
     <div class="input-group">
-        <input asp-for="Text" type="text" class="form-control" placeholder="Add comment"><br />
+        <input asp-for="Text" type="text" class="form-control" placeholder=@Localizer["AddCommentPlaceholder"]><br />
         <div class="form-group">
-            <button type="submit" asp-action="AddComment" asp-controller="Posts" class="btn btn-outline-secondary">Comment</button>
+            <button type="submit" asp-action="AddComment" asp-controller="Posts" class="btn btn-outline-secondary">@Localizer["AddComment"]</button>
         </div>
     </div>
 </form>

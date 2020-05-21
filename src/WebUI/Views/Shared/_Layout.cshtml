@@ -3,13 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Diary home page</title>
+        <title>@ViewBag.Title</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </head>
 
     <body>
-        <!--<header>-->
         <header id="header">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-5" style="background-color: #C0C0C0;">
                 <div class="container">
@@ -17,33 +16,37 @@
                         <img id="logo-img" src="~/OpenDiary.jpg" class="d-inline-block align-top" alt="" />
                         OPEN DIARY
                     </a>
-                    <!--<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">-->
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Users" asp-action="Index">@Localizer["Authors"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
+                            </li>
+                        </ul>
+                     </div>
                     <div class="navbar-brand">
-                        <!---<partial name="_LoginPartial" />-->
-                        @await Component.InvokeAsync("Login")
+                            @await Component.InvokeAsync("Login")
+                        </div>
                     </div>
-                </div>
             </nav>
         </header>
-        <!--</header>-->
-        
-        <!--</sidebar>-->
+
         <div id="leftSidebar">
             <partial name="_LeftSidebar" />
         </div>
-        <!--</sidebar>-->
 
-        <!--</main>-->
         <div id="main">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
-        <!--</main>-->
 
         <footer id="footer" class="border-top footer text-muted">
             <div class="container">
-                &copy; 2020 - Open Diary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div>Open Diary, 2020</div>
+                <div> <partial name="_SelectLanguagePartial" /></div>
             </div>
         </footer>
 

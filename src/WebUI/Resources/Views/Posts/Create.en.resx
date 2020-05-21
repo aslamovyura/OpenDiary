@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+     <data name="Title">
+        <value>Create new post</value>
+    </data> 
+    <data name="PostTitle">
+        <value>Title</value>
+    </data>
+    <data name="TitlePlaceholder">
+        <value>Title of the post</value>
+    </data>
+    <data name="TitleInvalidFeedback">
+        <value>Please enter a Title of your post</value>
+    </data>
+    <data name="Topic">
+        <value>Topic</value>
+    </data>  
+    <data name="TopicPlaceholder">
+        <value>Topic of the post</value>
+    </data> 
+    <data name="TopicInvalidFeedback">
+        <value>Please enter a Topic of your post</value>
+    </data>
+    <data name="TextPlaceholder">
+        <value>Write your post here</value>
+    </data>
+    <data name="TextInvalidFeedback">
+        <value>Please enter your post text into the textarea</value>
+    </data>
+    <data name="Publish">
+        <value>Publish</value>
+    </data>
+</root>

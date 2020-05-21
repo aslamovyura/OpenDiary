@@ -1,34 +1,40 @@
 ﻿@model WebUI.ViewModels.Account.LoginViewModel
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = Localizer["Title"];
 }
 
 <form class="text-center" method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
     <img id="logo-img-lg" class="mb-4" src="~/OpenDiary.jpg" alt=""/>
-    <h2>Please sing in</h2><br />
+    <h2>@Localizer["PleaseSingIn"]</h2><br />
     <div class="form-group-col">
         <div class="row justify-content-center align-items-center" asp-validation-summary="All"></div>
         <div class="row justify-content-center align-items-center">
-            <input id="input-form" asp-for="Email" placeholder="Email adress">
+            <input id="input-form" asp-for="Email" placeholder=@Localizer["EmailPlaceholder"]>
         </div>
         <div class="row justify-content-center align-items-center">
-            <input id="input-form" asp-for="Password" placeholder="Password"><br />
+            <input id="input-form" asp-for="Password" placeholder=@Localizer["PasswordPlaceholder"]><br />
         </div>
     </div>
     <div>
         <input asp-for="RememberMe" />
-        <label asp-for="RememberMe"></label>
+        <label>@Localizer["RememberMe"]</label>
     </div>
     <div>
-        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">@Localizer["SingIn"]</button>
     </div>
 
     <div class="form-group-row">
-        <label>Forgot password?</label>
-        <a asp-area="" asp-controller="Account" asp-action="ForgotPassword">Click here</a>
+        <label>@Localizer["ForgotPassword"]</label>
+        <a asp-area="" asp-controller="Account" asp-action="ForgotPassword">@Localizer["ClickHere"]</a>
     </div>
     <div class="form-group-row">
-        <label>Not a member?</label>
-        <a asp-area="" asp-controller="Account" asp-action="Register">Sing up now</a>
+        <label>@Localizer["NotAMember"]</label>
+        <a asp-area="" asp-controller="Account" asp-action="Register">@Localizer["SingUpNow"]</a>
     </div>
 </form>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

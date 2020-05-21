@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Title">
+        <value>Log In</value>
+    </data>
+    <data name="PleaseSingIn">
+        <value>Please sing in</value>
+    </data>
+    <data name="EmailPlaceholder">
+        <value>Enter email adress</value>
+    </data>
+        <data name="PasswordPlaceholder">
+        <value>Enter password</value>
+    </data>
+        <data name="RememberMe">
+        <value>Remember me</value>
+    </data>
+        <data name="SingIn">
+        <value>Sing in</value>
+    </data>
+        <data name="ForgotPassword">
+        <value>Forgot password?</value>
+    </data>
+    <data name="ClickHere">
+        <value>Click here</value>
+    </data>
+        <data name="NotAMember">
+        <value>Not a member?</value>
+    </data>
+        <data name="SingUpNow">
+        <value>Sing up now</value>
+    </data>
+</root>

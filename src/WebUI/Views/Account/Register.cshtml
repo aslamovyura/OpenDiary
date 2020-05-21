@@ -1,14 +1,14 @@
 ﻿@model WebUI.ViewModels.Account.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = Localizer["Title"];
 }
 
 <div class="py-5 text-center">
     <img id="logo-img-lg" class="mb-4" src="~/OpenDiary.jpg" alt="" />
-    <h2>User registration</h2>
+    <h2>@Localizer["UserRegistration"]</h2>
     <p class="lead">
-        Welcome to Open Diary!<br />
-        Please fill-in the fields below to register.
+        @Localizer["Welcome"]<br />
+        @Localizer["PleaseFillIn"]
     </p>
 </div>
 <form class="text-center" method="post" asp-controller="Account" asp-action="Register">
@@ -16,54 +16,54 @@
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">First name</span>
+            <span class="input-group-text">@Localizer["FirstName"]</span>
         </div>
-        <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder="Jhon"><br />
+        <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder=@Localizer["FirstNamePlaceholder"]><br />
         <span asp-validation-for="FirstName"></span>
     </div><br />
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Last name</span>
+            <span class="input-group-text">@Localizer["LastName"]</span>
         </div>
-        <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder="Smith"><br />
+        <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder=@Localizer["LastNamePlaceholder"]><br />
         <span asp-validation-for="LastName"></span>
     </div><br />
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Email</span>
+            <span class="input-group-text">@Localizer["Email"]</span>
         </div>
-        <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder="you@example.com"><br />
+        <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder=@Localizer["EmailPlaceholder"]><br />
         <span asp-validation-for="Email"></span>
     </div><br />
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Birth date</span>
+            <span class="input-group-text">@Localizer["BirthDate"]</span>
         </div>
-        <input asp-for="BirthDate" placeholder="dd/MM/yyyy" type="date" aria-label="BirthDate" class="form-control"><br />
+        <input asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" class="form-control"><br />
         <span asp-validation-for="BirthDate"></span>
     </div><br />
 
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Password</span>
+            <span class="input-group-text">@Localizer["Password"]</span>
         </div>
-        <input asp-for="Password" placeholder="Password" type="password" aria-label="Password" class="form-control"><br />
+        <input asp-for="Password" placeholder=@Localizer["PasswordPlaceholder"] type="password" aria-label="Password" class="form-control"><br />
         <span asp-validation-for="BirthDate"></span>
     </div><br />
 
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text">Confirm password</span>
+            <span class="input-group-text">@Localizer["ConfirmPassword"]</span>
         </div>
-        <input asp-for="PasswordConfirm" placeholder="Password" type="password" aria-label="PasswordConfirm" class="form-control"><br />
+        <input asp-for="PasswordConfirm" placeholder=@Localizer["ConfirmPasswordPlaceholder"] type="password" aria-label="PasswordConfirm" class="form-control"><br />
         <span asp-validation-for="PasswordConfirm"></span>
     </div><br />
 
     <div>
-        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">Register</button>
+        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">@Localizer["Register"]</button>
     </div>
 </form>

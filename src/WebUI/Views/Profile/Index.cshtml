@@ -1,6 +1,6 @@
 ﻿@model WebUI.ViewModels.Profile.ProfileViewModel
 @{
-    ViewBag.Title = "Author profile";
+    ViewBag.Title = Localizer["Title"];
 }
     <div class="form-group row">
         <div class="col">
@@ -12,17 +12,17 @@
             </div>
 
             <div>
-                <p>Email : @Model.Email</p>
-                <p>Birth date : @Model.BirthDate (@Model.Age years)</p>
-                <p>Posts : @Model.TotalPostsNumber</p>
-                <p>Comments : @Model.TotalCommentsNumber</p>
+                <p>@Localizer["Email"] : @Model.Email</p>
+                <p>@Localizer["BitrhDate"] : @Model.BirthDate (@Model.Age years)</p>
+                <p>@Localizer["Posts"] : @Model.TotalPostsNumber</p>
+                <p>@Localizer["Cоmments"] : @Model.TotalCommentsNumber</p>
             </div>
         </div>
     </div>
 
     <table class="table">
-        <caption>List of user posts.</caption>
-        <tr><th>Date</th><th>Title</th><th></th></tr>
+        <caption>@Localizer["PostsList"]</caption>
+        <tr><th>@Localizer["Date"]</th><th>@Localizer["Posts"]</th><th></th></tr>
         @foreach (var post in Model.Posts)
         {
             <tr>

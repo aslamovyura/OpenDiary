@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Application.DTO.PostDTO>
 @{
-    ViewBag.Title = "Post List";
+    ViewBag.Title = Localizer["Title"];
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Open Diary</h1>
-    <p>Read the latest most significant posts and write your own! Enjoy!</p>
+    <h1 class="display-4">@Localizer["Welcome"]</h1>
+    <p>@Localizer["ReadPosts"]</p>
 </div>
 
 <div>

@@ -1,6 +1,6 @@
 ﻿@model WebUI.ViewModels.Posts.PostViewModel
 @{
-    ViewBag.Tirle = "Edit post";
+    ViewBag.Tirle = Localizer["Title"];
 }
 
     <form asp-action="Edit" asp-controller="Posts">
@@ -12,18 +12,18 @@
             <input type="hidden" asp-for="TopicId" />
         </div>
         <div class="form-group">
-            <label asp-for="Title" class="control-label">Title</label>
+            <label asp-for="Title" class="control-label">@Localizer["Title"]</label>
             <input type="text" asp-for="Title" />
         </div>
         <div class="form-group">
-            <label asp-for="Text" class="control-label">Text</label>
+            <label asp-for="Text" class="control-label">@Localizer["Text"]</label>
             <input type="text" asp-for="Text" />
         </div>
         <div class="form-group">
-            <label asp-for="Topic" class="control-label">Topic</label>
+            <label asp-for="Topic" class="control-label">@Localizer["Topic"]</label>
             <input type="text" asp-for="Topic" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Done" class="btn btn-outline-secondary" />
+            <input type="submit" value="@Localizer["Done"]" class="btn btn-outline-secondary" />
         </div>
     </form>

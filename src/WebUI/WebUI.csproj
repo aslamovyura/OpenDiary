@@ -19,6 +19,15 @@
     <Folder Include="Views\Shared\Components\Login\" />
     <Folder Include="ViewModels\Comment\" />
     <Folder Include="Views\Shared\Components\AddComment\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Views\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Resources\Views\Account\" />
+    <Folder Include="Resources\Views\Home\" />
+    <Folder Include="Resources\Views\Posts\" />
+    <Folder Include="Resources\Views\Profile\" />
+    <Folder Include="Resources\Views\Users\" />
+    <Folder Include="Resources\Views\Shared\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +48,268 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Profile\Index.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Profile\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Index.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Read.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Read.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Read.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Read.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Edit.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Edit.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Create.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\Create.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\AllPosts.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AllPosts.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Posts\AllPosts.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AllPosts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ConfirmEmail.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfirmEmail.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ConfirmEmail.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfirmEmail.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPassword.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPassword.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordConfirmation.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordConfirmation.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordUnknownAccount.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordUnknownAccount.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordUnknownAccount.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordUnknownAccount.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Register.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Register.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Register.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Register.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\RegisterSucceeded.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterSucceeded.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\RegisterSucceeded.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterSucceeded.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPassword.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPassword.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordSucceeded.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPasswordSucceeded.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordSucceeded.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPasswordSucceeded.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>_Layout.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\Layout.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>_Layout.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\AddComment.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Components.AddComment.AddComment.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\AddComment.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Components.AddComment.AddComment.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\Components.Login.Login.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Components.Login.Login.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\Components.Login.Login.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Components.Login.Login.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
+    <Compile Remove="Resources\Views\Shared\AddComment.ru.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Views\Profile\Index.ru.Designer.cs">
+      <DependentUpon>Index.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Profile\Index.en.Designer.cs">
+      <DependentUpon>Index.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Index.ru.Designer.cs">
+      <DependentUpon>Index.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Index.en.Designer.cs">
+      <DependentUpon>Index.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Read.ru.Designer.cs">
+      <DependentUpon>Read.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Read.en.Designer.cs">
+      <DependentUpon>Read.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Edit.ru.Designer.cs">
+      <DependentUpon>Edit.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Edit.en.Designer.cs">
+      <DependentUpon>Edit.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Create.en.Designer.cs">
+      <DependentUpon>Create.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\Create.ru.Designer.cs">
+      <DependentUpon>Create.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\AllPosts.ru.Designer.cs">
+      <DependentUpon>AllPosts.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Posts\AllPosts.en.Designer.cs">
+      <DependentUpon>AllPosts.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ConfirmEmail.ru.Designer.cs">
+      <DependentUpon>ConfirmEmail.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ConfirmEmail.en.Designer.cs">
+      <DependentUpon>ConfirmEmail.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPassword.ru.Designer.cs">
+      <DependentUpon>ForgotPassword.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPassword.en.Designer.cs">
+      <DependentUpon>ForgotPassword.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPasswordConfirmation.ru.Designer.cs">
+      <DependentUpon>ForgotPasswordConfirmation.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPasswordConfirmation.en.Designer.cs">
+      <DependentUpon>ForgotPasswordConfirmation.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPasswordUnknownAccount.ru.Designer.cs">
+      <DependentUpon>ForgotPasswordUnknownAccount.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPasswordUnknownAccount.en.Designer.cs">
+      <DependentUpon>ForgotPasswordUnknownAccount.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Login.ru.Designer.cs">
+      <DependentUpon>Login.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Login.en.Designer.cs">
+      <DependentUpon>Login.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Register.ru.Designer.cs">
+      <DependentUpon>Register.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Register.en.Designer.cs">
+      <DependentUpon>Register.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\RegisterSucceeded.ru.Designer.cs">
+      <DependentUpon>RegisterSucceeded.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\RegisterSucceeded.en.Designer.cs">
+      <DependentUpon>RegisterSucceeded.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPassword.ru.Designer.cs">
+      <DependentUpon>ResetPassword.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPassword.en.Designer.cs">
+      <DependentUpon>ResetPassword.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPasswordSucceeded.ru.Designer.cs">
+      <DependentUpon>ResetPasswordSucceeded.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPasswordSucceeded.en.Designer.cs">
+      <DependentUpon>ResetPasswordSucceeded.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\_Layout.ru.Designer.cs">
+      <DependentUpon>_Layout.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\Layout.en.Designer.cs">
+      <DependentUpon>Layout.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\_Layout.en.Designer.cs">
+      <DependentUpon>_Layout.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\Components.AddComment.en.Designer.cs">
+      <DependentUpon>Components.AddComment.AddComment.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\Components.AddComment.ru.Designer.cs">
+      <DependentUpon>Components.AddComment.AddComment.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\Components.Login.Login.ru.Designer.cs">
+      <DependentUpon>Components.Login.Login.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\Components.Login.Login.en.Designer.cs">
+      <DependentUpon>Components.Login.Login.en.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

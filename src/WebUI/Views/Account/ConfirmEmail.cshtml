@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Confirm email";
+    ViewBag.Title = Localizer["Title"];
 }
 
-<h2>Confirm Email.</h2>
+<h2>@Localizer["ConfirmEmail"]</h2>
 <div class="form-inline">
-    <div> Thank your for confirming your email. Please</div>
-    <a class="nav-link" asp-controller="Home" asp-action="Index">Click here to Log in</a>
+    <div>@Localizer["ThanksForConfirm"]</div>
+    <a class="nav-link" asp-controller="Home" asp-action="Index">@Localizer["ClickToLogin"]</a>
 </div>
