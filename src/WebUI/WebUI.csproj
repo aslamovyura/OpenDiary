@@ -28,6 +28,8 @@
     <Folder Include="Resources\Views\Profile\" />
     <Folder Include="Resources\Views\Users\" />
     <Folder Include="Resources\Views\Shared\" />
+    <Folder Include="Controllers\WebAPI\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +50,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Views\Profile\Index.ru.resx">

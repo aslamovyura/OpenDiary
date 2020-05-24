@@ -39,6 +39,8 @@ namespace WebUI
                 options.SupportedUICultures = supportedCultures;
             });
 
+            services.AddHealthChecks();
+
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
             return services;
