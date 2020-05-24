@@ -4,7 +4,7 @@ using Application.CQRS.Queries.Get;
 using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebUI.ViewModels.Comment;
+using WebUI.ViewModels;
 
 namespace WebUI.ViewComponents
 {

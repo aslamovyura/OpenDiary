@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Application.Enums;
 
-namespace WebUI.ViewModels.Comment
+namespace WebUI.ViewModels
 {
     /// <summary>
     /// View model for comment object.

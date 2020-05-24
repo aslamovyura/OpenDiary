@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using WebUI.ViewModels.Posts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Application.DTO;
@@ -14,11 +13,14 @@ using Application.CQRS.Commands.Update;
 using Application.CQRS.Commands.Delete;
 using AutoMapper;
 using System.Collections.Generic;
-using WebUI.ViewModels.Comment;
 using Infrastructure.Extentions;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
+    /// <summary>
+    /// Controller to manage posts.
+    /// </summary>
     public class PostsController : Controller
     {
         private readonly IMediator _mediator;
@@ -41,17 +43,23 @@ namespace WebUI.Controllers
         }
 
         /// <summary>
-        /// View the list of latest posts.
+        /// Show the list of posts.
         /// </summary>
-        /// <returns></returns>
-        public async Task<IActionResult> Index()
+        /// <param name="authorId">Author identifier.</param>
+        /// <returns>View with posts.</returns>
+        public async Task<IActionResult> Index(int authorId = default)
         {
-            // Get all posts.
-            var postsQuery = new GetPostsQuery();
-            var posts = await _mediator.Send(postsQuery);
-            var models = posts.OrderByDescending(post => post.Date);
+            IRequest<ICollection<PostDTO>> postsQuery;
+            if (authorId == default)
+                postsQuery = new GetPostsQuery();
+            else
+                postsQuery = new GetPostsByAuthorIdQuery { AuthorId = authorId };
 
-            //var models = _mapper.Map<IEnumerable<PostViewModel>>(postsSorted);
+            // Get all posts.
+            var postsDTO = await _mediator.Send(postsQuery);
+            var posts = postsDTO.OrderByDescending(post => post.Date);
+
+            var models = _mapper.Map<IEnumerable<PostDTO>, IEnumerable<PostViewModel>>(posts);
 
             foreach (var model in models)
             {
@@ -71,8 +79,8 @@ namespace WebUI.Controllers
         /// <summary>
         /// Read full post.
         /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
+        /// <param name="postId">Post identifier.</param>
+        /// <returns>Page to read the full post.</returns>
         public async Task<IActionResult> Read(int postId)
         {
             // Get post.
@@ -122,9 +130,9 @@ namespace WebUI.Controllers
             // Get all posts.
             var postsQuery = new GetPostsQuery();
             var postsDTO = await _mediator.Send(postsQuery);
-            var models = postsDTO.OrderByDescending(post => post.Date);
+            var posts = postsDTO.OrderByDescending(post => post.Date);
 
-            //var models = _mapper.Map<IEnumerable<PostViewModel>>(posts);
+            var models = _mapper.Map<IEnumerable<PostDTO>, IEnumerable <PostViewModel>>(posts);
 
             foreach (var model in models)
             {
@@ -150,10 +158,10 @@ namespace WebUI.Controllers
         /// <summary>
         /// Create new post.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">View model of the post.</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePostViewModel model)
+        public async Task<IActionResult> Create(PostViewModel model)
         {
             if (ModelState.IsValid)
             {

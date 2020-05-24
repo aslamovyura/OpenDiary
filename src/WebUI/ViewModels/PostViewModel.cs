@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WebUI.ViewModels.Comment;
 
-namespace WebUI.ViewModels.Posts
+namespace WebUI.ViewModels
 {
     /// <summary>
     /// View model for post object.

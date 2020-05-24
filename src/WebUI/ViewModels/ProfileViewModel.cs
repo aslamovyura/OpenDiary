@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Application.DTO;
 
-namespace WebUI.ViewModels.Profile
+namespace WebUI.ViewModels
 {
     public class ProfileViewModel
     {

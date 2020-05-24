@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using WebUI.ViewModels.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 using Application.Interfaces;
 using Infrastructure.Identity;
 using System.Threading;
-using System.Collections.Generic;
 using Application.DTO;
 using Application.CQRS.Queries.Get;
 using MediatR;
-using Application.CQRS.Commands.Create;
-using Application.Exceptions;
 using Application.CQRS.Commands.Update;
 using Application.CQRS.Commands.Delete;
 using AutoMapper;
+using WebUI.ViewModels;
+using System.Collections.Generic;
 
 namespace CustomIdentityApp.Controllers
 {
+    /// <summary>
+    /// Contoller to manage application users.
+    /// </summary>
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -59,12 +58,13 @@ namespace CustomIdentityApp.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            foreach (var author in authors)
+            var models = _mapper.Map<IEnumerable<AuthorDTO>, IEnumerable<AuthorViewModel>>(authors);
+            foreach (var model in models)
             {
-                author.Email = await _identityService.GetEmailByIdAsync(author.UserId);
+                model.Email = await _identityService.GetEmailByIdAsync(model.UserId);
             }
 
-            return View(authors);
+            return View(models);
         }
 
         /// <summary>
@@ -83,61 +83,6 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
-
-            //// Create user.
-            //var (result, userId, token) = await _identityService.CreateUserAsync(model.Email, model.Email, model.Password);
-
-            //if (result == null)
-            //{
-            //    ModelState.AddModelError(string.Empty, "User is already exists!");
-            //    return View(model);
-            //}
-
-            //if (result.Succeeded)
-            //{
-            //    await _identityService.ConfirmEmail(userId, token);
-            //}
-            //else
-            //{
-            //    foreach (var error in result.Errors)
-            //    {
-            //        ModelState.AddModelError(string.Empty, error);
-            //    }
-            //    return View(model);
-            //}
-
-            //// Create author.
-            //var authorDTO = new AuthorDTO
-            //{
-            //    UserId = userId,
-            //    FirstName = model.FirstName,
-            //    LastName = model.LastName,
-            //    BirthDate = model.BirthDate,
-            //    Email = model.Email
-            //};
-
-            //var authorCommand = new CreateAuthorCommand { Model = authorDTO };
-
-            //try
-            //{
-            //    await _mediator.Send(authorCommand);
-            //}
-            //catch (RequestValidationException failures)
-            //{
-            //    foreach (var error in failures.Failures)
-            //    {
-            //        ModelState.AddModelError(string.Empty, error.Value[0]);
-            //    }
-            //    return View(model);
-            //}
-
-            //return RedirectToAction("Index", "Users");
-
-
 
             if (ModelState.IsValid)
             {

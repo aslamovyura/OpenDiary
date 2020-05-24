@@ -1,4 +1,4 @@
-﻿@model Application.DTO.AuthorDTO
+﻿@model WebUI.ViewModels.AuthorViewModel
 
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -17,8 +17,8 @@
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-userId="@Model.UserId">@Localizer["Profile"]</a>
-                    <a class="dropdown-item" asp-action="=" asp-controller="">@Localizer["Posts"]</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
 
                     <div class="dropdown-divider"></div>
                     <form class="dropdown-item form-inline" asp-area="">

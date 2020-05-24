@@ -1,6 +1,6 @@
 ﻿using Application.DTO;
 using AutoMapper;
-using WebUI.ViewModels.Posts;
+using WebUI.ViewModels;
 
 namespace Application.Mapping
 {

@@ -1,6 +1,6 @@
 ﻿using Application.DTO;
 using AutoMapper;
-using WebUI.ViewModels.Comment;
+using WebUI.ViewModels;
 
 namespace Application.Mapping
 {

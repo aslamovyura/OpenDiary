@@ -19,7 +19,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Users" asp-action="Index">@Localizer["Authors"]</a>
+                                <a class="nav-link" asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
@@ -45,8 +45,10 @@
 
         <footer id="footer" class="border-top footer text-muted">
             <div class="container">
-                <div>Open Diary, 2020</div>
-                <div> <partial name="_SelectLanguagePartial" /></div>
+                <div class="form-inline">
+                    <div>Open Diary, 2020</div>
+                    <div> <partial name="_SelectLanguagePartial" /></div>
+                </div>
             </div>
         </footer>
 

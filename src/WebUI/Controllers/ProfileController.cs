@@ -6,7 +6,7 @@ using Application.Interfaces;
 using Infrastructure.Extentions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebUI.ViewModels.Profile;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
@@ -34,15 +34,15 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="userId">Application user identifier.</param>
         /// <returns>User profile page.</returns>
-        public async Task<ActionResult> Index(string userId)
+        public async Task<ActionResult> Index(int authorId)
         {
-            if (userId == null)
+            if (authorId == default)
             {
                 return RedirectToAction("Index", "Home");
             }
 
             // Get author current author.
-            var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
+            var authorQuery = new GetAuthorQuery { Id = authorId };
             var authorDTO = await _mediator.Send(authorQuery);
             authorDTO.Email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
 

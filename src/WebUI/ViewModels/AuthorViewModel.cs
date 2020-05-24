@@ -1,5 +1,5 @@
 ﻿using System;
-namespace WebUI.ViewModels.Users
+namespace WebUI.ViewModels
 {
     /// <summary>
     /// View model for `edit user` page.

@@ -1,12 +1,12 @@
-﻿@model IEnumerable<Application.DTO.PostDTO>
+﻿@model IEnumerable<WebUI.ViewModels.PostViewModel>
 @{
     ViewBag.Title = Localizer["Title"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">@Localizer["Welcome"]</h1>
-    <p>@Localizer["ReadPosts"]</p>
-</div>
+    <div class="text-center">
+        <!--<h1 class="display-4">@Localizer["Welcome"]</h1>
+    <p>@Localizer["ReadPosts"]</p>-->
+    </div>
 
 <div>
     @foreach (var post in Model)
