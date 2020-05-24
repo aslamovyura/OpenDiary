@@ -1,0 +1,195 @@
+﻿html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #333333;
+    position: fixed;
+    z-index: 2;
+}
+
+nav {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template: 100% / repeat(7, 1fr);
+    grid-column-gap: 20px;
+}
+
+.nav-left {
+    grid-column: 1 / span 4;
+}
+
+.nav-right {
+    grid-column: 5 / span 3;
+    justify-self: end;
+    justify-content: end;
+}
+
+.inline {
+    display: inline-block;
+}
+
+nav ul {
+    display: inline-block;
+}
+
+nav li {
+    display: inline-block;
+}
+
+    nav li a {
+        color: #fff;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        text-decoration: none;
+        margin-right: 60px;
+    }
+
+main {
+    text-align: center;
+    position: relative;
+    top: 40px;
+}
+
+    main h1 {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 70px;
+        margin-top: 0px;
+        padding-top: 80px;
+        margin-bottom: 80px;
+        text-transform: uppercase;
+    }
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    z-index: 2;
+}
+
+    footer p {
+        font-family: 'Raleway', sans-serif;
+        text-transform: uppercase;
+        font-size: 11px;
+        text-align: center;
+    }
+
+.container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.banner {
+    height: 900px;
+    background-image: url("/resources/OpenDiary.jpg");
+    background-size: cover;
+}
+
+.btn-main {
+    background-color: #333;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1.3px;
+    padding: 16px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn-default {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.supporting {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+    .supporting .col {
+        display: inline-block;
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        height: 200px;
+        width: 200px;
+    }
+
+    .supporting img {
+        height: 32px;
+    }
+
+    .supporting h2 {
+        font-weight: 600;
+        font-size: 23px;
+        text-transform: uppercase;
+    }
+
+    .supporting p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+
+    .supporting a {
+        background-color: white;
+        color: #333333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 1.3px;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #333333;
+    }
+
+.copyright {
+    grid-column: 4 / span 1;
+}
+
+.language {
+    grid-column: 7 / span 1;
+    align-self: center;
+}
+
+.language-select {
+    background-color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    color: aliceblue;
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+    .language-select ::after {
+        border: none;
+    }

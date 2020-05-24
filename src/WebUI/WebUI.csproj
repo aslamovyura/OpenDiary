@@ -29,6 +29,7 @@
     <Folder Include="Controllers\WebAPI\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Authors\" />
+    <Folder Include="wwwroot\resources\" />
   </ItemGroup>
 
   <ItemGroup>
