@@ -76,5 +76,17 @@ namespace WebUI.Resources.Views.Shared {
                 return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
+        
+        internal static string SingIn {
+            get {
+                return ResourceManager.GetString("SingIn", resourceCulture);
+            }
+        }
+        
+        internal static string SingUp {
+            get {
+                return ResourceManager.GetString("SingUp", resourceCulture);
+            }
+        }
     }
 }

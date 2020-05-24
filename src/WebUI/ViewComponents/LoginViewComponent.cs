@@ -44,7 +44,8 @@ namespace WebUI.ViewComponents
 
             if (userName == null)
             {
-                return Content(string.Empty);
+                AuthorViewModel emptyModel = null;
+                return View("Login", emptyModel);
             }
 
             var userId = await _identityService.GetUserIdByNameAsync(userName);

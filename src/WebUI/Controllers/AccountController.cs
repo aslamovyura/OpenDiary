@@ -11,6 +11,9 @@ using MediatR;
 
 namespace WebUI.Controllers
 {
+    /// <summary>
+    /// Controller to manage user account.
+    /// </summary>
     public class AccountController : Controller
     {
         private readonly IIdentityService _identityService;
@@ -26,7 +29,6 @@ namespace WebUI.Controllers
         /// <exception cref="ArgumentNullException"></exception>
         public AccountController(IIdentityService identityService,
                                  IEmailService emailService,
-                                 IRazorViewToStringRenderer razorViewToStringRenderer,
                                  IMediator mediator)
         {
             _identityService = identityService ?? throw new ArgumentNullException();
@@ -39,7 +41,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <returns>View for user registration.</returns>
         [HttpGet]
-        public IActionResult Register() => View();
+        public IActionResult SignUp() => View();
         
         /// <summary>
         /// Process user input on the registration view.
@@ -50,7 +52,7 @@ namespace WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> SignUp(RegisterViewModel model)
         {
             model = model ?? throw new ArgumentNullException();
 
@@ -99,7 +101,7 @@ namespace WebUI.Controllers
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
                         $"Confirm registration by clicking this link: <a href='{callbackUrl}'>link</a>");
 
-                    return View("RegisterSucceeded", model);
+                    return View("SignUpSucceeded", model);
                 }
                 else
                 {
@@ -140,7 +142,7 @@ namespace WebUI.Controllers
         /// <param name="returnUrl">Return URL after login.</param>
         /// <returns>View for user login.</returns>
         [HttpGet]
-        public IActionResult Login(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
+        public IActionResult SignIn(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
 
         /// <summary>
         /// Process user input on the login page.
@@ -149,7 +151,7 @@ namespace WebUI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> SignIn(LoginViewModel model)
         {
             model = model ?? throw new ArgumentNullException(nameof(model));
 

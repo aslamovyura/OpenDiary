@@ -34,8 +34,15 @@ namespace WebUI.ViewComponents
         /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync (int postId)
         {
-            var userId = await _identityService.GetUserIdByNameAsync(HttpContext.User.Identity.Name);
+            var userName = HttpContext.User.Identity.Name;
 
+            // Anauthorized user.
+            if (userName == null)
+            {
+                return Content(string.Empty);
+            }
+
+            var userId = await _identityService.GetUserIdByNameAsync(userName);
             var authorQuery = new GetAuthorByUserIdQuery { UserId = userId };
             var author = await _mediator.Send(authorQuery);
 

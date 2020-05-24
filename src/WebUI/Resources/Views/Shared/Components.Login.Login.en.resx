@@ -27,4 +27,10 @@
     <data name="Logout">
         <value>Logout</value>
     </data>
+    <data name="SingIn">
+        <value>Sing In</value>
+    </data>
+    <data name="SingUp">
+        <value>Sign Up</value>
+    </data>
 </root>

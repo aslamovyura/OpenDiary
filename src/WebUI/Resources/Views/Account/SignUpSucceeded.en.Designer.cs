@@ -16,21 +16,21 @@ namespace WebUI.Resources.Views.Account {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RegisterSucceeded_en {
+    internal class SignUpSucceeded_en {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RegisterSucceeded_en() {
+        internal SignUpSucceeded_en() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Account.RegisterSucceeded.en", typeof(RegisterSucceeded_en).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Account.SignUpSucceeded.en", typeof(SignUpSucceeded_en).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

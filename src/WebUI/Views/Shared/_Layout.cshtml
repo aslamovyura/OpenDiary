@@ -16,20 +16,18 @@
                         <img id="logo-img" src="~/OpenDiary.jpg" class="d-inline-block align-top" alt="" />
                         OPEN DIARY
                     </a>
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
-                            </li>
-                        </ul>
-                     </div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
+                        </li>
+                    </ul>
                     <div class="navbar-brand">
                             @await Component.InvokeAsync("Login")
-                        </div>
                     </div>
+                </div>
             </nav>
         </header>
 

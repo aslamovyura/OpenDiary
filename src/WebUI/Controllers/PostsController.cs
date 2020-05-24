@@ -153,6 +153,7 @@ namespace WebUI.Controllers
         /// Show page to create new post.
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public IActionResult Create() => View();
 
         /// <summary>
@@ -160,6 +161,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="model">View model of the post.</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(PostViewModel model)
         {
@@ -319,7 +321,8 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="model">View model of comment.</param>
         /// <returns>Page with post.</returns>
-        //[HttpPost]
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddComment(CommentViewModel model)
         {
             var commentDTO = _mapper.Map<CommentViewModel, CommentDTO>(model);

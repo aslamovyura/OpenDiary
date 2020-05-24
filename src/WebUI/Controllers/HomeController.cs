@@ -10,26 +10,17 @@ using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _db = context;
         }
 
         public IActionResult Index()
-        {
-            //return RedirectToAction("Index", "Posts");
-
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

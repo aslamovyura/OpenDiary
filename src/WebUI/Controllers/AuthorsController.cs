@@ -1,29 +1,19 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities;
-using WebUI.ViewModels.Users;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 using Application.Interfaces;
-using Infrastructure.Identity;
-using System.Threading;
 using System.Collections.Generic;
 using Application.DTO;
 using Application.CQRS.Queries.Get;
 using MediatR;
-using Application.CQRS.Commands.Create;
-using Application.Exceptions;
-using Application.CQRS.Commands.Update;
-using Application.CQRS.Commands.Delete;
 using WebUI.ViewModels;
 using AutoMapper;
 
 namespace CustomIdentityApp.Controllers
 {
+    /// <summary>
+    /// Controller to manage authors.
+    /// </summary>
     public class AuthorsController : Controller
     {
         private readonly IIdentityService _identityService;

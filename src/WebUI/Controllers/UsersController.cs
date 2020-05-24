@@ -22,6 +22,7 @@ namespace CustomIdentityApp.Controllers
     /// <summary>
     /// Contoller to manage application users.
     /// </summary>
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
