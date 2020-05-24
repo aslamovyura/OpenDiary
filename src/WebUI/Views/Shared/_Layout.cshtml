@@ -6,50 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Open Diary</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400, 600" rel="stylesheet" type="text/css">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="~/css/Layout.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <header>
-        <nav class="grid">
+        <div class="nav grid">
             <ul class="nav-left">
                 <li>
                     <a href="#">About</a>
                 </li>
                 <li>
-                    <a href="#">Authors</a>
+                    <a asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
                 </li>
                 <li>
-                    <a href="#">Post</a>
+                    <a asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
                 </li>
             </ul>
-            <ul class="nav-right">
-                <li>
-                    <a href="#">Sign In</a>
-                </li>
-                <li>
-                    <a href="#">Sign Up</a>
-                </li>
-            </ul>
-        </nav>
+            @await Component.InvokeAsync("Login")
+        </div>
     </header>
 
     <div class="main">
         @RenderBody()
     </div>
 
-    <footer class="grid">
+    <div class="footer grid">
         <div class="copyright">
             <p>️&copy; OPEN DIARY 2020</p>
         </div>
         <div class="language">
-            <!--<select class="language-select">
-        <option value="English">English</option>
-        <option value="Русский">Русский</option>
-    </select>-->
             <partial name="_SelectLanguagePartial"/>
         </div>
-    </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

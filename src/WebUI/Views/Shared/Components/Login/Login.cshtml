@@ -33,12 +33,12 @@
 }
 else
 {
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" asp-action="SignIn" asp-controller="Account">@Localizer["SingIn"]</a>
+    <ul class="nav-right">
+        <li>
+            <a asp-action="SignIn" asp-controller="Account">@Localizer["SingIn"]</a>
         </li>
         <li>
-            <a class="nav-link" asp-action="SignUp" asp-controller="Account">@Localizer["SingUp"]</a>
+            <a asp-action="SignUp" asp-controller="Account">@Localizer["SingUp"]</a>
         </li>
     </ul>
 }

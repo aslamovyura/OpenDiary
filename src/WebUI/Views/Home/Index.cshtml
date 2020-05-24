@@ -1,18 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Open Diary | Home Page";
 }
-
-<!--<div class="text-center">
-    <h1 class="display-4">Welcome to Open Diary</h1>
-    <p>Read the latest most significant posts and write your own! Enjoy!</p>
-</div>-->
-
 
 <main>
     <div class="banner">
         <div class="container">
             <h1>Open Diary</h1>
-            <a href="#" class="btn-main"> Write now </a>
+            <a class="btn-main" asp-controller="Posts" asp-action="Create"> Write now </a>
         </div>
     </div>
 </main>
@@ -21,20 +15,20 @@
     <div class="container">
         <div class="col">
             <h2>Read</h2>
-            <p>Look throuth post libraty.</p>
-            <a href="#"> Learn More</a><br>
+            <p>Check out the latest posts.</p>
+            <a asp-controller="Posts" asp-action="Index"> Learn More </a><br>
         </div>
 
         <div class="col">
             <h2>Write</h2>
-            <p>Write thoughts you've got.</p>
-            <a href="#"> Learn More</a><br>
+            <p>Write down your thoughts.</p>
+            <a asp-controller="Posts" asp-action="Create"> Learn More </a><br>
         </div>
 
         <div class="col">
             <h2>Comment</h2>
-            <p>Write thoughts you've got.</p>
-            <a href="#"> Learn More</a><br>
+            <p>Share your opinion.</p>
+            <a href="#"> Learn More </a><br>
         </div>
     </div>
 </section>

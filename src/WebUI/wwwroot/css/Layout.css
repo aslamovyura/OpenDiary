@@ -11,40 +11,42 @@ header {
     z-index: 2;
 }
 
-nav {
+.nav {
     margin: 0;
-    padding: 5px 0;
+    padding: 20px 0;
 }
 
 .grid {
     display: grid;
     grid-template: 100% / repeat(7, 1fr);
-    grid-column-gap: 20px;
+    align-items: end;
 }
 
 .nav-left {
+    margin-bottom: 0;
     grid-column: 1 / span 4;
 }
 
 .nav-right {
+    margin-bottom: 0;
     grid-column: 5 / span 3;
     justify-self: end;
-    justify-content: end;
 }
 
 .inline {
     display: inline-block;
 }
 
-nav ul {
+.nav ul {
     display: inline-block;
 }
 
-nav li {
-    display: inline-block;
-}
+    .nav ul li {
+        display: inline-block;
+        text-align: center;
+    }
 
-    nav li a {
+    .nav ul li a {
         color: #fff;
         font-family: 'Raleway', sans-serif;
         font-weight: 600;
@@ -70,21 +72,24 @@ main {
         text-transform: uppercase;
     }
 
-footer {
+.footer {
     position: fixed;
     width: 100%;
     bottom: 0px;
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     z-index: 2;
+    text-align: center;
+    vertical-align: middle;
 }
 
-    footer p {
+    .footer p {
         font-family: 'Raleway', sans-serif;
         text-transform: uppercase;
         font-size: 11px;
         text-align: center;
+        margin: 0;
     }
 
 .container {
