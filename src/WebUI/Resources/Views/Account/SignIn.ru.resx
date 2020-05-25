@@ -16,7 +16,7 @@
         <value>Вход в учетную запись</value>
     </data>
     <data name="PleaseSingIn">
-        <value>Пожалуйста, войдите в учетную запись</value>
+        <value>Пожалуйста, войдите</value>
     </data>
     <data name="EmailPlaceholder">
         <value>Введите почтовый адрес</value>
@@ -37,9 +37,9 @@
         <value>Нажмите сюда</value>
     </data>
         <data name="NotAMember">
-        <value>Не зарегистрированы?</value>
+        <value>Новый польватель?</value>
     </data>
         <data name="SingUpNow">
-        <value>Зарегистрироваться</value>
+        <value>Регистрация</value>
     </data>
 </root>
