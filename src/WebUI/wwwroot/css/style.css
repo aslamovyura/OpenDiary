@@ -377,15 +377,7 @@ main {
 
 /* --------- Sign In/ Sign Up -----------*/
 
-
-
-.main {
-    text-align: center;
-    position: relative;
-    top: 20px;
-}
-
-.sign-in-page {
+.sign-in-up-page {
     height: 1000px;
     background-image: url("/resources/book-3.jpg");
     background-size: cover;
@@ -456,4 +448,48 @@ main {
 
 .padding-bottom-none{
     padding-bottom: 0;
+}
+
+.sign-up-container {
+    display: inline-block;
+    height: 625px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    padding: 10px 30px;
+}
+
+.input-group-prepend {
+    margin-right: -1px;
+    background-color: #333;
+    color: #fefefe;
+}
+
+.input-group-text {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    color: #fefefe;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #333;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.input-group > .custom-select:not(:last-child), .input-group > .form-control:not(:last-child) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

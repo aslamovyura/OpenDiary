@@ -52,7 +52,7 @@
         <value>Birth date</value>
     </data>
         <data name="BirthDatePlaceholder">
-        <value>dd/MM/yyyy</value>
+        <value>MM/dd/yyyy</value>
     </data>
     
     <data name="Password">
