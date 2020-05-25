@@ -51,6 +51,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="KendoUICore" Version="2020.2.513" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Views\Profile\Index.ru.resx">
