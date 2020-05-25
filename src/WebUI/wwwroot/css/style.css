@@ -460,7 +460,6 @@ main {
     padding: 60px, 10px;
 }
 
-
 .input-group {
     position: relative;
     display: -ms-flexbox;
@@ -469,7 +468,8 @@ main {
     flex-wrap: wrap;
     -ms-flex-align: stretch;
     align-items: stretch;
-    padding: 10px 30px;
+    width: 100%;
+    /*padding: 10px 30px;*/
 }
 
 .input-group-prepend {
@@ -487,9 +487,23 @@ main {
     background-color: #333;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    height: 38px;
 }
 
 .input-group > .custom-select:not(:last-child), .input-group > .form-control:not(:last-child) {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+#datepicker{
+    display: inline-block;
+}
+
+.form-group {
+    padding: 10px 30px;
+    margin-bottom: 0;
+}
+
+.margin-right-negative {
+    margin-right: -5px;
 }

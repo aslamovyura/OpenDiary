@@ -4,60 +4,75 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-<div class="sign-in-up-page">
+    <div class="sign-in-up-page">
 
-    <h1 class="">@Localizer["UserRegistration"]</h1>
+        <h1 class="">@Localizer["UserRegistration"]</h1>
 
-    <form class="sign-up-container" method="post" asp-controller="Account" asp-action="SignUp">
+        
 
-        <div class="form-group-col">
-            <div class="validation-message" asp-validation-summary="All"></div>
-        </div>
+        <form class="sign-up-container" method="post" asp-controller="Account" asp-action="SignUp">
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["FirstName"]</span>
+            <div class="form-group-col">
+                <div class="validation-message" asp-validation-summary="All"></div>
             </div>
-            <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder=@Localizer["FirstNamePlaceholder"]><br />
-        </div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["LastName"]</span>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["FirstName"]</span>
+                </div>
+                <input asp-for="FirstName" type="text" aria-label="First name" class="form-control" placeholder=@Localizer["FirstNamePlaceholder"]>
             </div>
-            <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder=@Localizer["LastNamePlaceholder"]><br />
-        </div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["Email"]</span>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["LastName"]</span>
+                </div>
+                <input asp-for="LastName" type="text" aria-label="Last name" class="form-control" placeholder=@Localizer["LastNamePlaceholder"]>
             </div>
-            <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder=@Localizer["EmailPlaceholder"]><br />
-        </div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["BirthDate"]</span>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["Email"]</span>
+                </div>
+                <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder=@Localizer["EmailPlaceholder"]>
             </div>
-            <input asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" class="form-control"><br />
-        </div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["Password"]</span>
+            <!--<div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">@Localizer["BirthDate"]</span>
+        </div>
+        <input asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" class="form-control"><br />
+    </div>-->
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text margin-right-negative">@Localizer["BirthDate"]</span>
+
+                    <input class="form-control" asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" id="datepicker" />
+                    <script>$('#datepicker').datepicker({
+                            uiLibrary: 'bootstrap4'
+                        });</script>
+                </div>
             </div>
-            <input asp-for="Password" placeholder=@Localizer["PasswordPlaceholder"] type="password" aria-label="Password" class="form-control"><br />
-        </div>
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@Localizer["ConfirmPassword"]</span>
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["Password"]</span>
+                </div>
+                <input asp-for="Password" placeholder=@Localizer["PasswordPlaceholder"] type="password" aria-label="Password" class="form-control" />
             </div>
-            <input asp-for="PasswordConfirm" placeholder=@Localizer["ConfirmPasswordPlaceholder"] type="password" aria-label="PasswordConfirm" class="form-control"><br />
-        </div>
 
-        <div class="form-group-row">
-            <button class="btn-main" type="submit">@Localizer["Register"]</button>
-        </div>
-    </form>
-</div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["ConfirmPassword"]</span>
+                </div>
+                <input asp-for="PasswordConfirm" placeholder=@Localizer["ConfirmPasswordPlaceholder"] type="password" aria-label="PasswordConfirm" class="form-control">
+            </div>
+
+            <div class="form-group-row">
+                <button class="btn-main" type="submit">@Localizer["Register"]</button>
+            </div>
+        </form>
+    </div>
