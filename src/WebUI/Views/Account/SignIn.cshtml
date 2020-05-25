@@ -3,7 +3,7 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-<form class="text-center" method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+<form class="text-center" method="post" asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl">
     <img id="logo-img-lg" class="mb-4" src="~/OpenDiary.jpg" alt=""/>
     <h2>@Localizer["PleaseSingIn"]</h2><br />
     <div class="form-group-col">

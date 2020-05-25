@@ -29,6 +29,7 @@
     <Folder Include="Controllers\WebAPI\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Authors\" />
+    <Folder Include="wwwroot\resources\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -196,6 +197,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Components.Login.Login.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -312,6 +321,12 @@
     </Compile>
     <Compile Update="Resources\Views\Shared\Components.Login.Login.en.Designer.cs">
       <DependentUpon>Components.Login.Login.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Home\Index.ru.Designer.cs">
+      <DependentUpon>Index.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Home\Index.en.Designer.cs">
+      <DependentUpon>Index.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

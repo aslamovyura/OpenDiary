@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Localizer["Title"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Open Diary</h1>
-    <p>Read the latest most significant posts and write your own! Enjoy!</p>
-</div>
+<main>
+    <div class="banner">
+        <div class="container">
+            <h1>Open Diary</h1>
+            <a class="btn-main" asp-controller="Posts" asp-action="Create"> @Localizer["GetStarted"] </a>
+        </div>
+    </div>
+</main>
+
+<section class="supporting">
+    <div class="container">
+        <div class="col">
+            <h2>@Localizer["Read"]</h2>
+            <p>@Localizer["CheckPosts"]</p>
+            <a asp-controller="Posts" asp-action="Index"> @Localizer["LearnMore"] </a><br>
+        </div>
+
+        <div class="col">
+            <h2>@Localizer["Write"]</h2>
+            <p>@Localizer["WriteThoughts"]</p>
+            <a asp-controller="Posts" asp-action="Create"> @Localizer["LearnMore"] </a><br>
+        </div>
+
+        <div class="col">
+            <h2>@Localizer["Comment"]</h2>
+            <p>@Localizer["ShareOpinion"]</p>
+            <a href="#"> @Localizer["LearnMore"] </a><br>
+        </div>
+    </div>
+</section>

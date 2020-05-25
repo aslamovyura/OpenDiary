@@ -2,43 +2,36 @@
 
 @if (Model != null)
 {
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link btn btn-lg btn-dark text-light" asp-area="" asp-controller="Posts" asp-action="Create">@Localizer["WriteNew"]</a>
-        </li>
-        <li class="nav-item">
-            <div class="dropdown">
-                <img class="mb-4" src="~/User.png" id="logo-img" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+    <ul class="nav-right">
+        <li>
+            <img class="dropdown-img" src="~/resources/UserLogo.png" alt="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
 
-                <div class="dropdown-menu" aria-labelledby="UserMenu">
+            <div class="dropdown-menu">
+                <p class="dropdown-text">
+                    @Localizer["SignedInAs"] <br />
+                    <span class="capitalize">@Model.FirstName @Model.LastName</span>
+                </p>
+                <div class="dropdown-divider"></div>
 
-                    <div class="dropdown-item">
-                        <div>@Localizer["SignedInAs"]</div>
-                        <div style="font-weight:bold">@Model.FirstName @Model.LastName </div>
-                    </div>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
 
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
-                    <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
-
-                    <div class="dropdown-divider"></div>
-                    <form class="dropdown-item form-inline" asp-area="">
-                        <button type="submit" class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</button>
-                    </form>
-                </div>
+                <div class="dropdown-divider"></div>
+                <form class="dropdown-item" asp-area="">
+                    <button type="submit" class="dropdown-btn" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</button>
+                </form>
             </div>
         </li>
     </ul>
 }
 else
 {
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" asp-action="SignIn" asp-controller="Account">@Localizer["SingIn"]</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-action="SignUp" asp-controller="Account">@Localizer["SingUp"]</a>
-        </li>
-    </ul>
+<ul class="nav-right">
+    <li>
+        <a asp-action="SignIn" asp-controller="Account">@Localizer["SingIn"]</a>
+    </li>
+    <li>
+        <a asp-action="SignUp" asp-controller="Account">@Localizer["SingUp"]</a>
+    </li>
+</ul>
 }

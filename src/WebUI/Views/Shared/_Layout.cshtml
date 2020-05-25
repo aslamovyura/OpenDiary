@@ -1,58 +1,55 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewBag.Title</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </head>
+<html>
 
-    <body>
-        <header id="header">
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-5" style="background-color: #C0C0C0;">
-                <div class="container">
-                    <a id="logo-text" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img id="logo-img" src="~/OpenDiary.jpg" class="d-inline-block align-top" alt="" />
-                        OPEN DIARY
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Diary</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400, 600" rel="stylesheet" type="text/css">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/css/Layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <div class="nav grid">
+            <ul class="nav-left">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/resources/Logo.png" class="nav-logo" asp-controller="Home" asp-action="Index">
                     </a>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
-                        </li>
-                    </ul>
-                    <div class="navbar-brand">
-                            @await Component.InvokeAsync("Login")
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <div id="leftSidebar">
-            <partial name="_LeftSidebar" />
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">@Localizer["About"]</a>
+                </li>
+                <li>
+                    <a asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>
+                </li>
+                <li>
+                    <a asp-controller="Posts" asp-action="Index">@Localizer["Posts"]</a>
+                </li>
+            </ul>
+            @await Component.InvokeAsync("Login")
         </div>
+    </header>
 
-        <div id="main">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+    <main>
+        @RenderBody()
+    </main>
+
+    <div class="footer grid">
+        <div class="copyright">
+            <p>️&copy; OPEN DIARY 2020</p>
         </div>
+        <div class="language">
+            <partial name="_SelectLanguagePartial"/>
+        </div>
+    </div>
 
-        <footer id="footer" class="border-top footer text-muted">
-            <div class="container">
-                <div class="form-inline">
-                    <div>Open Diary, 2020</div>
-                    <div> <partial name="_SelectLanguagePartial" /></div>
-                </div>
-            </div>
-        </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @RenderSection("Scripts", required: false)
-    </body>
 </html>

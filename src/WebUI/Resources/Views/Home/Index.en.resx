@@ -12,25 +12,31 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-     <data name="WriteNew">
-        <value>Новая публикация</value>
+    <data name="Title">
+        <value>Open Diary | Home Page</value>
     </data>
-    <data name="SignedInAs">
-        <value>Вы вошли как</value>
+    <data name="GetStarted">
+        <value>Get started</value>
     </data>
-    <data name="Profile">
-        <value>Учетная запись</value>
+    <data name="Read">
+        <value>Read</value>
     </data>
-    <data name="Posts">
-        <value>Ваши публикации</value>
+    <data name="Write">
+        <value>Write</value>
     </data>
-    <data name="Logout">
-        <value>Выход</value>
+    <data name="Comment">
+        <value>Comment</value>
     </data>
-    <data name="SingIn">
-        <value>Вход</value>
+    <data name="CheckPosts">
+        <value>Check out the latest posts.</value>
     </data>
-    <data name="SingUp">
-        <value>Регистрация</value>
+    <data name="WriteThoughts">
+        <value>Write down your thoughts.</value>
+    </data>
+    <data name="ShareOpinion">
+        <value>Share your opinion with others.</value>
+    </data>
+    <data name="LearnMore">
+        <value>Learn More</value>
     </data>
 </root>
