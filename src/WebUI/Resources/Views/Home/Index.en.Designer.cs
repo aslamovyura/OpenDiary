@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebUI.Resources.Views.Shared {
+namespace WebUI.Resources.Views.Home {
     using System;
     using System.Reflection;
     
@@ -16,21 +16,21 @@ namespace WebUI.Resources.Views.Shared {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class _Layout_ru {
+    internal class Index_en {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal _Layout_ru() {
+        internal Index_en() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Shared._Layout.ru", typeof(_Layout_ru).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Home.Index.en", typeof(Index_en).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -47,21 +47,57 @@ namespace WebUI.Resources.Views.Shared {
             }
         }
         
-        internal static string Authors {
+        internal static string Title {
             get {
-                return ResourceManager.GetString("Authors", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
-        internal static string Posts {
+        internal static string GetStarted {
             get {
-                return ResourceManager.GetString("Posts", resourceCulture);
+                return ResourceManager.GetString("GetStarted", resourceCulture);
             }
         }
         
-        internal static string About {
+        internal static string Read {
             get {
-                return ResourceManager.GetString("About", resourceCulture);
+                return ResourceManager.GetString("Read", resourceCulture);
+            }
+        }
+        
+        internal static string Write {
+            get {
+                return ResourceManager.GetString("Write", resourceCulture);
+            }
+        }
+        
+        internal static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        internal static string CheckPosts {
+            get {
+                return ResourceManager.GetString("CheckPosts", resourceCulture);
+            }
+        }
+        
+        internal static string WriteThoughts {
+            get {
+                return ResourceManager.GetString("WriteThoughts", resourceCulture);
+            }
+        }
+        
+        internal static string ShareOpinion {
+            get {
+                return ResourceManager.GetString("ShareOpinion", resourceCulture);
+            }
+        }
+        
+        internal static string LearnMore {
+            get {
+                return ResourceManager.GetString("LearnMore", resourceCulture);
             }
         }
     }

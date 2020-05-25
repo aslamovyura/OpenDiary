@@ -15,7 +15,12 @@
         <div class="nav grid">
             <ul class="nav-left">
                 <li>
-                    <a href="#">About</a>
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/resources/Logo.png" class="nav-logo" asp-controller="Home" asp-action="Index">
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">@Localizer["About"]</a>
                 </li>
                 <li>
                     <a asp-controller="Authors" asp-action="Index">@Localizer["Authors"]</a>

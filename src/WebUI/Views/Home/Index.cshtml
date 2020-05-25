@@ -1,12 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Open Diary | Home Page";
+    ViewData["Title"] = Localizer["Title"];
 }
 
 <main>
     <div class="banner">
         <div class="container">
             <h1>Open Diary</h1>
-            <a class="btn-main" asp-controller="Posts" asp-action="Create"> Write now </a>
+            <a class="btn-main" asp-controller="Posts" asp-action="Create"> @Localizer["GetStarted"] </a>
         </div>
     </div>
 </main>
@@ -14,21 +14,21 @@
 <section class="supporting">
     <div class="container">
         <div class="col">
-            <h2>Read</h2>
-            <p>Check out the latest posts.</p>
-            <a asp-controller="Posts" asp-action="Index"> Learn More </a><br>
+            <h2>@Localizer["Read"]</h2>
+            <p>@Localizer["CheckPosts"]</p>
+            <a asp-controller="Posts" asp-action="Index"> @Localizer["LearnMore"] </a><br>
         </div>
 
         <div class="col">
-            <h2>Write</h2>
-            <p>Write down your thoughts.</p>
-            <a asp-controller="Posts" asp-action="Create"> Learn More </a><br>
+            <h2>@Localizer["Write"]</h2>
+            <p>@Localizer["WriteThoughts"]</p>
+            <a asp-controller="Posts" asp-action="Create"> @Localizer["LearnMore"] </a><br>
         </div>
 
         <div class="col">
-            <h2>Comment</h2>
-            <p>Share your opinion.</p>
-            <a href="#"> Learn More </a><br>
+            <h2>@Localizer["Comment"]</h2>
+            <p>@Localizer["ShareOpinion"]</p>
+            <a href="#"> @Localizer["LearnMore"] </a><br>
         </div>
     </div>
 </section>

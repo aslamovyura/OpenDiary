@@ -21,7 +21,7 @@ header {
 
 .nav {
     margin: 0;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .nav-left {
@@ -69,6 +69,12 @@ header {
         background-color: #3b3b3b;
     }
 
+.nav-logo {
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+}
+
 /* --------- Dropdown menu ---------- */
 .dropdown {
     align-self: end;
@@ -77,8 +83,7 @@ header {
 .dropdown-img {
     width: 30px;
     height: 30px;
-    margin-right: 0px;
-    margin-bottom: 0;
+    margin: 0px;
 }
 
 .dropdown-menu {
@@ -324,7 +329,7 @@ main {
     bottom: 0px;
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 15px 0;
     z-index: 2;
     text-align: center;
     vertical-align: middle;

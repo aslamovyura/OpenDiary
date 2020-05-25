@@ -8,17 +8,17 @@
 
             <div class="dropdown-menu">
                 <p class="dropdown-text">
-                    Sign in as <br />
+                    @Localizer["SignedInAs"] <br />
                     <span class="capitalize">@Model.FirstName @Model.LastName</span>
                 </p>
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">Profile</a>
-                <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">Posts</a>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
 
                 <div class="dropdown-divider"></div>
                 <form class="dropdown-item" asp-area="">
-                    <button type="submit" class="dropdown-btn" asp-controller="Account" asp-action="Logout">Logout</button>
+                    <button type="submit" class="dropdown-btn" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</button>
                 </form>
             </div>
         </li>
