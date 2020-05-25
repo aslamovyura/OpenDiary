@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Open Diary</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400, 600" rel="stylesheet" type="text/css">
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="~/css/Layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -42,12 +41,14 @@
             <p>️&copy; OPEN DIARY 2020</p>
         </div>
         <div class="language">
-            <partial name="_SelectLanguagePartial"/>
+            <partial name="_SelectLanguagePartial" />
         </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
