@@ -3,10 +3,9 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-    <div class="sign-in-page">
+    <div class="sign-in-up-page">
 
         <h1 class="">@Localizer["PleaseSingIn"]</h1>
-
 
             <form class="sign-in-container" method="post" asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl">
                 <div class="form-group-col">

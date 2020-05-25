@@ -52,7 +52,7 @@
         <value>Дата рождения</value>
     </data>
         <data name="BirthDatePlaceholder">
-        <value>дд/мм/гггг</value>
+        <value>мм/дд/гггг</value>
     </data>
     
     <data name="Password">
