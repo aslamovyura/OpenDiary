@@ -5,6 +5,7 @@
     src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v14/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
     font-family: 'Raleway';
     font-style: normal;
@@ -12,6 +13,7 @@
     src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v14/1Ptug8zYS_SKggPNyCMIT4ttDfCmxA.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
     font-family: 'Raleway';
     font-style: normal;
@@ -19,6 +21,7 @@
     src: local('Raleway SemiBold'), local('Raleway-SemiBold'), url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPANqczVsq4A.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
     font-family: 'Raleway';
     font-style: normal;
@@ -48,6 +51,7 @@ header {
     grid-template: 100% / repeat(7, 1fr);
     align-items: end;
 }
+
 
 /* --------- Navigation bar ---------- */
 
@@ -80,26 +84,26 @@ header {
     align-self: center;
 }
 
-    .nav ul li {
-        display: inline-block;
-        text-align: center;
-    }
+.nav ul li {
+    display: inline-block;
+    text-align: center;
+}
 
-    .nav ul li a {
-        color: #fff;
-        font-family: 'Raleway', sans-serif;
-        font-weight: 600;
-        font-size: 12px;
-        text-decoration: none;
-        text-align: center;
-        padding: 5px 30px;
-    }
+.nav ul li a {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 30px;
+}
 
-    .nav ul li:hover {
-        color: #fefefe;
-        text-decoration: none;
-        background-color: #3b3b3b;
-    }
+.nav ul li:hover {
+    color: #fefefe;
+    text-decoration: none;
+    background-color: #3b3b3b;
+}
 
 .nav-logo {
     width: 30px;
@@ -107,7 +111,9 @@ header {
     margin: 0px;
 }
 
+
 /* --------- Dropdown menu ---------- */
+
 .dropdown {
     align-self: end;
 }
@@ -152,11 +158,12 @@ header {
     padding: 8px 0;
 }
 
-    .dropdown-item:focus, .dropdown-item:hover {
-        color: #fefefe;
-        text-decoration: none;
-        background-color: #3b3b3b;
-    }
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #fefefe;
+    text-decoration: none;
+    background-color: #3b3b3b;
+}
 
 .dropdown-text {
     display: block;
@@ -181,7 +188,6 @@ header {
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     font-size: 12px;
-
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -189,9 +195,8 @@ header {
     background-color: transparent;
     border: 1px solid transparent;
     padding: 8px 0;
-
     border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .capitalize {
@@ -206,23 +211,25 @@ header {
     margin: 0;
 }
 
+
 /* --------- Main ---------- */
+
 main {
     text-align: center;
     position: relative;
     top: 20px;
 }
 
-    main h1 {
-        color: #333;
-        font-family: 'Raleway', sans-serif;
-        font-weight: 600;
-        font-size: 70px;
-        margin-top: 0px;
-        padding-top: 80px;
-        margin-bottom: 80px;
-        text-transform: uppercase;
-    }
+main h1 {
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 70px;
+    margin-top: 0px;
+    padding-top: 80px;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+}
 
 .container {
     max-width: 940px;
@@ -249,11 +256,11 @@ main {
     text-transform: uppercase;
 }
 
-    .btn-main:hover {
-        color: #fefefe;
-        text-decoration: none;
-        background-color: #3b3b3b;
-    }
+.btn-main:hover {
+    color: #fefefe;
+    text-decoration: none;
+    background-color: #3b3b3b;
+}
 
 .btn-default {
     font-family: 'Raleway', sans-serif;
@@ -266,11 +273,12 @@ main {
     margin-bottom: 20px;
 }
 
-    .btn-default:hover {
-        color: #fefefe;
-        text-decoration: none;
-        background-color: #3b3b3b;
-    }
+.btn-default:hover {
+    color: #fefefe;
+    text-decoration: none;
+    background-color: #3b3b3b;
+}
+
 
 /* --------- Supporting -----------*/
 
@@ -320,6 +328,7 @@ main {
     border: 2px solid #333333;
 }
 
+
 /* --------- Footer -----------*/
 
 .footer {
@@ -334,13 +343,13 @@ main {
     vertical-align: middle;
 }
 
-    .footer p {
-        font-family: 'Raleway', sans-serif;
-        text-transform: uppercase;
-        font-size: 11px;
-        text-align: center;
-        margin: 0;
-    }
+.footer p {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+    margin: 0;
+}
 
 .copyright {
     grid-column: 4 / span 1;
@@ -365,15 +374,16 @@ main {
     padding: 5px 30px;
 }
 
-    .language-select ::after {
-        border: none;
-    }
+.language-select ::after {
+    border: none;
+}
 
-    .language-select:hover {
-        color: #fefefe;
-        text-decoration: none;
-        background-color: #3b3b3b;
-    }
+.language-select:hover {
+    color: #fefefe;
+    text-decoration: none;
+    background-color: #3b3b3b;
+}
+
 
 /* --------- Sign In/ Sign Up -----------*/
 
@@ -383,21 +393,11 @@ main {
     background-size: cover;
 }
 
-.account-container {
-    display: inline-block;
-    height: 300px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
-}
-
-.sign-in-container {
+.sign-in-up-container {
     display: inline-block;
     height: 400px;
     width: 400px;
-    background-color: rgba(51,51,51,0.9);
+    background-color: rgba(51, 51, 51, 0.9);
     align-self: center;
     border-radius: 5px;
     padding: 60px, 10px;
@@ -412,7 +412,7 @@ main {
     height: 40px;
 }
 
-.form-group-col{
+.form-group-col {
     padding-top: 30px;
 }
 
@@ -430,8 +430,7 @@ main {
     margin-bottom: 0;
 }
 
-.form-group-checkbox {
-}
+.form-group-checkbox {}
 
 .form-group-link {
     color: #fefefe;
@@ -456,18 +455,8 @@ main {
     font-size: 14px;
 }
 
-.padding-bottom-none{
+.padding-bottom-none {
     padding-bottom: 0;
-}
-
-.sign-up-container {
-    display: inline-block;
-    height: 625px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
 }
 
 .input-group {
@@ -498,12 +487,13 @@ main {
     height: 38px;
 }
 
-.input-group > .custom-select:not(:last-child), .input-group > .form-control:not(:last-child) {
+.input-group>.custom-select:not(:last-child),
+.input-group>.form-control:not(:last-child) {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-#datepicker{
+#datepicker {
     display: inline-block;
 }
 
@@ -514,16 +504,6 @@ main {
 
 .margin-right-negative {
     margin-right: -5px;
-}
-
-.sign-up-confirm-container {
-    display: inline-block;
-    height: 300px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
 }
 
 .confirm-message {
@@ -545,58 +525,28 @@ main {
     font-weight: 400;
 }
 
-.confirm-message-link:hover{
+.confirm-message-link:hover {
     color: #fefefe;
     font-weight: 600;
     text-decoration: none;
 }
 
-.forgot-password-container {
-    display: inline-block;
+.height-200 {
+    height: 200px;
+}
+
+.height-300 {
+    height: 300px;
+}
+
+.height-350 {
     height: 350px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
 }
 
-.forgot-password-unknown-account {
-    display: inline-block;
-    height: 200px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
-}
-
-.forgot-password-confirmation {
-    display: inline-block;
-    height: 200px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
-}
-
-.reset-password-container {
-    display: inline-block;
+.height-400 {
     height: 400px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
 }
 
-.reset-password-succeeded-container {
-    display: inline-block;
-    height: 200px;
-    width: 400px;
-    background-color: rgba(51,51,51,0.9);
-    align-self: center;
-    border-radius: 5px;
-    padding: 60px, 10px;
+.height-625 {
+    height: 625px;
 }
