@@ -2,20 +2,20 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-    <div class="sign-in-up-page">
+<div class="sign-in-up-page">
 
-        <h1>@Localizer["SignUpSecceeded"]</h1>
+    <h1>@Localizer["SignUpSecceeded"]</h1>
 
-        <div class="sign-up-confirm-container form-inline">
+    <div class="sign-in-up-container height-300 form-inline">
 
-            <div class="form-group-col">
-                <div class="form-group-row">
-                    <p class="confirm-message-title">@Localizer["Congratulations"]</p>
-                    <p class="confirm-message">
-                        @Localizer["ThanksForConfirm"]
-                        <a class="confirm-message-link" asp-controller="Home" asp-action="Index">@Localizer["ClickToLogin"]</a>
-                    </p>
-                </div>
+        <div class="form-group-col">
+            <div class="form-group-row">
+                <p class="confirm-message-title">@Localizer["Congratulations"]</p>
+                <p class="confirm-message">
+                    @Localizer["ThanksForConfirm"]
+                    <a class="confirm-message-link" asp-controller="Home" asp-action="Index">@Localizer["ClickToLogin"]</a>
+                </p>
             </div>
         </div>
     </div>
+</div>
