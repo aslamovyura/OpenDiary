@@ -12,16 +12,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Title">
-        <value>Register Succeeded</value>
+    
+     <data name="Title">
+        <value>Sign Up Succeeded</value>
     </data>
-    <data name="ConfirmationSend">
-        <value>Sending confirmation email.</value>
+    <data name="SignUpSecceeded">
+        <value>Sign Up Succeeded.</value>
     </data>
-    <data name="RegisterSucceeded">
-        <value>You have successfully created an OpenDiary account!</value>
+    <data name="Congratulations">
+        <value>Congratulations on successful sign up!</value>
     </data>
-    <data name="CheckEmail">
-        <value>To complete the registration, check your email ({0}) and follow the link provided in the letter.</value>
+    <data name="ThanksForConfirm">
+        <value>Thank your for confirming your email. Please</value>
+    </data>
+    <data name="ClickToLogin">
+        <value>click here to Log in</value>
     </data>
 </root>
