@@ -15,9 +15,9 @@
             <td>@user.Email</td>
             <td>@user.BirthDate</td>
             <td>
-                <form asp-action="Delete" asp-route-id="@user.AuthorId" method="post">
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.UserId">Edit</a>
-                    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.UserId">Change password</a>
+                <form asp-controller="Users" asp-action="Delete" asp-route-id="@user.AuthorId" method="post">
+                    <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="Edit" asp-route-id="@user.UserId">Edit</a>
+                    <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="ChangePassword" asp-route-id="@user.UserId">Change password</a>
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </td>

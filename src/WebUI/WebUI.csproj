@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\site.css" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Update="emailsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

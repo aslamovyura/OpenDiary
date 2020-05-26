@@ -1,41 +1,80 @@
-﻿@model WebUI.ViewModels.PostViewModel
+﻿@model WebUI.ViewModels.CreatePostViewModel
 @{
     ViewBag.Tirle = Localizer["Title"];
 }
 
-<form asp-action="Create" asp-controller="Posts">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">@Localizer["PostTitle"]</span>
-        </div>
-        <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder=@Localizer["TitlePlaceholder"] required><br />
-        <span asp-validation-for="Title"></span>
-        <div class="invalid-feedback">
-            @Localizer["TitleInvalidFeedback"]
-        </div>
-    </div><br />
+    <div class="posts-page">
 
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">@Localizer["Topic"]</span>
-        </div>
-        <input asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder=@Localizer["TopicPlaceholder"] required><br />
-        <span asp-validation-for="Topic"></span>
-        <div class="invalid-feedback">
-            @Localizer["TopicInvalidFeedback"]
-        </div>
-    </div><br />
+        <h1 class="left-align">@Localizer["WriteNew"]</h1>
 
-    <div class="mb-3">
-        <textarea asp-for="Text" class="form-control article-input" placeholder=@Localizer["TextPlaceholder"] required></textarea>
-        <span asp-validation-for="Text"></span>
-        <div class="invalid-feedback">
-            @Localizer["TextInvalidFeedback"]
-        </div>
-    </div><br />
+        <form class="posts-container height-600 was-validated" asp-action="Create" asp-controller="Posts">
 
-    <div>
-        <button id="btn-lg" class="btn btn-lg btn-primary" type="submit">@Localizer["Publish"]</button>
+            <div class="form-group-col">
+                <div class="validation-message" asp-validation-summary="All"></div>
+            </div>
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["PostTitle"]</span>
+                </div>
+                <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder=@Localizer["TitlePlaceholder"] required>
+                <!--<span asp-validation-for="Title"></span>
+    <div class="invalid-feedback">
+        @Localizer["TitleInvalidFeedback"]
+    </div>-->
+            </div>
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@Localizer["Topic"]</span>
+                </div>
+                <input list="topics-list" asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder=@Localizer["TopicPlaceholder"] required>
+                <!--<span asp-validation-for="Topic"></span>
+    <div class="invalid-feedback">
+        @Localizer["TopicInvalidFeedback"]
+    </div>-->
+
+                <datalist id="topics-list">
+                    @foreach (var topic in Model.Topics)
+                    {
+                        <option value=@topic.Text />
+                    }
+                </datalist>
+            </div>
+
+            <div class="input-group form-group">
+                <textarea asp-for="Text" class="form-control article-input" placeholder=@Localizer["TextPlaceholder"] required></textarea>
+            </div>
+            <!--<span asp-validation-for="Text"></span>
+    <div class="invalid-feedback">
+        @Localizer["TextInvalidFeedback"]
+    </div>-->
+
+            <div class="form-group-row">
+                <button class="btn-main" type="submit">@Localizer["Publish"]</button>
+            </div>
+        </form>
+
+
+        <script>
+            // Disable form submissions if there are invalid fields
+            (function() {
+              'use strict';
+              window.addEventListener('load', function() {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+              }, false);
+            })();
+        </script>
+
     </div>
-</form>
