@@ -383,6 +383,16 @@ main {
     background-size: cover;
 }
 
+.account-container {
+    display: inline-block;
+    height: 300px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
 .sign-in-container {
     display: inline-block;
     height: 400px;
@@ -520,6 +530,7 @@ main {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     color: #fefefe;
+    padding: 0px 10px;
 }
 
 .confirm-message-title {
@@ -538,4 +549,54 @@ main {
     color: #fefefe;
     font-weight: 600;
     text-decoration: none;
+}
+
+.forgot-password-container {
+    display: inline-block;
+    height: 350px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+.forgot-password-unknown-account {
+    display: inline-block;
+    height: 200px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+.forgot-password-confirmation {
+    display: inline-block;
+    height: 200px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+.reset-password-container {
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+.reset-password-succeeded-container {
+    display: inline-block;
+    height: 200px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
 }

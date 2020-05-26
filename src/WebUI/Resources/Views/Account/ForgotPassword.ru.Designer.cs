@@ -59,6 +59,12 @@ namespace WebUI.Resources.Views.Account {
             }
         }
         
+        internal static string EnterEmail {
+            get {
+                return ResourceManager.GetString("EnterEmail", resourceCulture);
+            }
+        }
+        
         internal static string EmailPlaceholder {
             get {
                 return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
