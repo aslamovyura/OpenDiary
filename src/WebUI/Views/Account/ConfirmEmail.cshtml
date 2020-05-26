@@ -1,9 +1,22 @@
-﻿@{
+﻿@model WebUI.ViewModels.Account.RegisterViewModel
+@{
     ViewBag.Title = Localizer["Title"];
 }
 
-<h2>@Localizer["ConfirmEmail"]</h2>
-<div class="form-inline">
-    <div>@Localizer["ThanksForConfirm"]</div>
-    <a class="nav-link" asp-controller="Home" asp-action="Index">@Localizer["ClickToLogin"]</a>
+<div class="sign-in-up-page">
+
+    <h1>@Localizer["EmailConfirmation"]</h1>
+
+    <div class="sign-up-confirm-container">
+
+        <div class="form-group-col">
+            <div class="form-group-row">
+                <p class="confirm-message-title">@Localizer["Hi"] @Model.FirstName @Model.LastName!</p>
+                <p class="confirm-message">
+                    @Localizer["SignUpSucceeded"]<br />
+                    @Localizer["ConfirmationSent", Model.Email]
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

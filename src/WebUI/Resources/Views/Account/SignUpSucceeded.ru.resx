@@ -12,16 +12,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Title">
+     
+     <data name="Title">
         <value>Регистрация завершена</value>
     </data>
-    <data name="ConfirmationSend">
-        <value>Отправка подтверждения почтового адреса.</value>
+    <data name="SignUpSecceeded">
+        <value>Регистрация завершена.</value>
     </data>
-    <data name="RegisterSucceeded">
-        <value>Вы успешно зарегистрировали учетную запись в OpenDiary!</value>
+    <data name="Congratulations">
+        <value>Поздравляем с успешной регистрацией!</value>
     </data>
-    <data name="CheckEmail">
-        <value>Для завершения регистрации следуйте инструкциям в письме, отправленном на ваш почтовый адрес ({0}).</value>
+    <data name="ThanksForConfirm">
+        <value>Спасибо, что подтвердили адрес вашей электронной почты. Пожалуйста,</value>
+    </data>
+    <data name="ClickToLogin">
+        <value>нажмите сюда, что войти в систему.</value>
     </data>
 </root>

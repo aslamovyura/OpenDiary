@@ -13,15 +13,18 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="Title">
-        <value>Подтверждение почты</value>
+        <value>Подтверждение учетной записи</value>
     </data>
-    <data name="ConfirmEmail">
-        <value>Подтверждение почты.</value>
+    <data name="EmailConfirmation">
+        <value>Подтверждение учетной записи.</value>
     </data>
-    <data name="ThanksForConfirm">
-        <value>Спасибо, что подтвердили адрес вашей электронной почты. Пожалуйста,</value>
+    <data name="Hi">
+        <value>Привет,</value>
     </data>
-    <data name="ClickToLogin">
-        <value>нажмите сюда, что войти в систему.</value>
+    <data name="SignUpSucceeded">
+        <value>Вы успешно зарегистрировали учетную запись в OpenDiary!</value>
+    </data>
+    <data name="ConfirmationSent">
+        <value>Мы отправили на указанный вами почтовый адрес ({0}) письмо с простыми инструкциями для подтверждения вашей учетной записи.</value>
     </data>
 </root>

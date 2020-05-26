@@ -468,8 +468,6 @@ main {
     flex-wrap: wrap;
     -ms-flex-align: stretch;
     align-items: stretch;
-    width: 100%;
-    /*padding: 10px 30px;*/
 }
 
 .input-group-prepend {
@@ -506,4 +504,38 @@ main {
 
 .margin-right-negative {
     margin-right: -5px;
+}
+
+.sign-up-confirm-container {
+    display: inline-block;
+    height: 300px;
+    width: 400px;
+    background-color: rgba(51,51,51,0.9);
+    align-self: center;
+    border-radius: 5px;
+    padding: 60px, 10px;
+}
+
+.confirm-message {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    color: #fefefe;
+}
+
+.confirm-message-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    color: #fefefe;
+    font-size: 20px;
+}
+
+.confirm-message-link {
+    color: #fefefe;
+    font-weight: 400;
+}
+
+.confirm-message-link:hover{
+    color: #fefefe;
+    font-weight: 600;
+    text-decoration: none;
 }

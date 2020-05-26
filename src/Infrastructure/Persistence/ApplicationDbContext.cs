@@ -27,7 +27,7 @@ namespace Infrastructure.Persistence
             : base(options)
         {
             //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
 
             // TODO: runtime migrations 
         }

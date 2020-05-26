@@ -8,8 +8,6 @@
 
         <h1 class="">@Localizer["UserRegistration"]</h1>
 
-        
-
         <form class="sign-up-container" method="post" asp-controller="Account" asp-action="SignUp">
 
             <div class="form-group-col">
@@ -37,13 +35,6 @@
                 <input asp-for="Email" type="email" aria-label="Email" class="form-control" placeholder=@Localizer["EmailPlaceholder"]>
             </div>
 
-            <!--<div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">@Localizer["BirthDate"]</span>
-        </div>
-        <input asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" class="form-control"><br />
-    </div>-->
-
             <div class="input-group form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text margin-right-negative">@Localizer["BirthDate"]</span>
@@ -54,8 +45,6 @@
                         });</script>
                 </div>
             </div>
-
-
 
             <div class="input-group form-group">
                 <div class="input-group-prepend">
