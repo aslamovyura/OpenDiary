@@ -13,10 +13,15 @@
                 </p>
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
-                <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
-
+                <a class="dropdown-item" asp-action="Create" asp-controller="Posts">@Localizer["WriteNew"]</a>
                 <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
+                <div class="dropdown-divider"></div>
+
                 <form class="dropdown-item" asp-area="">
                     <button type="submit" class="dropdown-btn" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</button>
                 </form>

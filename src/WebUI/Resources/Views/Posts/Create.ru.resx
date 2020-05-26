@@ -14,7 +14,10 @@
     </resheader>
     
     <data name="Title">
-        <value>Создать новую запись</value>
+        <value>Новая публикация</value>
+    </data> 
+    <data name="WriteNew">
+        <value>Новая публикация</value>
     </data> 
     <data name="PostTitle">
         <value>Заголовок</value>
@@ -38,7 +41,7 @@
         <value>Введите сюда содержимое вашей записи</value>
     </data>
     <data name="TextInvalidFeedback">
-        <value>Введите, пожалуйста, содержимое вашей записи в обозначенную форму</value>
+        <value>Поместите, пожалуйста, вашу публикацию в данную форму</value>
     </data>
     <data name="Publish">
         <value>Опубликовать</value>

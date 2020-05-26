@@ -53,6 +53,12 @@ namespace WebUI.Resources.Views.Posts {
             }
         }
         
+        internal static string WriteNew {
+            get {
+                return ResourceManager.GetString("WriteNew", resourceCulture);
+            }
+        }
+        
         internal static string PostTitle {
             get {
                 return ResourceManager.GetString("PostTitle", resourceCulture);

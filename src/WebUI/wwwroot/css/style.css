@@ -239,7 +239,7 @@ main h1 {
 }
 
 .banner {
-    height: 900px;
+    height: 940px;
     background-image: url("/resources/OpenDiary.jpg");
     background-size: cover;
 }
@@ -550,3 +550,36 @@ main h1 {
 .height-625 {
     height: 625px;
 }
+
+height-900 {
+    height: 900px;
+}
+
+/* ----------- Posts -----------*/
+.posts-page {
+    height: 1000px;
+    background-image: url("/resources/book-4.jpg");
+    background-size: cover;
+}
+
+.posts-container {
+    height: 700px;
+    width: 800px;
+    background-color: rgba(51, 51, 51, 0.9);
+    align-self: start;
+    border-radius: 5px;
+    padding: 60px, 10px;
+    margin-left: 50px;
+}
+
+.left-align {
+    text-align: left;
+    margin-left: 50px;
+}
+
+textarea.article-input {
+    height: 350px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+

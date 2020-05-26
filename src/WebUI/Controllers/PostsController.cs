@@ -152,9 +152,19 @@ namespace WebUI.Controllers
         /// <summary>
         /// Show page to create new post.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View to create new post.</returns>
         [Authorize]
-        public IActionResult Create() => View();
+        public async Task<IActionResult> Create()
+        {
+            var topicsQuery = new GetTopicsQuery();
+            var topicsDTO = await _mediator.Send(topicsQuery);
+
+            var topics = _mapper.Map<IEnumerable<TopicDTO>, ICollection<TopicViewModel>>(topicsDTO);
+
+            var model = new CreatePostViewModel { Topics = topics };
+
+            return View(model);
+        }
 
         /// <summary>
         /// Create new post.
@@ -321,7 +331,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="model">View model of comment.</param>
         /// <returns>Page with post.</returns>
-        [HttpPost]
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> AddComment(CommentViewModel model)
         {
