@@ -11,17 +11,20 @@
     </resheader>
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
+    </resheader> 
     <data name="Title">
-        <value>Confirm Email</value>
+        <value>Account Confirmation</value>
     </data>
-    <data name="ConfirmEmail">
-        <value>Confirm Email.</value>
+    <data name="EmailConfirmation">
+        <value>Account Confirmation.</value>
     </data>
-    <data name="ThanksForConfirm">
-        <value>Thank your for confirming your email. Please</value>
+    <data name="Hi">
+        <value>Hi</value>
     </data>
-    <data name="ClickToLogin">
-        <value>click here to Log in</value>
+    <data name="SignUpSucceeded">
+        <value>You have successfully created an OpenDiary account!</value>
+    </data>
+    <data name="ConfirmationSent">
+        <value>We have sent email on your address ({0}). It contains easy instructions to complete your registration.</value>
     </data>
 </root>

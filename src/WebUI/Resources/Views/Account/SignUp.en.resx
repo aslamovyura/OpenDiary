@@ -62,13 +62,13 @@
         <value>Password</value>
     </data>
     <data name="ConfirmPassword">
-        <value>Confirm password</value>
+        <value>Password</value>
     </data>
     <data name="ConfirmPasswordPlaceholder">
-        <value>Password</value>
+        <value>Confirm Password</value>
     </data>
     
     <data name="Register">
-        <value>Register</value>
+        <value>Sign Up</value>
     </data>
 </root>
