@@ -53,9 +53,9 @@ namespace WebUI.Resources.Views.Account {
             }
         }
         
-        internal static string ResetConfirmation {
+        internal static string PasswordReset {
             get {
-                return ResourceManager.GetString("ResetConfirmation", resourceCulture);
+                return ResourceManager.GetString("PasswordReset", resourceCulture);
             }
         }
         

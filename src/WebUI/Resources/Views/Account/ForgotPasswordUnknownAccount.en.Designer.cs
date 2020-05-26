@@ -53,9 +53,9 @@ namespace WebUI.Resources.Views.Account {
             }
         }
         
-        internal static string ResetConfirmation {
+        internal static string UnknownAccount {
             get {
-                return ResourceManager.GetString("ResetConfirmation", resourceCulture);
+                return ResourceManager.GetString("UnknownAccount", resourceCulture);
             }
         }
         

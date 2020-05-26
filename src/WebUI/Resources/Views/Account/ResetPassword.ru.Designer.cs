@@ -59,6 +59,12 @@ namespace WebUI.Resources.Views.Account {
             }
         }
         
+        internal static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
         internal static string PasswordPlaceholder {
             get {
                 return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
