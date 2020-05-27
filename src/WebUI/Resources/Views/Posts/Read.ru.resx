@@ -13,6 +13,42 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="Title">
-        <value>Читать запись</value>
+        <value>Публикации</value>
     </data>  
+    <data name="Comments">
+        <value>Комментарии</value>
+    </data>  
+    <data name="By">
+        <value></value>
+    </data>  
+    <data name="Ago">
+        <value>назад</value>
+    </data>  
+    <data name="Edit">
+        <value>Редактировать</value>
+    </data>  
+    <data name="Remove">
+        <value>Удалить</value>
+    </data>  
+    <data name="Year">
+        <value>лет</value>
+    </data>  
+     <data name="Month">
+        <value>месяц(ев)</value>
+    </data> 
+     <data name="Week">
+        <value>недель</value>
+    </data> 
+     <data name="Day">
+        <value>дней</value>
+    </data> 
+     <data name="Hour">
+        <value>час(ов)</value>
+    </data> 
+     <data name="Minute">
+        <value>минут(а)</value>
+    </data> 
+     <data name="Second">
+        <value>секунд(ы)</value>
+    </data> 
 </root>

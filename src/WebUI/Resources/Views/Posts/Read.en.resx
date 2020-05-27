@@ -13,6 +13,43 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="Title">
-        <value>Read Post</value>
+        <value>Posts</value>
     </data>   
+    <data name="Comments">
+        <value>Comments</value>
+    </data>  
+    <data name="By">
+        <value>By</value>
+    </data>  
+    <data name="Ago">
+        <value>ago</value>
+    </data>  
+    <data name="Edit">
+        <value>Edit</value>
+    </data>
+    <data name="Remove">
+        <value>Remove</value>
+    </data>  
+    <data name="Year">
+        <value>year(s)</value>
+    </data>  
+     <data name="Month">
+        <value>month(es)</value>
+    </data> 
+     <data name="Week">
+        <value>week(s)</value>
+    </data> 
+     <data name="Day">
+        <value>day(s)</value>
+    </data> 
+     <data name="Hour">
+        <value>hour(s)</value>
+    </data> 
+     <data name="Minute">
+        <value>minute(s)</value>
+    </data> 
+     <data name="Second">
+        <value>second(s)</value>
+    </data> 
+    
 </root>

@@ -82,8 +82,15 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="postId">Post identifier.</param>
         /// <returns>Page to read the full post.</returns>
+        //[HttpGet]
         public async Task<IActionResult> Read(int postId)
         {
+            // TODO : add check for empty post ID.
+            if (postId == default)
+            {
+                return NotFound();
+            }
+
             // Get post.
             var postQuery = new GetPostQuery { Id = postId };
             var post = await _mediator.Send(postQuery);
@@ -355,5 +362,6 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Read", "Posts", new { postId = commentDTO.PostId } );
         }
+
     }
 }
