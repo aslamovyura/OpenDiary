@@ -13,17 +13,17 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
      <data name="Title">
-        <value>Редактировать запись</value>
-    </data>  
+        <value>Изменить публикацию</value>
+    </data>
     <data name="PostTitle">
-        <value>Название</value>
-    </data>  
-    <data name="Text">
-        <value>Содержание</value>
-    </data>  
+        <value>Заголовок</value>
+    </data>
     <data name="Topic">
         <value>Тема</value>
     </data>
+    <data name="Text">
+        <value>Содержание</value>
+    </data>  
     <data name="Done">
         <value>Готово</value>
     </data>

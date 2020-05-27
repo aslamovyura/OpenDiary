@@ -1,29 +1,71 @@
-﻿@model WebUI.ViewModels.PostViewModel
+﻿@model WebUI.ViewModels.EditPostViewModel
 @{
     ViewBag.Tirle = Localizer["Title"];
 }
 
-    <form asp-action="Edit" asp-controller="Posts">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <input type="hidden" asp-for="Id" />
+<div class="posts-page">
+
+    <h1 class="left-align">@Localizer["Title"]</h1>
+
+    <form class="posts-container height-600 was-validated" asp-action="Edit" asp-controller="Posts">
+
+        <div class="form-group-col">
+            <div class="validation-message" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="TopicId" />
+            </div>
         </div>
-        <div class="form-group">
-            <input type="hidden" asp-for="TopicId" />
+
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Localizer["PostTitle"]</span>
+            </div>
+            <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder=@Localizer["TitlePlaceholder"] required>
         </div>
-        <div class="form-group">
-            <label asp-for="Title" class="control-label">@Localizer["Title"]</label>
-            <input type="text" asp-for="Title" />
+
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Localizer["Topic"]</span>
+            </div>
+            <input list="topics-list" asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder=@Localizer["TopicPlaceholder"] required>
+
+            <datalist id="topics-list">
+                @foreach (var topic in Model.Topics)
+                {
+                    <option value=@topic.Text />
+                }
+            </datalist>
         </div>
-        <div class="form-group">
-            <label asp-for="Text" class="control-label">@Localizer["Text"]</label>
-            <input type="text" asp-for="Text" />
+
+        <div class="input-group form-group">
+            <textarea asp-for="Text" class="form-control article-input" placeholder=@Localizer["TextPlaceholder"] required></textarea>
         </div>
-        <div class="form-group">
-            <label asp-for="Topic" class="control-label">@Localizer["Topic"]</label>
-            <input type="text" asp-for="Topic" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="@Localizer["Done"]" class="btn btn-outline-secondary" />
+
+        <div class="form-group-row">
+            <button class="btn-main" type="submit">@Localizer["Done"]</button>
         </div>
     </form>
+
+
+    <script>(function () {
+            'use strict';
+            window.addEventListener('load', function () {
+
+                var forms = document.getElementsByClassName('needs-validation');
+
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();</script>
+
+</div>

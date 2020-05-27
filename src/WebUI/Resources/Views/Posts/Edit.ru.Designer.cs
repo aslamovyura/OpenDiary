@@ -59,15 +59,15 @@ namespace WebUI.Resources.Views.Posts {
             }
         }
         
-        internal static string Text {
-            get {
-                return ResourceManager.GetString("Text", resourceCulture);
-            }
-        }
-        
         internal static string Topic {
             get {
                 return ResourceManager.GetString("Topic", resourceCulture);
+            }
+        }
+        
+        internal static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
             }
         }
         

@@ -82,7 +82,6 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="postId">Post identifier.</param>
         /// <returns>Page to read the full post.</returns>
-        //[HttpGet]
         public async Task<IActionResult> Read(int postId)
         {
             // TODO : add check for empty post ID.
@@ -150,7 +149,7 @@ namespace WebUI.Controllers
         /// <summary>
         /// Show all posts.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return list of posts.</returns>
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AllPosts()
         {
@@ -197,7 +196,7 @@ namespace WebUI.Controllers
         /// Create new post.
         /// </summary>
         /// <param name="model">View model of the post.</param>
-        /// <returns></returns>
+        /// <returns>Create new post and redirect to the page with posts.</returns>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(PostViewModel model)
@@ -253,7 +252,7 @@ namespace WebUI.Controllers
                     return View(model);
                 }
                 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Posts");
             }
 
             return View(model);
@@ -264,7 +263,6 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="postId">Post identifier.</param>
         /// <returns>View with EditPostViewModel.</returns>
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int postId)
         {
             // Get post.
@@ -276,8 +274,13 @@ namespace WebUI.Controllers
             var topicQuery = new GetTopicQuery { Id = topicId };
             var topicDTO = await _mediator.Send(topicQuery);
 
-            var model = _mapper.Map<PostDTO, PostViewModel>(postDTO);
+            var model = _mapper.Map<PostDTO, EditPostViewModel>(postDTO);
             model.Topic = topicDTO.Text;
+
+            // Get topics list.
+            var topicsDTO = await _mediator.Send(new GetTopicsQuery());
+            var topics = _mapper.Map<IEnumerable<TopicDTO>, ICollection<TopicViewModel>>(topicsDTO);
+            model.Topics = topics;
 
             return View(model);
         }
@@ -289,16 +292,21 @@ namespace WebUI.Controllers
         /// <returns>List of posts.</returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> Edit(PostViewModel model)
+        public async Task<IActionResult> Edit(EditPostViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var postDTO = _mapper.Map<PostViewModel, PostDTO>(model);
-                var postCommand = new UpdatePostCommand { Model = postDTO };
+                /* Update topic of the post.
+                We use `create` command instead of `update`,
+                because one topic can relate to multiple posts (one-to-many relations)*/
+                var topicDTO = new TopicDTO { Text = model.Topic };
+                var topicCommand = new CreateTopicCommand { Model = topicDTO };
+
+                int topicId;
 
                 try
                 {
-                    await _mediator.Send(postCommand);
+                    topicId = await _mediator.Send(topicCommand);
                 }
                 catch (RequestValidationException failures)
                 {
@@ -309,19 +317,14 @@ namespace WebUI.Controllers
                     return View(model);
                 }
 
-                // Update topic of the post.
-                var topicDTO = new TopicDTO
-                {
-                    Id = model.TopicId,
-                    Text = model.Topic,
-                };
-
-                // TODO : Use "CreateTopicCommand" instead or modify "UpdateTopicCommand" (to avoid dublicates).
-                var topicCommand = new UpdateTopicCommand { Model = topicDTO };
+                // Update post.
+                var postDTO = _mapper.Map<EditPostViewModel, PostDTO>(model);
+                postDTO.TopicId = topicId;
+                var postCommand = new UpdatePostCommand { Model = postDTO };
 
                 try
                 {
-                    await _mediator.Send(topicCommand);
+                    await _mediator.Send(postCommand);
                 }
                 catch (RequestValidationException failures)
                 {
@@ -342,19 +345,21 @@ namespace WebUI.Controllers
         /// Delete Post.
         /// </summary>
         /// <param name="postId">Post identifier</param>
-        /// <returns></returns>
-        [Authorize(Roles = "admin")]
-        [HttpPost]
-        public async Task<IActionResult> Delete(int postId)
+        /// <returns>Delete current post and redirect to page with posts.</returns>
+        public async Task<IActionResult> Delete(int postId, string returnUrl=default)
         {
             var postCommand = new DeletePostCommand { Id = postId };
             await _mediator.Send(postCommand);
 
-            return RedirectToAction("AllPosts", "Posts");
+
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+                return RedirectToAction("Index", "Posts");
+            else
+                return RedirectToAction(returnUrl);
         }
 
         /// <summary>
-        /// Method to add new comment.
+        /// Add new comment to the current post.
         /// </summary>
         /// <param name="model">View model of comment.</param>
         /// <returns>Page with post.</returns>
@@ -381,6 +386,5 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Read", "Posts", new { postId = commentDTO.PostId } );
         }
-
     }
 }
