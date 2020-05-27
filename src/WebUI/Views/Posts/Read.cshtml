@@ -29,6 +29,14 @@
                         @Model.Text
                     </p>
                 </div>
+
+                @if (Model.CurrentReaderId == Model.AuthorId)
+                {
+                    <div class="post-edit-container">
+                        <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@Model.Id" class="post-edit-text">@Localizer["Edit"]</a>
+                        <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@Model.Id" class="post-edit-text">@Localizer["Remove"]</a>
+                    </div>
+                }
             </div>
 
 
@@ -49,23 +57,26 @@
                     @foreach (var comment in Model.Comments)
                     {
 
-                        <div class="single-comment-wrapper">
-                            <div class="comment-user-logo-container">
-                                <img src="/resources/user-3.png" alt="user" class="comment-user-image">
-                            </div>
-                            <div class="comment-info-container">
-                                <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@comment.AuthorId" class="comment-info-text">@comment.Author</a>
-                                <p class="comment-info-text">@comment.Age  @Localizer[comment.AgeUnits.ToString()] @Localizer["Ago"]</p>
-                            </div>
-                            <div class="comment-content-container">
-                                <p class="comment-content-text">@comment.Text</p>
-                            </div>
+                    <div class="single-comment-wrapper">
+                        <div class="comment-user-logo-container">
+                            <img src="/resources/user-3.png" alt="user" class="comment-user-image">
+                        </div>
+                        <div class="comment-info-container">
+                            <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@comment.AuthorId" class="comment-info-text">@comment.Author</a>
+                            <p class="comment-info-text">@comment.Age  @Localizer[comment.AgeUnits.ToString()] @Localizer["Ago"]</p>
+                        </div>
+                        <div class="comment-content-container">
+                            <p class="comment-content-text">@comment.Text</p>
+                        </div>
 
+                        @if (Model.CurrentReaderId == comment.AuthorId)
+                        {
                             <div class="comment-edit-container">
                                 <a href="#" class="comment-edit-text">@Localizer["Edit"]</a>
                                 <a href="#" class="comment-edit-text">@Localizer["Remove"]</a>
                             </div>
-                        </div>
+                        }
+                    </div>
                     }
 
                 </div>
