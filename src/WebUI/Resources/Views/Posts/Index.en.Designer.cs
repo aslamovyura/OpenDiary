@@ -53,15 +53,21 @@ namespace WebUI.Resources.Views.Posts {
             }
         }
         
-        internal static string Welcome {
+        internal static string Read {
             get {
-                return ResourceManager.GetString("Welcome", resourceCulture);
+                return ResourceManager.GetString("Read", resourceCulture);
             }
         }
         
-        internal static string ReadPosts {
+        internal static string By {
             get {
-                return ResourceManager.GetString("ReadPosts", resourceCulture);
+                return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        internal static string Ago {
+            get {
+                return ResourceManager.GetString("Ago", resourceCulture);
             }
         }
     }
