@@ -30,8 +30,8 @@ namespace WebUI.ViewComponents
         /// <summary>
         /// Invoke view component for adding comment.
         /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
+        /// <param name="postId">Post identifier.</param>
+        /// <returns>Page with full post.</returns>
         public async Task<IViewComponentResult> InvokeAsync (int postId)
         {
             var userName = HttpContext.User.Identity.Name;

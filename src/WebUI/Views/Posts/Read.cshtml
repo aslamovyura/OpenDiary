@@ -3,26 +3,73 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-    <form class="text-center">
-        <article>
-            <h2>@Model.Title</h2>
-            <p>@Model.Author</p>
-            <p class="text-justify">@Model.Text</p>
-            <p>@Model.Date.ToString("MMMM d, yyyy")</p>
-        </article>
+    <div class="post-page">
 
-        @await Component.InvokeAsync("AddComment", new { postId = Model.Id })
+        <h1 class="left-align">@Localizer["Title"]</h1>
 
-        <article>
-            @foreach (var comment in Model.Comments)
-            {
-                <div>
-                    <p>
-                        <b>@comment.Author</b>
-                        (@comment.Age  @comment.AgeUnits.ToString() ago)
-                    </p>
-                    <p>@comment.Text</p>
+        <div class="post-grid">
+
+            <div class="post-wrapper">
+
+                <div class="article-title-container">
+                    <h2 class="article-title">@Model.Title</h2>
                 </div>
-            }
-        </article>
-    </form>
+
+                <div class="article-info">
+                    <div class="article-author">
+                        <p class="article-info-text">@Localizer["By"] @Model.Author</p>
+                    </div>
+
+                    <div class="article-date">
+                        <p class="article-info-text">@Model.Date.ToString("MMMM d, yyyy")</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p class="post-content-text">
+                        @Model.Text
+                    </p>
+                </div>
+            </div>
+
+
+            @await Component.InvokeAsync("AddComment", new { postId = Model.Id })
+
+            <div class="comments-wrapper">
+                @if (Model.Comments.Count != 0)
+                {
+                    <div class="comments-count-container">
+                        <div class="comments-count-text">
+                            <p>@Localizer["Comments"]</p>
+                        </div>
+                    </div>
+                }
+
+                <div class="comments-list-container">
+
+                    @foreach (var comment in Model.Comments)
+                    {
+
+                        <div class="single-comment-wrapper">
+                            <div class="comment-user-logo-container">
+                                <img src="/resources/user-3.png" alt="user" class="comment-user-image">
+                            </div>
+                            <div class="comment-info-container">
+                                <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@comment.AuthorId" class="comment-info-text">@comment.Author</a>
+                                <p class="comment-info-text">@comment.Age  @Localizer[comment.AgeUnits.ToString()] @Localizer["Ago"]</p>
+                            </div>
+                            <div class="comment-content-container">
+                                <p class="comment-content-text">@comment.Text</p>
+                            </div>
+
+                            <div class="comment-edit-container">
+                                <a href="#" class="comment-edit-text">@Localizer["Edit"]</a>
+                                <a href="#" class="comment-edit-text">@Localizer["Remove"]</a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
