@@ -3,31 +3,36 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-    <div class="text-center">
-        <!--<h1 class="display-4">@Localizer["Welcome"]</h1>
-    <p>@Localizer["ReadPosts"]</p>-->
+<div class="posts-page">
+
+    <h1 class="left-align">@Localizer["Title"]</h1>
+    <div class="articles-grid">
+
+        @foreach (var post in Model)
+        {
+            <div class="article-wrapper">
+                <div class="article-title-container">
+                    <h2 class="article-title">@post.Title</h2>
+                </div>
+
+                <div class="article-info">
+                    <div class="article-author">
+                        <a asp-route-authorId="@post.AuthorId" asp-controller="Profile" asp-action="Index" class="article-info-text">@Localizer["By"] @post.Author</a>
+                    </div>
+
+                    <div class="article-date">
+                        <p class="article-info-text">@post.Date.ToString("MMMM d, yyyy")</p>
+                    </div>
+                </div>
+                <div class="aricle-content">
+                    <p class="article-content-text">@post.Text</p>
+                </div>
+                <div class="article-read-more">
+                    <a asp-route-postId="@post.Id" asp-controller="Posts" asp-action="Read" class="btn-wide">@Localizer["Read"]</a>
+                </div>
+            </div>
+        }
+
     </div>
 
-<div>
-    @foreach (var post in Model)
-    {
-        <div class="bg-white border-bottom box-shadow mb-5">
-            <a class="nav-link btn" asp-route-postId="@post.Id" asp-controller="Posts" asp-action="Read">
-                <article>
-                    <h2 class="text-center">@post.Title</h2>
-                    <p class="text-center">@post.Author,  @post.Date.ToString("MMMM d, yyyy")</p>
-                    @if (post.Text.Length > 400)
-                    {
-                        <p class="text-justify">
-                            @post.Text?.Substring(0, 400) ...
-                        </p>
-                    }
-                    else
-                    {
-                        <p class="text-justify">@post.Text</p>
-                    }
-                </article>
-            </a>
-        </div>
-    }
 </div>

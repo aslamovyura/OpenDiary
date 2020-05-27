@@ -69,6 +69,7 @@ namespace WebUI.Controllers
                 var topicQuery = new GetTopicQuery { Id = model.TopicId };
                 var topic = await _mediator.Send(topicQuery);
 
+                model.AuthorId = author.Id;
                 model.Author = author.FirstName + " " + author.LastName;
                 model.Topic = topic.Text;
             }
