@@ -111,6 +111,25 @@ namespace WebUI.Controllers
 
             // Create post view model.
             var model = _mapper.Map<PostDTO, PostViewModel>(post);
+
+            // Check current user if he/she is an author of the current post.
+            var userName = HttpContext.User.Identity.Name;
+            if (userName == null)
+            {
+                model.CurrentReaderId = default;
+            }
+            else
+            {
+                var userId = await _identityService.GetUserIdByNameAsync(userName);
+                var reader = await _mediator.Send(new GetAuthorByUserIdQuery { UserId = userId });
+
+                if (reader == null)
+                    model.CurrentReaderId = default;
+                else
+                    model.CurrentReaderId = reader.Id;
+            }
+            
+            // Check post comments
             model.Comments = _mapper.Map<ICollection<CommentDTO>, ICollection<CommentViewModel>>(comments);
 
             foreach(var comment in model.Comments)

@@ -49,6 +49,11 @@ namespace WebUI.ViewModels
         public string Author { get; set; }
 
         /// <summary>
+        /// Current reader Id.
+        /// </summary>
+        public int CurrentReaderId { get; set; }
+
+        /// <summary>
         /// Collection of post comments.
         /// </summary>
         public ICollection<CommentViewModel> Comments { get; set; }
