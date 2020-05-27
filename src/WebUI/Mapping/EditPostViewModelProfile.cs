@@ -5,16 +5,16 @@ using WebUI.ViewModels;
 namespace Application.Mapping
 {
     /// <summary>
-    /// PostViewModel-PostDTO mapping rule.
+    /// EditPostViewModel-PostDTO mapping rule.
     /// </summary>
-    public class PostViewModelProfile : Profile
+    public class EditPostViewModelProfile : Profile
     {
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public PostViewModelProfile()
+        public EditPostViewModelProfile()
         {
-            CreateMap<PostDTO, PostViewModel>().ReverseMap();
+            CreateMap<PostDTO, EditPostViewModel>().ReverseMap();
         }
     }
 }
