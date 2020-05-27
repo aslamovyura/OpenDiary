@@ -781,6 +781,34 @@
         text-align: justify;
     }
 
+    .post-edit-container {
+        grid-area: 9 / 3 / span 3 / span 1;
+        overflow: hidden;
+        background-color: #fefefe;
+        padding: 5px 20px;
+    }
+
+    .post-edit-text {
+        display: inline-block;
+        color: rgb(134, 134, 134);
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 5px 0px;
+        padding-right: 30px;
+    }
+
+    a.post-edit-text {
+        text-decoration: none;
+    }
+
+        a.post-edit-text:hover {
+            text-decoration: none;
+            color: rgb(134, 134, 134);
+            font-weight: 900;
+        }
+
+    /* -------- Comments --------- */
     .add-comment-wrapper {
         grid-area: add-comment;
         display: grid;
@@ -936,7 +964,7 @@
         display: inline-block;
         color: rgb(134, 134, 134);
         font-family: 'Raleway', sans-serif;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 14px;
         padding-right: 30px;
     }
@@ -965,7 +993,7 @@
         display: inline-block;
         color: rgb(134, 134, 134);
         font-family: 'Raleway', sans-serif;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 14px;
         padding-right: 30px;
     }
