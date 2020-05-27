@@ -13,12 +13,15 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
      <data name="Title">
-        <value>Cписок записей</value>
+        <value>Публикации</value>
     </data>
-    <data name="Welcome">
-        <value>Добро пожаловать в Open Diary</value>
+    <data name="Read">
+        <value>Читать</value>
     </data>
-    <data name="ReadPosts">
-        <value>Читайте последние наиболее значимые записи пользователей и пишите свои! Наслаждайтесь!</value>
+    <data name="By">
+        <value></value>
+    </data>
+    <data name="Ago">
+        <value>назад</value>
     </data>
 </root>
