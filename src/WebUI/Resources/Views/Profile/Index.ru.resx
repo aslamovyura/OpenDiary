@@ -30,7 +30,25 @@
     <data name="Date">
         <value>Дата</value>
     </data>
-    <data name="PostsList">
-        <value>Список записей пользователя</value>
+    <data name="RecentActivity">
+        <value>Последние публикации</value>
+    </data>
+     <data name="Profile">
+        <value> Смотреть</value>
+    </data>
+     <data name="Edit">
+        <value>Редактировать</value>
+    </data>
+     <data name="AuthorProfile">
+        <value>Учетная запись автора</value>
+    </data>
+    <data name="About">
+        <value>О себе</value>
+    </data>
+    <data name="Hobbies">
+        <value>Увлечения</value>
+    </data>
+    <data name="NoContent">
+        <value>Нет данных.</value>
     </data>
 </root>

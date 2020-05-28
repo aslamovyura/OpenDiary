@@ -55,9 +55,29 @@ namespace WebUI.Controllers
             var commentsDTO = await _mediator.Send(commentsQuery);
             var commentsNumber = commentsDTO.Count;
 
+            // Check current user if he / she is an author of the current post.
+            var userName = HttpContext.User.Identity.Name;
+            int currentReaderId;
+            if (userName == null)
+            {
+                currentReaderId = default;
+            }
+            else
+            {
+                var userId = await _identityService.GetUserIdByNameAsync(userName);
+                var reader = await _mediator.Send(new GetAuthorByUserIdQuery { UserId = userId });
+
+                if (reader == null)
+                    currentReaderId = default;
+                else
+                    currentReaderId = reader.Id;
+            }
+
+
             // Create view model.
             var model = new ProfileViewModel
             {
+                Id = authorId,
                 FirstName = authorDTO.FirstName,
                 LastName = authorDTO.LastName,
                 Email = authorDTO.Email,
@@ -66,6 +86,7 @@ namespace WebUI.Controllers
                 TotalPostsNumber = postsNumber,
                 TotalCommentsNumber = commentsNumber,
                 Posts = postsDTO,
+                CurrentReaderId = currentReaderId,
             };
 
             return View(model);

@@ -1140,7 +1140,257 @@
             text-decoration: none;
             font-weight: 900;
         }
-        
+
+/* ------------ Profile ------------- */
+
+.profile-page {
+    height: 1000px;
+    background-image: url("/resources/book-5.jpg");
+    background-size: cover;
+}
+
+.profile-grid {
+    display: grid;
+    width: 1200px;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "profile-author-wrapper profile-about-wrapper";
+    align-items: top;
+    align-content: center;
+    padding: 0 50px;
+}
+
+.profile-author-wrapper {
+    display: grid;
+    /* grid-template-rows: 40% 40% 20%; */
+    grid-template-areas: "profile-logo" "profile-info" "profile-statistics";
+    /* width: 100%; */
+    width: 300px;
+    background-color: white;
+    max-height: 400px;
+    overflow: hidden;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+    vertical-align: top;
+}
+
+.profile-logo-container {
+    grid-area: profile-logo;
+    /* background-color: seagreen; */
+    align-self: center;
+    /* padding-left: 10px; */
+}
+
+.profile-image {
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+}
+
+.profile-author-info-container {
+    display: inline-block;
+    grid-area: profile-info;
+    /* background-color: slateblue; */
+    text-align: start;
+    padding: 10px 20px;
+}
+
+.profile-author-statistics-container {
+    grid-area: profile-statistics;
+    padding: 10px 20px;
+    /* background-color: khaki; */
+    text-align: start;
+}
+
+.profile-author-name {
+    display: inline-block;
+    /* color: rgb(134, 134, 134); */
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+    padding: 10px 20px;
+    padding-bottom: 0;
+}
+
+.profile-author-email {
+    display: inline-block;
+    /* color: rgb(134, 134, 134); */
+    color: gray;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.profile-author-statistics {
+    display: inline-block;
+    /* color: rgb(134, 134, 134); */
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 5px 20px;
+    margin: 0;
+}
+
+.profile-about-wrapper {
+    display: grid;
+    /* grid-template-rows: 40% 40% 20%; */
+    grid-template-areas: "about-controls" "about-title" "about-info" "about-activities";
+    /* width: 100%; */
+    width: 600px;
+    background-color: #fefefe;
+    /* background-color: rgb(37, 117, 17); */
+    /* max-height: 700px; */
+    overflow: hidden;
+    padding: 10px 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.profile-about-controls-container {
+    grid-area: about-controls;
+    /* background-color: seagreen; */
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-areas: "profile-profile profile-edit"; */
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.profile-about-title-container {
+    grid-area: about-title;
+    /* background-color: slateblue; */
+    text-align: start;
+    padding: 0px 20px;
+    padding-top: 20px;
+    margin: 0;
+}
+
+.profile-about-info-container {
+    grid-area: about-info;
+    padding: 10px 20px;
+    /* background-color: khaki; */
+    text-align: start;
+}
+
+.profile-about-activities-container {
+    grid-area: about-activities;
+    /* display: grid;
+            grid-template-columns: 1fr;
+            grid-auto-rows: 50px; */
+    padding: 10px 20px;
+    /* background-color: khaki; */
+    text-align: start;
+}
+
+.profile-profile-controls {
+    grid-column: 1 /span 1;
+    padding: 10px 20px;
+}
+
+.profile-edit-controls {
+    grid-column: 2 /span 1;
+    padding: 10px 20px;
+}
+
+.profile-control {
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 20px;
+    padding-bottom: 0;
+}
+
+a.profile-control {
+    color: #333;
+    text-decoration: none;
+}
+
+a.selected {
+    background-color: #333;
+    color: #fefefe;
+    width: 100%;
+    padding: 10px 50px;
+    border: 1 solid #333;
+    border-radius: 5px;
+}
+
+.profile-about-title {
+    /* display: inline-block; */
+    /* color: rgb(134, 134, 134); */
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+    padding: 0px 20px;
+}
+
+h2.profile-about-info-title {
+    /* display: inline-block; */
+    /* color: rgb(134, 134, 134); */
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0px 20px;
+    padding-top: 10px;
+    text-align: start;
+    margin: 0;
+    text-transform: none;
+}
+
+.profile-about-info-text {
+    display: inline-block;
+    /* color: rgb(134, 134, 134); */
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+.activity-list {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    /* grid-auto-rows: 40px; */
+    grid-auto-rows: minmax(40px, auto);
+    padding: 10px 15px;
+    overflow: hidden;
+}
+
+.activity-date {
+    grid-column: 1 / span 1;
+    /* background-color: darkred; */
+    text-align: start;
+    vertical-align: middle;
+    border: 1px solid grey;
+}
+
+.activity-name {
+    grid-column: 2 / span 1;
+    /* background-color: aqua; */
+    border: 1px solid grey;
+}
+
+a.profile-about-info-text {
+    text-decoration: none;
+}
+
+    a.profile-about-info-text:hover {
+        text-decoration: none;
+        color: #333;
+        font-weight: 900;
+    }
 
 
 /* ------------ Media ------------ */
