@@ -1,4 +1,5 @@
-﻿    @font-face {
+﻿    /* ------------ Fonts -------------*/
+    @font-face {
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 400;
@@ -46,6 +47,8 @@
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 
+    /* ------------- Body ----------*/
+
     html,
     body {
         margin: 0;
@@ -65,7 +68,6 @@
         grid-template: 100% / repeat(7, 1fr);
         align-items: end;
     }
-
 
     /* --------- Navigation bar ---------- */
 
@@ -576,7 +578,6 @@
         height: 900px;
     }
 
-
     /* ----------- Posts -----------*/
 
     .posts-page {
@@ -732,8 +733,6 @@
         padding: 0 50px;
     }
 
-
-    
 /* --------- Read post + Comments --------- */
 
 .post-page {
@@ -762,7 +761,6 @@
         display: grid;
         grid-template-columns: repeat(1, 450px);
         height: auto;
-        /* width: 900px; */
         background-color: white;
         border-radius: 5px;
         padding: 60px, 50px;
@@ -812,7 +810,8 @@
             font-weight: 900;
         }
 
-    /* -------- Comments --------- */
+    /* ------------ Comments ------------ */
+
     .add-comment-wrapper {
         grid-area: add-comment;
         display: grid;
@@ -854,7 +853,6 @@
         grid-area: 1 / 17 / span 1 / span 4;
         text-align: end;
         display: inline-block;
-        /* background-color: aqua; */
     }
 
     .btn-main-sm {
@@ -918,7 +916,6 @@
         grid-template-columns: 10% 90%;
         grid-template-areas: "user-logo comment-info" "user-logo comment-text" "user-logo comment-edit";
         width: 100%;
-        /* background-color: rgb(255, 0, 21); */
         max-height: 400px;
         overflow: hidden;
         border-bottom: 1px solid gray;
@@ -927,7 +924,6 @@
 
     .comment-user-logo-container {
         grid-area: user-logo;
-        /* background-color: seagreen; */
         align-self: center;
         padding-left: 10px;
     }
@@ -935,7 +931,6 @@
     .comment-info-container {
         display: inline-block;
         grid-area: comment-info;
-        /* background-color: slateblue; */
         text-align: start;
         padding: 0 20px;
     }
@@ -943,13 +938,11 @@
     .comment-content-container {
         grid-area: comment-text;
         padding: 0 20px;
-        /* background-color: khaki; */
     }
 
     .comment-edit-container {
         grid-area: comment-edit;
         padding: 5px 20px;
-        /* background-color: darkblue; */
         text-align: start;
     }
 
@@ -961,7 +954,6 @@
 
     .comment-info {
         display: inline-block;
-        /* background-color: #fefefe; */
     }
 
     .comment-info-text {
@@ -1012,7 +1004,7 @@
             font-weight: 900;
         }
 
-    /* ---------- Authors ---------- */
+    /* ------------- Authors ---------- */
 
     .authors-page {
         height: 1000px;
@@ -1035,7 +1027,6 @@
         display: grid;
         grid-template-columns: 25% 75%;
         grid-template-areas: "author-logo author-info" "author-logo author-statistics" "author-logo author-edit";
-        /* width: 100%; */
         width: 400px;
         background-color: #fefefe;
         max-height: 400px;
@@ -1054,15 +1045,12 @@
 
     .author-logo-container {
         grid-area: author-logo;
-        /* background-color: seagreen; */
         align-self: center;
-        /* padding-left: 10px; */
     }
 
     .author-info-container {
         display: inline-block;
         grid-area: author-info;
-        /* background-color: slateblue; */
         text-align: start;
         padding: 10px 20px;
     }
@@ -1070,7 +1058,6 @@
     .author-statistics-container {
         grid-area: author-statistics;
         padding: 0px 20px;
-        /* background-color: khaki; */
         text-align: start;
     }
 
@@ -1078,13 +1065,11 @@
         display: inline-block;
         grid-area: author-edit;
         padding: 5px 20px;
-        /* background-color: darkblue; */
         text-align: start;
     }
 
     .author-info-name {
         display: inline-block;
-        /* color: rgb(134, 134, 134); */
         color: #333;
         font-family: 'Raleway', sans-serif;
         font-weight: 600;
@@ -1141,259 +1126,230 @@
             font-weight: 900;
         }
 
-/* ------------ Profile ------------- */
+    /* ------------ Profile ------------- */
 
-.profile-page {
-    height: 1000px;
-    background-image: url("/resources/book-5.jpg");
-    background-size: cover;
-}
-
-.profile-grid {
-    display: grid;
-    width: 1200px;
-    grid-template-columns: 30% 70%;
-    grid-template-areas: "profile-author-wrapper profile-about-wrapper";
-    align-items: top;
-    align-content: center;
-    padding: 0 50px;
-}
-
-.profile-author-wrapper {
-    display: grid;
-    /* grid-template-rows: 40% 40% 20%; */
-    grid-template-areas: "profile-logo" "profile-info" "profile-statistics";
-    /* width: 100%; */
-    width: 300px;
-    background-color: white;
-    max-height: 400px;
-    overflow: hidden;
-    border-bottom: 1px solid gray;
-    padding: 10px 0;
-    border: 1px solid #333;
-    border-radius: 5px;
-    vertical-align: top;
-}
-
-.profile-logo-container {
-    grid-area: profile-logo;
-    /* background-color: seagreen; */
-    align-self: center;
-    /* padding-left: 10px; */
-}
-
-.profile-image {
-    height: 200px;
-    width: 200px;
-    padding: 10px;
-}
-
-.profile-author-info-container {
-    display: inline-block;
-    grid-area: profile-info;
-    /* background-color: slateblue; */
-    text-align: start;
-    padding: 10px 20px;
-}
-
-.profile-author-statistics-container {
-    grid-area: profile-statistics;
-    padding: 10px 20px;
-    /* background-color: khaki; */
-    text-align: start;
-}
-
-.profile-author-name {
-    display: inline-block;
-    /* color: rgb(134, 134, 134); */
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    margin: 0;
-    padding: 10px 20px;
-    padding-bottom: 0;
-}
-
-.profile-author-email {
-    display: inline-block;
-    /* color: rgb(134, 134, 134); */
-    color: gray;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    margin: 0;
-    padding-left: 20px;
-}
-
-.profile-author-statistics {
-    display: inline-block;
-    /* color: rgb(134, 134, 134); */
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    padding: 5px 20px;
-    margin: 0;
-}
-
-.profile-about-wrapper {
-    display: grid;
-    /* grid-template-rows: 40% 40% 20%; */
-    grid-template-areas: "about-controls" "about-title" "about-info" "about-activities";
-    /* width: 100%; */
-    width: 600px;
-    background-color: #fefefe;
-    /* background-color: rgb(37, 117, 17); */
-    /* max-height: 700px; */
-    overflow: hidden;
-    padding: 10px 0;
-    border: 1px solid #333;
-    border-radius: 5px;
-}
-
-.profile-about-controls-container {
-    grid-area: about-controls;
-    /* background-color: seagreen; */
-    align-self: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* grid-template-areas: "profile-profile profile-edit"; */
-    padding: 10px;
-    padding-bottom: 0;
-}
-
-.profile-about-title-container {
-    grid-area: about-title;
-    /* background-color: slateblue; */
-    text-align: start;
-    padding: 0px 20px;
-    padding-top: 20px;
-    margin: 0;
-}
-
-.profile-about-info-container {
-    grid-area: about-info;
-    padding: 10px 20px;
-    /* background-color: khaki; */
-    text-align: start;
-}
-
-.profile-about-activities-container {
-    grid-area: about-activities;
-    /* display: grid;
-            grid-template-columns: 1fr;
-            grid-auto-rows: 50px; */
-    padding: 10px 20px;
-    /* background-color: khaki; */
-    text-align: start;
-}
-
-.profile-profile-controls {
-    grid-column: 1 /span 1;
-    padding: 10px 20px;
-}
-
-.profile-edit-controls {
-    grid-column: 2 /span 1;
-    padding: 10px 20px;
-}
-
-.profile-control {
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    margin: 0;
-    padding: 10px 20px;
-    padding-bottom: 0;
-}
-
-a.profile-control {
-    color: #333;
-    text-decoration: none;
-}
-
-a.selected {
-    background-color: #333;
-    color: #fefefe;
-    width: 100%;
-    padding: 10px 50px;
-    border: 1 solid #333;
-    border-radius: 5px;
-}
-
-.profile-about-title {
-    /* display: inline-block; */
-    /* color: rgb(134, 134, 134); */
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    margin: 0;
-    padding: 0px 20px;
-}
-
-h2.profile-about-info-title {
-    /* display: inline-block; */
-    /* color: rgb(134, 134, 134); */
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    padding: 0px 20px;
-    padding-top: 10px;
-    text-align: start;
-    margin: 0;
-    text-transform: none;
-}
-
-.profile-about-info-text {
-    display: inline-block;
-    /* color: rgb(134, 134, 134); */
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin: 0;
-}
-
-.activity-list {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    /* grid-auto-rows: 40px; */
-    grid-auto-rows: minmax(40px, auto);
-    padding: 10px 15px;
-    overflow: hidden;
-}
-
-.activity-date {
-    grid-column: 1 / span 1;
-    /* background-color: darkred; */
-    text-align: start;
-    vertical-align: middle;
-    border: 1px solid grey;
-}
-
-.activity-name {
-    grid-column: 2 / span 1;
-    /* background-color: aqua; */
-    border: 1px solid grey;
-}
-
-a.profile-about-info-text {
-    text-decoration: none;
-}
-
-    a.profile-about-info-text:hover {
-        text-decoration: none;
-        color: #333;
-        font-weight: 900;
+    .profile-page {
+        height: 1000px;
+        background-image: url("/resources/book-5.jpg");
+        background-size: cover;
     }
 
+    .profile-grid {
+        display: grid;
+        width: 1200px;
+        grid-template-columns: 30% 70%;
+        grid-template-areas: "profile-author-wrapper profile-about-wrapper";
+        align-items: top;
+        align-content: center;
+        padding: 0 50px;
+    }
 
-/* ------------ Media ------------ */
+    .profile-author-wrapper {
+        display: grid;
+        grid-template-areas: "profile-logo" "profile-info" "profile-statistics";
+        width: 300px;
+        background-color: white;
+        max-height: 400px;
+        overflow: hidden;
+        border-bottom: 1px solid gray;
+        padding: 10px 0;
+        border: 1px solid #333;
+        border-radius: 5px;
+        vertical-align: top;
+    }
+
+    .profile-logo-container {
+        grid-area: profile-logo;
+        align-self: center;
+    }
+
+    .profile-image {
+        height: 200px;
+        width: 200px;
+        padding: 10px;
+    }
+
+    .profile-author-info-container {
+        display: inline-block;
+        grid-area: profile-info;
+        text-align: start;
+        padding: 10px 20px;
+    }
+
+    .profile-author-statistics-container {
+        grid-area: profile-statistics;
+        padding: 10px 20px;
+        text-align: start;
+    }
+
+    .profile-author-name {
+        display: inline-block;
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        margin: 0;
+        padding: 10px 20px;
+        padding-bottom: 0;
+    }
+
+    .profile-author-email {
+        display: inline-block;
+        color: gray;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    .profile-author-statistics {
+        display: inline-block;
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 5px 20px;
+        margin: 0;
+    }
+
+    .profile-about-wrapper {
+        display: grid;
+        grid-template-areas: "about-controls" "about-title" "about-info" "about-activities";
+        width: 600px;
+        background-color: #fefefe;
+        overflow: hidden;
+        padding: 10px 0;
+        border: 1px solid #333;
+        border-radius: 5px;
+    }
+
+    .profile-about-controls-container {
+        grid-area: about-controls;
+        align-self: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+        padding-bottom: 0;
+    }
+
+    .profile-about-title-container {
+        grid-area: about-title;
+        text-align: start;
+        padding: 0px 20px;
+        padding-top: 20px;
+        margin: 0;
+    }
+
+    .profile-about-info-container {
+        grid-area: about-info;
+        padding: 10px 20px;
+        text-align: start;
+    }
+
+    .profile-about-activities-container {
+        grid-area: about-activities;
+        padding: 10px 20px;
+        text-align: start;
+    }
+
+    .profile-profile-controls {
+        grid-column: 1 /span 1;
+        padding: 10px 20px;
+    }
+
+    .profile-edit-controls {
+        grid-column: 2 /span 1;
+        padding: 10px 20px;
+    }
+
+    .profile-control {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        margin: 0;
+        padding: 10px 20px;
+        padding-bottom: 0;
+    }
+
+    a.profile-control {
+        color: #333;
+        text-decoration: none;
+    }
+
+    a.selected {
+        background-color: #333;
+        color: #fefefe;
+        width: 100%;
+        padding: 10px 50px;
+        border: 1 solid #333;
+        border-radius: 5px;
+    }
+
+    .profile-about-title {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        margin: 0;
+        padding: 0px 20px;
+    }
+
+    h2.profile-about-info-title {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 0px 20px;
+        padding-top: 10px;
+        text-align: start;
+        margin: 0;
+        text-transform: none;
+    }
+
+    .profile-about-info-text {
+        display: inline-block;
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 0;
+    }
+
+    .activity-list {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-auto-rows: minmax(40px, auto);
+        padding: 10px 15px;
+        overflow: hidden;
+    }
+
+    .activity-date {
+        grid-column: 1 / span 1;
+        text-align: start;
+        vertical-align: middle;
+        border: 1px solid grey;
+    }
+
+    .activity-name {
+        grid-column: 2 / span 1;
+        border: 1px solid grey;
+    }
+
+    a.profile-about-info-text {
+        text-decoration: none;
+    }
+
+        a.profile-about-info-text:hover {
+            text-decoration: none;
+            color: #333;
+            font-weight: 900;
+        }
+
+    /* ------------ Media ------------ */
+
     @media(max-width: 900px) {
         .articles-grid {
             display: grid;
