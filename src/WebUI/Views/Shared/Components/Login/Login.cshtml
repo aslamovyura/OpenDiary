@@ -13,10 +13,10 @@
                 </p>
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" asp-action="Create" asp-controller="Posts">@Localizer["WriteNew"]</a>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" asp-action="Index" asp-controller="Profile" asp-route-authorId="@Model.AuthorId">@Localizer["Profile"]</a>
+                <a class="dropdown-item" asp-action="Create" asp-controller="Posts">@Localizer["WriteNew"]</a>
                 <div class="dropdown-divider"></div>
 
                 <a class="dropdown-item" asp-action="Index" asp-controller="Posts" asp-route-authorId="@Model.AuthorId">@Localizer["Posts"]</a>
@@ -33,7 +33,7 @@ else
 {
 <ul class="nav-right">
     <li>
-        <a asp-action="SignIn" asp-controller="Account">@Localizer["SingIn"]</a>
+        <a asp-action="Login" asp-controller="Account">@Localizer["SingIn"]</a>
     </li>
     <li>
         <a asp-action="SignUp" asp-controller="Account">@Localizer["SingUp"]</a>

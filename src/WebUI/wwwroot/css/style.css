@@ -50,6 +50,7 @@
     body {
         margin: 0;
         padding: 0;
+        background-color: #333;
     }
 
     header {
@@ -210,6 +211,8 @@
         padding: 8px 0;
         border-radius: .25rem;
         transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        width: 100%;
+        height: 100%;
     }
 
     .capitalize {
@@ -299,6 +302,7 @@
         position: relative;
         padding-top: 80px;
         padding-bottom: 100px;
+        background-color: #fefefe;
     }
 
     .supporting .col {
@@ -313,7 +317,7 @@
         height: 32px;
     }
 
-    .supporting h2 {
+    .supporting h3 {
         font-weight: 600;
         font-size: 23px;
         text-transform: uppercase;
@@ -576,7 +580,7 @@
     /* ----------- Posts -----------*/
 
     .posts-page {
-        /*height: 1000px;*/
+        min-height: 1000px;
         background-image: url("/resources/book-4.jpg");
         background-size: cover;
         background-attachment: fixed;
@@ -730,7 +734,7 @@
 
 
     
-    /* --------- Read post + Comments --------- */
+/* --------- Read post + Comments --------- */
 
 .post-page {
     background-image: url("/resources/book-4.jpg");
@@ -1008,13 +1012,148 @@
             font-weight: 900;
         }
 
+    /* ---------- Authors ---------- */
+
+    .authors-page {
+        height: 1000px;
+        background-image: url("/resources/book-5.jpg");
+        background-size: cover;
+    }
+
+    .authors-grid {
+        position: relative;
+        bottom: 50px;
+        display: grid;
+        grid-template-columns: repeat(2, 450px);
+        grid-auto-rows: 150px;
+        align-items: center;
+        align-content: center;
+        padding: 0 50px;
+    }
+
+    .author-wrapper {
+        display: grid;
+        grid-template-columns: 25% 75%;
+        grid-template-areas: "author-logo author-info" "author-logo author-statistics" "author-logo author-edit";
+        /* width: 100%; */
+        width: 400px;
+        background-color: #fefefe;
+        max-height: 400px;
+        overflow: hidden;
+        border-bottom: 1px solid gray;
+        padding: 10px 0;
+        border: 1px solid #333;
+        border-radius: 5px;
+    }
+
+    .author-image {
+        height: 75px;
+        width: 75px;
+        padding: 5px;
+    }
+
+    .author-logo-container {
+        grid-area: author-logo;
+        /* background-color: seagreen; */
+        align-self: center;
+        /* padding-left: 10px; */
+    }
+
+    .author-info-container {
+        display: inline-block;
+        grid-area: author-info;
+        /* background-color: slateblue; */
+        text-align: start;
+        padding: 10px 20px;
+    }
+
+    .author-statistics-container {
+        grid-area: author-statistics;
+        padding: 0px 20px;
+        /* background-color: khaki; */
+        text-align: start;
+    }
+
+    .author-edit-container {
+        display: inline-block;
+        grid-area: author-edit;
+        padding: 5px 20px;
+        /* background-color: darkblue; */
+        text-align: start;
+    }
+
+    .author-info-name {
+        display: inline-block;
+        /* color: rgb(134, 134, 134); */
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        padding-right: 30px;
+    }
+
+    a.author-info-name {
+        text-decoration: none;
+    }
+
+        a.author-info-name:hover {
+            color: #333;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+    .author-statistics-text {
+        display: inline-block;
+        color: rgb(134, 134, 134);
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        margin: 0;
+        padding: 5px 0;
+    }
+
+    a.author-statistics-text {
+        text-decoration: none;
+    }
+
+        a.author-statistics-text:hover {
+            color: rgb(134, 134, 134);
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+    .author-edit-text {
+        display: inline-block;
+        color: rgb(134, 134, 134);
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        padding-right: 30px;
+    }
+
+    a.author-edit-text {
+        text-decoration: none;
+    }
+
+        a.author-edit-text:hover {
+            color: rgb(134, 134, 134);
+            text-decoration: none;
+            font-weight: 900;
+        }
+        
 
 
-
+/* ------------ Media ------------ */
     @media(max-width: 900px) {
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(1, 450px);
             grid-auto-rows: 350px;
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 450px);
+            grid-auto-rows: 150px;
         }
     }

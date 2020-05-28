@@ -12,10 +12,19 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="AddCommentPlaceholder">
-        <value>Ваш комментарий</value>
+     <data name="Title">
+        <value>Авторы</value>
     </data>
-    <data name="AddComment">
-        <value>Отправить</value>
+    <data name="Posts">
+        <value>Публикаций</value>
+    </data>
+    <data name="Comments">
+        <value>Комментариев</value>
+    </data>
+    <data name="Edit">
+        <value>Редактировать</value>
+    </data>
+    <data name="Remove">
+        <value>Удалить</value>
     </data>
 </root>
