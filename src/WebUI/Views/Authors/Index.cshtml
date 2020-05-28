@@ -1,26 +1,46 @@
-﻿@model IEnumerable<WebUI.ViewModels.AuthorViewModel>
+﻿@model WebUI.ViewModels.AuthorsViewModel
 @{
-    ViewBag.Title = "User list";
+    ViewBag.Title = Localizer["Title"];
 }
 
-<a asp-action="Create">Add user</a>
+    <div class="authors-page">
 
-<table class="table captionTop">
-    <caption>Application users.</caption>
-    <tr><th>Name</th><th>Email</th><th>Birth date</th><th></th></tr>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.FirstName @user.LastName</td>
-            <td>@user.Email</td>
-            <td>@user.BirthDate</td>
-            <td>
-                <form asp-controller="Users" asp-action="Delete" asp-route-id="@user.AuthorId" method="post">
-                    <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="Edit" asp-route-id="@user.UserId">Edit</a>
-                    <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="ChangePassword" asp-route-id="@user.UserId">Change password</a>
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-    }
-</table>
+        <h1 class="left-align">@Localizer["Title"]</h1>
+
+        @if (Model.IsAdmin)
+        {
+            <a asp-controller="Users" asp-action="Create">Add user</a>
+        }
+
+        @if (Model.Authors.Count != 0)
+        {
+            <div class="authors-grid">
+
+                @foreach (var author in Model.Authors)
+                {
+                <div class="author-wrapper">
+                    <div class="author-logo-container">
+                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@author.AuthorId"><img src="/Resources/user-3.png" alt="author" class="author-image"></a>
+                    </div>
+                    <div class="author-info-container">
+                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@author.AuthorId" class="author-info-name">@author.FirstName @author.LastName</a>
+                    </div>
+                    <div class="author-statistics-container">
+                        <a asp-controller="Posts" asp-action="Index" asp-route-authorId="@author.AuthorId" class="author-statistics-text">@author.PostsNumber @Localizer["Posts"]</a>
+                        <p class="author-statistics-text">/</p>
+                        <p class="author-statistics-text">@author.CommentsNumber @Localizer["Comments"]</p>
+                    </div>
+
+                    @if (Model.IsAdmin)
+                    {
+                        <div class="author-edit-container">
+                            <a asp-controller="Users" asp-action="Edit" asp-route-id="@author.UserId" class="author-edit-text">@Localizer["Edit"]</a>
+                            <a asp-controller="Users" asp-action="Delete" asp-route-id="@author.AuthorId" class="author-edit-text">@Localizer["Remove"]</a>
+                        </div>
+                    }
+
+                </div>
+                }
+            </div>
+        }
+    </div>

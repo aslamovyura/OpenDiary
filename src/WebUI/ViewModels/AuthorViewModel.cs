@@ -35,5 +35,15 @@ namespace WebUI.ViewModels
         /// User's birth date.
         /// </summary>
         public DateTime BirthDate { get; set; }
+
+        /// <summary>
+        /// Posts number.
+        /// </summary>
+        public int PostsNumber { get; set; }
+
+        /// <summary>
+        /// Comments number.
+        /// </summary>
+        public int CommentsNumber { get; set; }
     }
 }
