@@ -83,9 +83,45 @@ namespace WebUI.Resources.Views.Profile {
             }
         }
         
-        internal static string PostsList {
+        internal static string RecentActivity {
             get {
-                return ResourceManager.GetString("PostsList", resourceCulture);
+                return ResourceManager.GetString("RecentActivity", resourceCulture);
+            }
+        }
+        
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        internal static string AuthorProfile {
+            get {
+                return ResourceManager.GetString("AuthorProfile", resourceCulture);
+            }
+        }
+        
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        internal static string Hobbies {
+            get {
+                return ResourceManager.GetString("Hobbies", resourceCulture);
+            }
+        }
+        
+        internal static string NoContent {
+            get {
+                return ResourceManager.GetString("NoContent", resourceCulture);
             }
         }
     }

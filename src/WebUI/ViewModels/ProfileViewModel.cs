@@ -6,6 +6,11 @@ namespace WebUI.ViewModels
     public class ProfileViewModel
     {
         /// <summary>
+        /// Author Id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// User first name.
         /// </summary>
         public string FirstName { get; set; }
@@ -31,6 +36,11 @@ namespace WebUI.ViewModels
         public int Age { get; set; }
 
         /// <summary>
+        /// Current reader Id.
+        /// </summary>
+        public int CurrentReaderId { get; set; }
+
+        /// <summary>
         /// Total number of user posts.
         /// </summary>
         public int TotalPostsNumber { get; set; }
@@ -44,5 +54,13 @@ namespace WebUI.ViewModels
         /// Latest posts
         /// </summary>
         public ICollection<PostDTO> Posts { get; set; }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ProfileViewModel()
+        {
+            Posts = new List<PostDTO>();
+        }
     }
 }
