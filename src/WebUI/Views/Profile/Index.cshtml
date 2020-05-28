@@ -2,35 +2,70 @@
 @{
     ViewBag.Title = Localizer["Title"];
 }
-    <div class="form-group row">
-        <div class="col">
-            <img class="mb-4" src="~/User.png" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="250" height="250" />
-        </div>
-        <div class="col">
-            <div class="text-left">
-                <h2 class="display-4">@Model.FirstName @Model.LastName</h2>
+
+    <div class="profile-page">
+
+        <h1 class="left-align">@Localizer["Title"]</h1>
+        <div class="profile-grid">
+
+            <div class="profile-author-wrapper">
+
+                <div class="profile-logo-container">
+                    <img class="profile-image" src="/Resources/user-3.png">
+                </div>
+
+                <div class="profile-author-info-container">
+                    <p class="profile-author-name">@Model.FirstName @Model.LastName</p>
+                    <p class="profile-author-email">@Model.Email</p>
+                </div>
+                <div class="profile-author-statistics-container">
+                    <p class="profile-author-statistics">@Localizer["Posts"]: @Model.TotalPostsNumber </p>
+                    <p class="profile-author-statistics">@Localizer["Comments"]: @Model.TotalCommentsNumber</p>
+                </div>
             </div>
 
-            <div>
-                <p>@Localizer["Email"] : @Model.Email</p>
-                <p>@Localizer["BitrhDate"] : @Model.BirthDate (@Model.Age years)</p>
-                <p>@Localizer["Posts"] : @Model.TotalPostsNumber</p>
-                <p>@Localizer["Cоmments"] : @Model.TotalCommentsNumber</p>
+
+            <div class="profile-about-wrapper">
+
+                <div class="profile-about-controls-container">
+                    <div class="profile-profile-controls ">
+                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control selected">@Localizer["Profile"]</a>
+                    </div>
+                    @if(Model.CurrentReaderId == Model.Id)
+                    {
+                        <div class="profile-edit-controls">
+                            <a asp-controller="Users" asp-action="Edit" asp-route-id="@Model.Id" class="profile-control">@Localizer["Edit"]</a>
+                        </div>
+                    }
+                </div>
+
+                <div class="profile-about-title-container">
+                    <p class="profile-about-title">@Localizer["AuthorProfile"]</p>
+                </div>
+
+                <div class="profile-about-info-container">
+                    <h2 class="profile-about-info-title">@Localizer["About"]</h2>
+                    <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+
+                    <h2 class="profile-about-info-title">@Localizer["Hobbies"]</h2>
+                    <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+
+                </div>
+                <div class="profile-about-activities-container">
+                    <h2 class="profile-about-info-title">@Localizer["RecentActivity"]</h2>
+                    <div class="activity-list">
+                        @foreach (var post in Model.Posts)
+                        {
+                            <div class="activity-date">
+                                <p class="profile-about-info-text">@post.Date.ToString("MMMM d, yyyy")</p>
+                            </div>
+                            <div class="activity-name">
+                                <a asp-controller="Posts" asp-action="Read" asp-route-postId="@post.Id" class="profile-about-info-text">@post.Title</a>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
-
-    <table class="table">
-        <caption>@Localizer["PostsList"]</caption>
-        <tr><th>@Localizer["Date"]</th><th>@Localizer["Posts"]</th><th></th></tr>
-        @foreach (var post in Model.Posts)
-        {
-            <tr>
-                <td>@post.Date</td>
-                <td>@post.Title</td>
-                <td>
-                    <a class="btn btn-sm btn-primary" asp-action="Read" asp-controller="Posts" asp-route-postId="@post.Id">Read</a>
-                </td>
-            </tr>
-        }
-    </table>

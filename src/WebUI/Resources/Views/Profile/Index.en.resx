@@ -30,7 +30,25 @@
     <data name="Date">
         <value>Date</value>
     </data>
-    <data name="PostsList">
-        <value>List of user posts</value>
+    <data name="RecentActivity">
+        <value>Last posts</value>
+    </data>
+     <data name="Profile">
+        <value>Profile</value>
+    </data>
+     <data name="Edit">
+        <value>Edit</value>
+    </data>
+     <data name="AuthorProfile">
+        <value>Author Profile</value>
+    </data>
+    <data name="About">
+        <value>About</value>
+    </data>
+    <data name="Hobbies">
+        <value>Hobbies</value>
+    </data>
+    <data name="NoContent">
+        <value>No content.</value>
     </data>
 </root>
