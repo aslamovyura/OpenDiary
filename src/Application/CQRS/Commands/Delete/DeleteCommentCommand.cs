@@ -46,14 +46,14 @@ namespace Application.CQRS.Commands.Delete
             {
                 request = request ?? throw new ArgumentNullException(nameof(request));
 
-                var author = _context.Authors.Where(a => a.Id == request.Id).SingleOrDefault();
+                var comment = _context.Comments.Where(c => c.Id == request.Id).SingleOrDefault();
 
-                if(author == null)
+                if(comment == null)
                 {
                     throw new NotFoundException(nameof(Author), request.Id);
                 }
 
-                _context.Authors.Remove(author);
+                _context.Comments.Remove(comment);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

@@ -14,21 +14,21 @@
 <section class="supporting">
     <div class="container">
         <div class="col">
-            <h2>@Localizer["Read"]</h2>
+            <h3>@Localizer["Read"]</h3>
             <p>@Localizer["CheckPosts"]</p>
             <a asp-controller="Posts" asp-action="Index"> @Localizer["LearnMore"] </a><br>
         </div>
 
         <div class="col">
-            <h2>@Localizer["Write"]</h2>
+            <h3>@Localizer["Write"]</h3>
             <p>@Localizer["WriteThoughts"]</p>
             <a asp-controller="Posts" asp-action="Create"> @Localizer["LearnMore"] </a><br>
         </div>
 
         <div class="col">
-            <h2>@Localizer["Comment"]</h2>
+            <h3>@Localizer["Comment"]</h3>
             <p>@Localizer["ShareOpinion"]</p>
-            <a href="#"> @Localizer["LearnMore"] </a><br>
+            <a asp-controller="Posts" asp-action="Index"> @Localizer["LearnMore"] </a><br>
         </div>
     </div>
 </section>

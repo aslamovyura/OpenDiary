@@ -33,6 +33,8 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Authors\" />
     <Folder Include="wwwroot\resources\" />
+    <Folder Include="ViewModels\Posts\" />
+    <Folder Include="Resources\Views\Authors\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -136,14 +138,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ForgotPasswordUnknownAccount.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views\Account\Login.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Login.ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views\Account\Login.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Login.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Account\Register.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Register.ru.Designer.cs</LastGenOutput>
@@ -205,6 +199,14 @@
       <LastGenOutput>Index.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Home\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Authors\Index.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Authors\Index.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -274,12 +276,6 @@
     <Compile Update="Resources\Views\Account\ForgotPasswordUnknownAccount.en.Designer.cs">
       <DependentUpon>ForgotPasswordUnknownAccount.en.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Views\Account\Login.ru.Designer.cs">
-      <DependentUpon>Login.ru.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Views\Account\Login.en.Designer.cs">
-      <DependentUpon>Login.en.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\Views\Account\Register.ru.Designer.cs">
       <DependentUpon>Register.ru.resx</DependentUpon>
     </Compile>
@@ -329,6 +325,12 @@
       <DependentUpon>Index.ru.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Views\Home\Index.en.Designer.cs">
+      <DependentUpon>Index.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Authors\Index.ru.Designer.cs">
+      <DependentUpon>Index.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Authors\Index.en.Designer.cs">
       <DependentUpon>Index.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -142,7 +142,7 @@ namespace WebUI.Controllers
         /// <param name="returnUrl">Return URL after login.</param>
         /// <returns>View for user login.</returns>
         [HttpGet]
-        public IActionResult SignIn(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
+        public IActionResult Login(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
 
         /// <summary>
         /// Process user input on the login page.
@@ -151,7 +151,7 @@ namespace WebUI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignIn(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             model = model ?? throw new ArgumentNullException(nameof(model));
 

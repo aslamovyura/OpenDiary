@@ -45,10 +45,15 @@ namespace Infrastructure.Extentions
         /// </summary>
         /// <param name="startDate">Start date.</param>
         /// <param name="units">Units of age measurement.</param>
-        /// <returns></returns>
+        /// <returns>Age in specific units.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static int Age(this DateTime startDate, AgeUnits units)
         {
             var zeroTime = new DateTime(1, 1, 1);
+            if(DateTime.Now < startDate)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startDate));
+            }
             var span = zeroTime + (DateTime.Now - startDate);
 
             switch(units)

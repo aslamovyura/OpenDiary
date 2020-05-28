@@ -7,7 +7,7 @@
 
     <h1 class="">@Localizer["PleaseSingIn"]</h1>
 
-        <form class="sign-in-up-container height-400" method="post" asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl">
+        <form class="sign-in-up-container height-400" method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
             <div class="form-group-col">
                 <div class="validation-message" asp-validation-summary="All"></div>
                 <input class="form-group-input" asp-for="Email" placeholder=@Localizer["EmailPlaceholder"]>

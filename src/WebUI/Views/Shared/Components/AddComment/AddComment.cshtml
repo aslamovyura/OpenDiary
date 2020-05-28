@@ -19,30 +19,6 @@
         </div>
 
         <div class="add-comment-button-container">
-            <button type="submit" asp-action="AddComment" asp-controller="Posts" class="btn-main-sm add-comment-button">@Localizer["AddComment"]</button>
+            <button type="submit" asp-action="Create" asp-controller="Comments" class="btn-main-sm add-comment-button">@Localizer["AddComment"]</button>
         </div>
     </form>
-
-
-
-
-<!--<form>
-    <div class="form-group">
-        <input type="hidden" asp-for="Id" />
-    </div>
-    <div class="form-group">
-        <input type="hidden" asp-for="AuthorId" />
-    </div>
-    <div class="form-group">
-        <input type="hidden" asp-for="PostId" />
-    </div>
-    <div class="form-group">
-        <input type="hidden" asp-for="Author" />
-    </div>
-    <div class="input-group">
-        <input asp-for="Text" type="text" class="form-control" placeholder=@Localizer["AddCommentPlaceholder"]><br />
-        <div class="form-group">
-            <button type="submit" asp-action="AddComment" asp-controller="Posts" class="btn btn-outline-secondary">@Localizer["AddComment"]</button>
-        </div>
-    </div>
-</form>-->

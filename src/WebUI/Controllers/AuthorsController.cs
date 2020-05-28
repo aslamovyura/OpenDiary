@@ -42,14 +42,22 @@ namespace CustomIdentityApp.Controllers
             var authorsQuery = new GetAuthorsQuery();
             var authors = await _mediator.Send(authorsQuery);
 
-            var models = _mapper.Map<IEnumerable<AuthorDTO>, IEnumerable<AuthorViewModel>>(authors);
-
-            foreach (var model in models)
+            var authorsVM = _mapper.Map<IEnumerable<AuthorDTO>, ICollection<AuthorViewModel>>(authors);
+            foreach (var author in authorsVM)
             {
-                model.Email = await _identityService.GetEmailByIdAsync(model.UserId);
+                author.Email = await _identityService.GetEmailByIdAsync(author.UserId);
+                author.PostsNumber = _mediator.Send(new GetPostsByAuthorIdQuery { AuthorId = author.AuthorId }).GetAwaiter().GetResult().Count;
+                author.CommentsNumber = _mediator.Send(new GetCommentsByAuthorIdQuery { AuthorId = author.AuthorId }).GetAwaiter().GetResult().Count;
             }
 
-            return View(models);
+            var isAdmin = HttpContext.User.IsInRole("admin");
+            var model = new AuthorsViewModel
+            {
+                Authors = authorsVM,
+                IsAdmin = isAdmin,
+            };
+
+            return View(model);
         }
     }
 }

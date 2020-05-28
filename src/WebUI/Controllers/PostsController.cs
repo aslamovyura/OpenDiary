@@ -21,6 +21,7 @@ namespace WebUI.Controllers
     /// <summary>
     /// Controller to manage posts.
     /// </summary>
+    [Authorize]
     public class PostsController : Controller
     {
         private readonly IMediator _mediator;
@@ -47,6 +48,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="authorId">Author identifier.</param>
         /// <returns>View with posts.</returns>
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int authorId = default)
         {
             IRequest<ICollection<PostDTO>> postsQuery;
@@ -82,6 +84,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="postId">Post identifier.</param>
         /// <returns>Page to read the full post.</returns>
+        [AllowAnonymous]
         public async Task<IActionResult> Read(int postId)
         {
             // TODO : add check for empty post ID.
@@ -263,6 +266,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="postId">Post identifier.</param>
         /// <returns>View with EditPostViewModel.</returns>
+        [Authorize]
         public async Task<IActionResult> Edit(int postId)
         {
             // Get post.
@@ -290,7 +294,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="model">View model to edit post.</param>
         /// <returns>List of posts.</returns>
-        [Authorize(Roles = "admin")]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(EditPostViewModel model)
         {
@@ -356,35 +360,6 @@ namespace WebUI.Controllers
                 return RedirectToAction("Index", "Posts");
             else
                 return RedirectToAction(returnUrl);
-        }
-
-        /// <summary>
-        /// Add new comment to the current post.
-        /// </summary>
-        /// <param name="model">View model of comment.</param>
-        /// <returns>Page with post.</returns>
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> AddComment(CommentViewModel model)
-        {
-            var commentDTO = _mapper.Map<CommentViewModel, CommentDTO>(model);
-            commentDTO.Date = DateTime.Now;
-
-            var commentCommand = new CreateCommentCommand { Model = commentDTO };
-
-            try
-            {
-                await _mediator.Send(commentCommand);
-            }
-            catch (RequestValidationException failures)
-            {
-                foreach (var error in failures.Failures)
-                {
-                    ModelState.AddModelError(string.Empty, error.Value[0]);
-                }
-            }
-
-            return RedirectToAction("Read", "Posts", new { postId = commentDTO.PostId } );
         }
     }
 }
