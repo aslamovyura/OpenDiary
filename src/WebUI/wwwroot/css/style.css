@@ -1128,28 +1128,30 @@
 
     /* ------------ Profile ------------- */
 
-    .profile-page {
-        height: 1000px;
-        background-image: url("/resources/book-5.jpg");
-        background-size: cover;
-    }
+.profile-page {
+    /*height: 1000px;*/
+    min-height: 1000px;
+    background-image: url("/resources/book-5.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
 
-    .profile-grid {
-        display: grid;
-        width: 1200px;
-        grid-template-columns: 30% 70%;
-        grid-template-areas: "profile-author-wrapper profile-about-wrapper";
-        align-items: top;
-        align-content: center;
-        padding: 0 50px;
-    }
+.profile-grid {
+    display: grid;
+    width: 1200px;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "profile-author-wrapper profile-about-wrapper";
+    align-items: top;
+    align-content: center;
+    padding: 0 50px;
+}
 
     .profile-author-wrapper {
         display: grid;
         grid-template-areas: "profile-logo" "profile-info" "profile-statistics";
         width: 300px;
         background-color: white;
-        max-height: 400px;
+        max-height: 450px;
         overflow: hidden;
         border-bottom: 1px solid gray;
         padding: 10px 0;
@@ -1194,7 +1196,7 @@
     }
 
     .profile-author-email {
-        display: inline-block;
+        /*display: inline-block;*/
         color: gray;
         font-family: 'Raleway', sans-serif;
         font-weight: 600;
@@ -1278,13 +1280,17 @@
         text-decoration: none;
     }
 
-    a.selected {
+    a.selected,
+    input.selected {
         background-color: #333;
         color: #fefefe;
-        width: 100%;
+    /*width: 100%;Totally agree*/
         padding: 10px 50px;
-        border: 1 solid #333;
+        border: 1px solid #333;
         border-radius: 5px;
+        border:none;
+
+
     }
 
     .profile-about-title {
@@ -1347,6 +1353,50 @@
             color: #333;
             font-weight: 900;
         }
+
+        /* Edit page */
+    .profile-edit-wrapper {
+        display: grid;
+        grid-template-areas: "about-controls" "about-title" "about-input" "save-controls";
+        width: 600px;
+        background-color: #fefefe;
+        overflow: hidden;
+        padding: 10px 0;
+        border: 1px solid #333;
+        border-radius: 5px;
+        height: auto;
+        margin-bottom: 100px;
+    }
+
+    .profile-edit-info-container {
+        grid-area: about-input;
+        padding: 10px 20px;
+    
+        text-align: start;
+    }
+
+    .profile-about-info-input {
+        width: 500px;
+        height: auto;
+        padding: 5px 10px;
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        margin: 10px 20px;
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
+
+    textarea.profile-about-info-input {
+        resize: vertical;
+    }
+
+    .profile-save-controls-container {
+        grid-area: save-controls;
+        padding: 10px 20px;
+    }
+
 
     /* ------------ Media ------------ */
 

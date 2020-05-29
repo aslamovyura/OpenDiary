@@ -1,0 +1,76 @@
+﻿@model WebUI.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = Localizer["Title"];
+}
+
+<div class="profile-page">
+
+    <h1 class="left-align">@Localizer["Title"]</h1>
+    <div class="profile-grid">
+
+        <div class="profile-author-wrapper">
+
+            <div class="profile-logo-container">
+                <img class="profile-image" src="/Resources/user-3.png">
+            </div>
+
+            <div class="profile-author-info-container">
+                <p class="profile-author-name">@Model.FirstName @Model.LastName</p>
+                <p class="profile-author-email">@Model.Email</p>
+            </div>
+            <div class="profile-author-statistics-container">
+                <p class="profile-author-statistics">@Localizer["Posts"]: @Model.TotalPostsNumber </p>
+                <p class="profile-author-statistics">@Localizer["Comments"]: @Model.TotalCommentsNumber</p>
+            </div>
+        </div>
+
+        <form class="profile-edit-wrapper" asp-controller="Profile" asp-action="Edit">
+
+            <div class="profile-about-controls-container">
+                <div class="profile-profile-controls ">
+                    <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Profile"]</a>
+                </div>
+                <div class="profile-edit-controls">
+                    <a asp-controller="Profile" asp-action="Edit" asp-route-authorId="@Model.Id" class="profile-control selected">@Localizer["Edit"]</a>
+                </div>
+            </div>
+
+            <div class="profile-about-title-container">
+                <p class="profile-about-title">@Localizer["EditProfile"]</p>
+            </div>
+
+            <div class="profile-edit-info-container">
+                <input type="hidden" asp-for="Id" />
+
+                <h2 class="profile-about-info-title">@Localizer["FirstName"]</h2>
+                <input asp-for="FirstName" class="profile-about-info-input" placeholder="@Model.FirstName">
+
+                <h2 class="profile-about-info-title">@Localizer["LastName"]</h2>
+                <input asp-for="LastName" class="profile-about-info-input" placeholder="@Model.LastName">
+
+                <h2 class="profile-about-info-title">@Localizer["Email"]</h2>
+                <input asp-for="Email" class="profile-about-info-input" placeholder="@Model.Email" disabled>
+
+                <h2 class="profile-about-info-title">@Localizer["Profession"]</h2>
+                <textarea asp-for="Profession" class="profile-about-info-input">@Model.Profession</textarea>
+
+                <h2 class="profile-about-info-title">@Localizer["About"]</h2>
+                <textarea asp-for="About" class="profile-about-info-input">@Model.About</textarea>
+
+                <h2 class="profile-about-info-title">@Localizer["Hobbies"]</h2>
+                <textarea asp-for="Hobbies" class="profile-about-info-input">@Model.Hobbies</textarea>
+
+                <h2 class="profile-about-info-title">@Localizer["ProfileImage"]</h2>
+                <input type="file" class="profile-about-info-input" value="image">
+            </div>
+
+            <div class="profile-save-controls-container">
+                <div class="profile-profile-controls ">
+                    <input type="submit" class="profile-control selected" value="@Localizer["Save"]">
+                    <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Cancel"]</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

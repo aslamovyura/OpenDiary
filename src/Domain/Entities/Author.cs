@@ -34,6 +34,21 @@ namespace Domain.Entities
         public DateTime BirthDate { get; set; }
 
         /// <summary>
+        /// About informations.
+        /// </summary>
+        public string About { get; set; }
+
+        /// <summary>
+        /// Hobbies informations.
+        /// </summary>
+        public string Hobbies { get; set; }
+
+        /// <summary>
+        /// Profession informations.
+        /// </summary>
+        public string Profession { get; set; }
+
+        /// <summary>
         /// The collection of posts.
         /// </summary>
         public virtual ICollection<Post> Posts { get; set; }

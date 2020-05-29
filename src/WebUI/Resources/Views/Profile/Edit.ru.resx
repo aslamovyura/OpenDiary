@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="Title">
-        <value>Страница автора</value>
+        <value>Обновление учетной записи</value>
     </data>
     <data name="Email">
         <value>Почта</value>
@@ -39,10 +39,10 @@
      <data name="Edit">
         <value>Редактировать</value>
     </data>
-     <data name="AuthorProfile">
-        <value>Учетная запись автора</value>
+     <data name="EditProfile">
+        <value>Обновление учетной записи</value>
     </data>
-    <data name="Profession">
+     <data name="Profession">
         <value>Профессия</value>
     </data>
     <data name="About">
@@ -54,10 +54,25 @@
     <data name="NoContent">
         <value>Нет данных.</value>
     </data>
+    <data name="FirstName">
+        <value>Имя</value>
+    </data>
+    <data name="LastName">
+        <value>Фамилия</value>
+    </data>
     <data name="Age">
         <value>Возраст</value>
     </data>
     <data name="Years">
         <value>лет</value>
+    </data>
+    <data name="ProfileImage">
+        <value>Изображение</value>
+    </data>
+    <data name="Save">
+        <value>Сохранить</value>
+    </data>
+    <data name="Cancel">
+        <value>Отмена</value>
     </data>
 </root>

@@ -235,6 +235,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SignUpSucceeded.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Profile\Edit.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Profile\Edit.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -375,6 +383,12 @@
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\SignUpSucceeded.ru.Designer.cs">
       <DependentUpon>SignUpSucceeded.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Profile\Edit.ru.Designer.cs">
+      <DependentUpon>Edit.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Profile\Edit.en.Designer.cs">
+      <DependentUpon>Edit.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
