@@ -35,6 +35,7 @@
     <Folder Include="wwwroot\resources\" />
     <Folder Include="ViewModels\Posts\" />
     <Folder Include="Resources\Views\Authors\" />
+    <Folder Include="ViewModels\Author\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -210,6 +211,30 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\SignUp.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignUp.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\SignUp.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignUp.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\SignUpSucceeded.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignUpSucceeded.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\SignUpSucceeded.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignUpSucceeded.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -332,6 +357,24 @@
     </Compile>
     <Compile Update="Resources\Views\Authors\Index.en.Designer.cs">
       <DependentUpon>Index.en.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\Login.en.Designer.cs">
+      <DependentUpon>Login.en.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\Login.ru.Designer.cs">
+      <DependentUpon>Login.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\SignUp.en.Designer.cs">
+      <DependentUpon>SignUp.en.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\SignUp.ru.Designer.cs">
+      <DependentUpon>SignUp.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\SignUpSucceeded.en.Designer.cs">
+      <DependentUpon>SignUpSucceeded.en.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Views\Account\SignUpSucceeded.ru.Designer.cs">
+      <DependentUpon>SignUpSucceeded.ru.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
