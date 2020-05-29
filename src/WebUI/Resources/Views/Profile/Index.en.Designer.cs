@@ -107,6 +107,12 @@ namespace WebUI.Resources.Views.Profile {
             }
         }
         
+        internal static string Profession {
+            get {
+                return ResourceManager.GetString("Profession", resourceCulture);
+            }
+        }
+        
         internal static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
@@ -122,6 +128,18 @@ namespace WebUI.Resources.Views.Profile {
         internal static string NoContent {
             get {
                 return ResourceManager.GetString("NoContent", resourceCulture);
+            }
+        }
+        
+        internal static string Age {
+            get {
+                return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
+        
+        internal static string Years {
+            get {
+                return ResourceManager.GetString("Years", resourceCulture);
             }
         }
     }

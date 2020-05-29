@@ -17,13 +17,13 @@
                 <div class="profile-author-info-container">
                     <p class="profile-author-name">@Model.FirstName @Model.LastName</p>
                     <p class="profile-author-email">@Model.Email</p>
+                    <!--<p class="profile-author-email">@Model.Age @Localizer["Years"]</p>-->
                 </div>
                 <div class="profile-author-statistics-container">
                     <p class="profile-author-statistics">@Localizer["Posts"]: @Model.TotalPostsNumber </p>
                     <p class="profile-author-statistics">@Localizer["Comments"]: @Model.TotalCommentsNumber</p>
                 </div>
             </div>
-
 
             <div class="profile-about-wrapper">
 
@@ -34,7 +34,7 @@
                     @if(Model.CurrentReaderId == Model.Id)
                     {
                         <div class="profile-edit-controls">
-                            <a asp-controller="Users" asp-action="Edit" asp-route-id="@Model.Id" class="profile-control">@Localizer["Edit"]</a>
+                            <a asp-controller="Profile" asp-action="Edit" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Edit"]</a>
                         </div>
                     }
                 </div>
@@ -44,11 +44,35 @@
                 </div>
 
                 <div class="profile-about-info-container">
+                    <h2 class="profile-about-info-title">@Localizer["Profession"]</h2>
+                    @if (Model.Profession == null)
+                    {
+                        <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+                    }
+                    else
+                    {
+                        <p class="profile-about-info-text">@Model.Profession</p>
+                    }
+
                     <h2 class="profile-about-info-title">@Localizer["About"]</h2>
-                    <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+                    @if (Model.About == null)
+                    {
+                        <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+                    }
+                    else
+                    {
+                        <p class="profile-about-info-text">@Model.About</p>
+                    }
 
                     <h2 class="profile-about-info-title">@Localizer["Hobbies"]</h2>
-                    <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+                    @if (Model.About == null)
+                    {
+                        <p class="profile-about-info-text">@Localizer["NoContent"]</p>
+                    }
+                    else
+                    {
+                        <p class="profile-about-info-text">@Model.Hobbies</p>
+                    }
 
                 </div>
                 <div class="profile-about-activities-container">

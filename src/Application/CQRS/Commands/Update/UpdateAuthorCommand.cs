@@ -57,6 +57,9 @@ namespace Application.CQRS.Commands.Update
                 author.FirstName = request.Model.FirstName;
                 author.LastName = request.Model.LastName;
                 author.BirthDate = request.Model.BirthDate;
+                author.About = request.Model.About;
+                author.Profession = request.Model.Profession;
+                author.Hobbies = request.Model.Hobbies;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

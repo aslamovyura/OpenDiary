@@ -16,21 +16,21 @@ namespace WebUI.Resources.Views.Profile {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Index_ru {
+    internal class Edit_ru {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Index_ru() {
+        internal Edit_ru() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Profile.Index.ru", typeof(Index_ru).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("WebUI.Resources.Views.Profile.Edit.ru", typeof(Edit_ru).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -101,9 +101,9 @@ namespace WebUI.Resources.Views.Profile {
             }
         }
         
-        internal static string AuthorProfile {
+        internal static string EditProfile {
             get {
-                return ResourceManager.GetString("AuthorProfile", resourceCulture);
+                return ResourceManager.GetString("EditProfile", resourceCulture);
             }
         }
         
@@ -131,6 +131,18 @@ namespace WebUI.Resources.Views.Profile {
             }
         }
         
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
         internal static string Age {
             get {
                 return ResourceManager.GetString("Age", resourceCulture);
@@ -140,6 +152,24 @@ namespace WebUI.Resources.Views.Profile {
         internal static string Years {
             get {
                 return ResourceManager.GetString("Years", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileImage {
+            get {
+                return ResourceManager.GetString("ProfileImage", resourceCulture);
+            }
+        }
+        
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
     }

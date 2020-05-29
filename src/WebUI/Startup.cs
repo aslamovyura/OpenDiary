@@ -25,7 +25,7 @@ namespace WebUI
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    x => x.MigrationsAssembly("Infrastructure")));
+                    x => x.MigrationsAssembly("WebUI")));
 
             services.AddApplication();
             services.AddInfrastructure();

@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="Title">
-        <value>Author Page</value>
+        <value>Edit Profile</value>
     </data>
     <data name="Email">
         <value>Email</value>
@@ -27,6 +27,12 @@
         <data name="Comments">
         <value>Comments</value>
     </data>
+    <data name="FirstName">
+        <value>Имя</value>
+    </data>
+    <data name="LastName">
+        <value>Фамилия</value>
+    </data>
     <data name="Date">
         <value>Date</value>
     </data>
@@ -39,8 +45,8 @@
      <data name="Edit">
         <value>Edit</value>
     </data>
-     <data name="AuthorProfile">
-        <value>Author Profile</value>
+     <data name="EditProfile">
+        <value>Edit Profile</value>
     </data>
     <data name="Profession">
         <value>Profession</value>
@@ -59,5 +65,14 @@
     </data>
     <data name="Years">
         <value>y.o.</value>
+    </data>
+    <data name="ProfileImage">
+        <value>Profile Image</value>
+    </data>
+    <data name="Save">
+        <value>Save</value>
+    </data>
+    <data name="Cancel">
+        <value>Cancel</value>
     </data>
 </root>
