@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace WebUI.Infrastructure.Persistence.Migrations
+namespace WebUI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200519094414_InitialCreate")]
+    [Migration("20200529080534_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
