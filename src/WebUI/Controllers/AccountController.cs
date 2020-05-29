@@ -169,14 +169,18 @@ namespace WebUI.Controllers
                 if (isSignIn.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
                         return Redirect(model.ReturnUrl);
+                    }
                     else
                         return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Incorrect password!");
+                }    
             }
-            else
-                ModelState.AddModelError("", "Incorrect email or password!");
-
+            
             return View(model);
         }
 

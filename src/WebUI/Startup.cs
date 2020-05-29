@@ -1,5 +1,4 @@
 using Application;
-using Application.Interfaces;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;

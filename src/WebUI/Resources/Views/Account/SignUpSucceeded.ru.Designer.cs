@@ -53,21 +53,27 @@ namespace WebUI.Resources.Views.Account {
             }
         }
         
-        internal static string ConfirmationSend {
+        internal static string SignUpSecceeded {
             get {
-                return ResourceManager.GetString("ConfirmationSend", resourceCulture);
+                return ResourceManager.GetString("SignUpSecceeded", resourceCulture);
             }
         }
         
-        internal static string RegisterSucceeded {
+        internal static string Congratulations {
             get {
-                return ResourceManager.GetString("RegisterSucceeded", resourceCulture);
+                return ResourceManager.GetString("Congratulations", resourceCulture);
             }
         }
         
-        internal static string CheckEmail {
+        internal static string ThanksForConfirm {
             get {
-                return ResourceManager.GetString("CheckEmail", resourceCulture);
+                return ResourceManager.GetString("ThanksForConfirm", resourceCulture);
+            }
+        }
+        
+        internal static string ClickToLogin {
+            get {
+                return ResourceManager.GetString("ClickToLogin", resourceCulture);
             }
         }
     }
