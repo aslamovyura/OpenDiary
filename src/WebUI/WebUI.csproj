@@ -36,6 +36,7 @@
     <Folder Include="ViewModels\Posts\" />
     <Folder Include="Resources\Views\Authors\" />
     <Folder Include="ViewModels\Author\" />
+    <Folder Include="Resources\Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -243,6 +244,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Edit.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controlllers\AccountController.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountController.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controlllers\AccountController.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountController.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -389,6 +398,12 @@
     </Compile>
     <Compile Update="Resources\Views\Profile\Edit.en.Designer.cs">
       <DependentUpon>Edit.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controlllers\AccountController.ru.Designer.cs">
+      <DependentUpon>AccountController.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controlllers\AccountController.en.Designer.cs">
+      <DependentUpon>AccountController.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

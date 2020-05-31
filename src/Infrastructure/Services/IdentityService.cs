@@ -136,8 +136,7 @@ namespace Infrastructure.Services
 
             if (user == null)
             {
-                //return (false, ErrorConstants.UserNotFound);
-                return (false, "User is not found!");
+                return (false, "UserNotFound");
             }
 
             var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -146,9 +145,7 @@ namespace Infrastructure.Services
             {
                 return (true, null);
             }
-
-            //return (false, ErrorConstants.UserNotVerifiedEmail);
-            return (false, "Email adress is not verified yet!");
+            return (false, "EmailNotVerified");
         }
 
         /// <inheritdoc />
@@ -158,8 +155,7 @@ namespace Infrastructure.Services
 
             if (user == null)
             {
-                //return (null, ErrorConstants.UserNotFound);
-                return (null, "User is not found!");
+                return (null, "UserNotFound");
             }
 
             var result = await _userManager.ConfirmEmailAsync(user, code);
@@ -167,13 +163,10 @@ namespace Infrastructure.Services
             if (result.Succeeded)
             {
                 await SignInUserAsync(user.Email, user.UserName);
-
-                //return (result.ToApplicationResult(), CommonConstants.Successfully);
-                return (result.ToApplicationResult(), "Success!");
+                return (result.ToApplicationResult(), "Success");
             }
 
-            //return (result.ToApplicationResult(), ErrorConstants.TokenIssues);
-            return (result.ToApplicationResult(), "Token issues..");
+            return (result.ToApplicationResult(), "TokenIssues");
         }
 
         /// <inheritdoc />

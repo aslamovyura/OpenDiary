@@ -8,6 +8,7 @@ using Application.DTO;
 using Application.CQRS.Commands.Create;
 using Application.Exceptions;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace WebUI.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebUI.Controllers
         private readonly IIdentityService _identityService;
         private readonly IEmailService _emailService;
         private readonly IMediator _mediator;
+        private readonly IStringLocalizer<AccountController> _localizer;
 
         /// <summary>
         /// Constructor of account controller.
@@ -29,11 +31,13 @@ namespace WebUI.Controllers
         /// <exception cref="ArgumentNullException"></exception>
         public AccountController(IIdentityService identityService,
                                  IEmailService emailService,
-                                 IMediator mediator)
+                                 IMediator mediator,
+                                 IStringLocalizer<AccountController> localizer)
         {
             _identityService = identityService ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
         }
 
         /// <summary>
@@ -62,7 +66,7 @@ namespace WebUI.Controllers
                 var (result, userId, token) = await _identityService.CreateUserAsync(model.Email, model.Email, model.Password);
                 if (result == null)
                 {
-                    ModelState.AddModelError(string.Empty, "User is already exists!");
+                    ModelState.AddModelError(string.Empty, _localizer["UserExist"]);
                     return View(model);
                 }
 
@@ -120,7 +124,7 @@ namespace WebUI.Controllers
         /// </summary>
         /// <param name="userId">User identifier.</param>
         /// <param name="token">Confirmation token.</param>
-        /// <returns>Certain view.</returns>
+        /// <returns>Page to sign up.</returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> SignUpSucceeded(string userId, string token)
@@ -157,11 +161,11 @@ namespace WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                var (result, message) = await _identityService.EmailConfirmCheckerAsync(model.Email);
+                var (result, errorKey) = await _identityService.EmailConfirmCheckerAsync(model.Email);
 
                 if (!result)
                 {
-                    ModelState.AddModelError(string.Empty, message);
+                    ModelState.AddModelError(string.Empty, _localizer[errorKey]);
                     return View(model);
                 }
 
@@ -177,7 +181,7 @@ namespace WebUI.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password!");
+                    ModelState.AddModelError(string.Empty, _localizer["IncorrectPassword"]);
                 }    
             }
             
