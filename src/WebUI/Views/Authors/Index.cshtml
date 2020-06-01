@@ -20,13 +20,13 @@
                 {
                 <div class="author-wrapper">
                     <div class="author-logo-container">
-                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@author.AuthorId"><img src="/Resources/user-3.png" alt="author" class="author-image"></a>
+                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@author.AuthorId"><img src="/Resources/user-3.png" alt="author" class="author-image"></a>
                     </div>
                     <div class="author-info-container">
-                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@author.AuthorId" class="author-info-name">@author.FirstName @author.LastName</a>
+                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@author.AuthorId" class="author-info-name">@author.FirstName @author.LastName</a>
                     </div>
                     <div class="author-statistics-container">
-                        <a asp-controller="Posts" asp-action="Index" asp-route-authorId="@author.AuthorId" class="author-statistics-text">@author.PostsNumber @Localizer["Posts"]</a>
+                        <a asp-controller="Posts" asp-action="Index" asp-route-id="@author.AuthorId" class="author-statistics-text">@author.PostsNumber @Localizer["Posts"]</a>
                         <p class="author-statistics-text">/</p>
                         <p class="author-statistics-text">@author.CommentsNumber @Localizer["Comments"]</p>
                     </div>

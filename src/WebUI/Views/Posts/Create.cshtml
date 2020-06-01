@@ -18,10 +18,6 @@
                     <span class="input-group-text">@Localizer["PostTitle"]</span>
                 </div>
                 <input asp-for="Title" type="text" aria-label="Title" class="form-control" placeholder=@Localizer["TitlePlaceholder"] required>
-                <!--<span asp-validation-for="Title"></span>
-    <div class="invalid-feedback">
-        @Localizer["TitleInvalidFeedback"]
-    </div>-->
             </div>
 
             <div class="input-group form-group">
@@ -29,10 +25,6 @@
                     <span class="input-group-text">@Localizer["Topic"]</span>
                 </div>
                 <input list="topics-list" asp-for="Topic" type="text" aria-label="Your." class="form-control" placeholder=@Localizer["TopicPlaceholder"] required>
-                <!--<span asp-validation-for="Topic"></span>
-    <div class="invalid-feedback">
-        @Localizer["TopicInvalidFeedback"]
-    </div>-->
 
                 <datalist id="topics-list">
                     @foreach (var topic in Model.Topics)
@@ -45,10 +37,6 @@
             <div class="input-group form-group">
                 <textarea asp-for="Text" class="form-control article-input" placeholder=@Localizer["TextPlaceholder"] required></textarea>
             </div>
-            <!--<span asp-validation-for="Text"></span>
-    <div class="invalid-feedback">
-        @Localizer["TextInvalidFeedback"]
-    </div>-->
 
             <div class="form-group-row">
                 <button class="btn-main" type="submit">@Localizer["Publish"]</button>

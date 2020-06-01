@@ -28,10 +28,10 @@
 
             <div class="profile-about-controls-container">
                 <div class="profile-profile-controls ">
-                    <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Profile"]</a>
+                    <a asp-controller="Profile" asp-action="Index" asp-route-id="@Model.Id" class="profile-control">@Localizer["Profile"]</a>
                 </div>
                 <div class="profile-edit-controls">
-                    <a asp-controller="Profile" asp-action="Edit" asp-route-authorId="@Model.Id" class="profile-control selected">@Localizer["Edit"]</a>
+                    <a asp-controller="Profile" asp-action="Edit" asp-route-id="@Model.Id" class="profile-control selected">@Localizer["Edit"]</a>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
             <div class="profile-save-controls-container">
                 <div class="profile-profile-controls ">
                     <input type="submit" class="profile-control selected" value="@Localizer["Save"]">
-                    <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Cancel"]</a>
+                    <a asp-controller="Profile" asp-action="Index" asp-route-id="@Model.Id" class="profile-control">@Localizer["Cancel"]</a>
                 </div>
             </div>
         </form>

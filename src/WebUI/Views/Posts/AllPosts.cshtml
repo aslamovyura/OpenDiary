@@ -14,8 +14,8 @@
             <td>@post.Title</td>
             <td>@post.Author</td>
             <td>
-                <form asp-action="Delete" asp-controller="Posts" asp-route-postId="@post.Id" method="post">
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Posts" asp-route-postId="@post.Id">@Localizer["Edit"]</a>
+                <form asp-action="Delete" asp-controller="Posts" asp-route-id="@post.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Posts" asp-route-id="@post.Id">@Localizer["Edit"]</a>
                     <button type="submit" class="btn btn-sm btn-danger">@Localizer["Delete"]</button>
                 </form>
             </td>

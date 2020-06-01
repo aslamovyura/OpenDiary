@@ -100,7 +100,7 @@ namespace WebUI.Controllers
 
                     // Send confirmation letter to user email.
                     var callbackUrl = Url.Action("SignUpSucceeded", "Account",
-                                                 new { userId = userId, token = token },
+                                                 new { id = userId, token = token },
                                                  protocol: HttpContext.Request.Scheme);
 
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
@@ -123,16 +123,16 @@ namespace WebUI.Controllers
         /// <summary>
         /// Confirm email.
         /// </summary>
-        /// <param name="userId">User identifier.</param>
+        /// <param name="id">User identifier.</param>
         /// <param name="token">Confirmation token.</param>
         /// <returns>Page to sign up.</returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> SignUpSucceeded(string userId, string token)
+        public async Task<IActionResult> SignUpSucceeded(string id, string token)
         {
-            if (userId != null && token != null)
+            if (id != null && token != null)
             {
-                var (result, _) = await _identityService.ConfirmEmail(userId, token);
+                var (result, _) = await _identityService.ConfirmEmail(id, token);
 
                 if (result.Succeeded)
                     return View();

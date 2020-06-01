@@ -29,12 +29,12 @@
 
                 <div class="profile-about-controls-container">
                     <div class="profile-profile-controls ">
-                        <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@Model.Id" class="profile-control selected">@Localizer["Profile"]</a>
+                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@Model.Id" class="profile-control selected">@Localizer["Profile"]</a>
                     </div>
                     @if(Model.CurrentReaderId == Model.Id)
                     {
                         <div class="profile-edit-controls">
-                            <a asp-controller="Profile" asp-action="Edit" asp-route-authorId="@Model.Id" class="profile-control">@Localizer["Edit"]</a>
+                            <a asp-controller="Profile" asp-action="Edit" asp-route-id="@Model.Id" class="profile-control">@Localizer["Edit"]</a>
                         </div>
                     }
                 </div>
@@ -84,7 +84,7 @@
                                 <p class="profile-about-info-text">@post.Date.ToString("MMMM d, yyyy")</p>
                             </div>
                             <div class="activity-name">
-                                <a asp-controller="Posts" asp-action="Read" asp-route-postId="@post.Id" class="profile-about-info-text">@post.Title</a>
+                                <a asp-controller="Posts" asp-action="Read" asp-route-id="@post.Id" class="profile-about-info-text">@post.Title</a>
                             </div>
                         }
                     </div>

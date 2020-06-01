@@ -17,7 +17,7 @@
 
                 <div class="article-info">
                     <div class="article-author">
-                        <a asp-route-authorId="@post.AuthorId" asp-controller="Profile" asp-action="Index" class="article-info-text">@Localizer["By"] @post.Author</a>
+                        <a asp-route-id="@post.AuthorId" asp-controller="Profile" asp-action="Index" class="article-info-text">@Localizer["By"] @post.Author</a>
                     </div>
 
                     <div class="article-date">
@@ -28,7 +28,7 @@
                     <p class="article-content-text">@post.Text</p>
                 </div>
                 <div class="article-read-more">
-                    <a asp-route-postId="@post.Id" asp-controller="Posts" asp-action="Read" class="btn-wide">@Localizer["Read"]</a>
+                    <a asp-route-id="@post.Id" asp-controller="Posts" asp-action="Read" class="btn-wide">@Localizer["Read"]</a>
                 </div>
             </div>
         }

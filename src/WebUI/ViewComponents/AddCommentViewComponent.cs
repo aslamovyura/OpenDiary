@@ -30,9 +30,9 @@ namespace WebUI.ViewComponents
         /// <summary>
         /// Invoke view component for adding comment.
         /// </summary>
-        /// <param name="postId">Post identifier.</param>
+        /// <param name="id">Post identifier.</param>
         /// <returns>Page with full post.</returns>
-        public async Task<IViewComponentResult> InvokeAsync (int postId)
+        public async Task<IViewComponentResult> InvokeAsync (int id)
         {
             var userName = HttpContext.User.Identity.Name;
 
@@ -48,7 +48,7 @@ namespace WebUI.ViewComponents
 
             var model = new CommentViewModel
             {
-                PostId = postId,
+                PostId = id,
                 AuthorId = author.Id,
                 Author = author.FirstName + " " + author.LastName,
             };

@@ -61,21 +61,22 @@ namespace WebUI.Controllers
                 }
             }
 
-            return RedirectToAction("Read", "Posts", new { postId = commentDTO.PostId });
+            return RedirectToAction("Read", "Posts", new { id = commentDTO.PostId });
         }
 
         /// <summary>
         /// Delete comment to the current post.
         /// </summary>
-        /// <param name="model">Comment identifier.</param>
+        /// <param name="id">Comment identifier.</param>
+        /// <param name="returnUrl">Return URL.</param>
         /// <returns>Page with post.</returns>
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Delete(int commentId = default, string returnUrl = default)
+        public async Task<IActionResult> Delete(int id = default, string returnUrl = default)
         {
-            if (commentId != default)
+            if (id != default)
             {
-                var commentCommand = new DeleteCommentCommand { Id = commentId };
+                var commentCommand = new DeleteCommentCommand { Id = id };
                 await _mediator.Send(commentCommand);
             }
 

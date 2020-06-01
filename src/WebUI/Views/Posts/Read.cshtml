@@ -33,14 +33,14 @@
                 @if (Model.CurrentReaderId == Model.AuthorId)
                 {
                     <div class="post-edit-container">
-                        <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@Model.Id" class="post-edit-text">@Localizer["Edit"]</a>
-                        <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@Model.Id" class="post-edit-text">@Localizer["Remove"]</a>
+                        <a asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id" class="post-edit-text">@Localizer["Edit"]</a>
+                        <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id" class="post-edit-text">@Localizer["Remove"]</a>
                     </div>
                 }
             </div>
 
 
-            @await Component.InvokeAsync("AddComment", new { postId = Model.Id })
+            @await Component.InvokeAsync("AddComment", new { id = Model.Id })
 
             @if (Model.Comments.Count != 0)
             {
@@ -62,7 +62,7 @@
                                     <img src="/resources/user-3.png" alt="user" class="comment-user-image">
                                 </div>
                                 <div class="comment-info-container">
-                                    <a asp-controller="Profile" asp-action="Index" asp-route-authorId="@comment.AuthorId" class="comment-info-text">@comment.Author</a>
+                                    <a asp-controller="Profile" asp-action="Index" asp-route-id="@comment.AuthorId" class="comment-info-text">@comment.Author</a>
                                     <p class="comment-info-text">@comment.Age  @Localizer[comment.AgeUnits.ToString()] @Localizer["Ago"]</p>
                                 </div>
                                 <div class="comment-content-container">
@@ -73,7 +73,7 @@
                                 {
                                     <div class="comment-edit-container">
                                         <a href="#" class="comment-edit-text">@Localizer["Edit"]</a>
-                                        <a asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-returnUrl="@Url.Action("Read", "Posts", new { postId = Model.Id })" class="comment-edit-text">@Localizer["Remove"]</a>
+                                        <a asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" asp-route-returnUrl="@Url.Action("Read", "Posts", new { id = Model.Id })" class="comment-edit-text">@Localizer["Remove"]</a>
                                     </div>
                                 }
                             </div>

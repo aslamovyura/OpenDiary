@@ -47,16 +47,16 @@ namespace WebUI.Controllers
         /// <summary>
         /// Show the list of posts.
         /// </summary>
-        /// <param name="authorId">Author identifier.</param>
+        /// <param name="id">Author identifier.</param>
         /// <returns>View with posts.</returns>
         [AllowAnonymous]
-        public async Task<IActionResult> Index(int authorId = default)
+        public async Task<IActionResult> Index(int id = default)
         {
             IRequest<ICollection<PostDTO>> postsQuery;
-            if (authorId == default)
+            if (id == default)
                 postsQuery = new GetPostsQuery();
             else
-                postsQuery = new GetPostsByAuthorIdQuery { AuthorId = authorId };
+                postsQuery = new GetPostsByAuthorIdQuery { AuthorId = id };
 
             // Get all posts.
             var postsDTO = await _mediator.Send(postsQuery);
@@ -83,19 +83,18 @@ namespace WebUI.Controllers
         /// <summary>
         /// Read full post.
         /// </summary>
-        /// <param name="postId">Post identifier.</param>
+        /// <param name="id">Post identifier.</param>
         /// <returns>Page to read the full post.</returns>
         [AllowAnonymous]
-        public async Task<IActionResult> Read(int postId)
+        public async Task<IActionResult> Read(int id)
         {
-            // TODO : add check for empty post ID.
-            if (postId == default)
+            if (id == default)
             {
                 return NotFound();
             }
 
             // Get post.
-            var postQuery = new GetPostQuery { Id = postId };
+            var postQuery = new GetPostQuery { Id = id };
             var post = await _mediator.Send(postQuery);
 
             // Add author information.
@@ -265,13 +264,13 @@ namespace WebUI.Controllers
         /// <summary>
         /// Show page to edit user's info.
         /// </summary>
-        /// <param name="postId">Post identifier.</param>
+        /// <param name="id">Post identifier.</param>
         /// <returns>View with EditPostViewModel.</returns>
         [Authorize]
-        public async Task<IActionResult> Edit(int postId)
+        public async Task<IActionResult> Edit(int id)
         {
             // Get post.
-            var postQuery = new GetPostQuery { Id = postId };
+            var postQuery = new GetPostQuery { Id = id };
             var postDTO = await _mediator.Send(postQuery);
 
             // Get topic.
@@ -349,11 +348,11 @@ namespace WebUI.Controllers
         /// <summary>
         /// Delete Post.
         /// </summary>
-        /// <param name="postId">Post identifier</param>
+        /// <param name="id">Post identifier</param>
         /// <returns>Delete current post and redirect to page with posts.</returns>
-        public async Task<IActionResult> Delete(int postId, string returnUrl=default)
+        public async Task<IActionResult> Delete(int id, string returnUrl=default)
         {
-            var postCommand = new DeletePostCommand { Id = postId };
+            var postCommand = new DeletePostCommand { Id = id };
             await _mediator.Send(postCommand);
 
 

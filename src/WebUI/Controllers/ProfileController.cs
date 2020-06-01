@@ -40,17 +40,17 @@ namespace WebUI.Controllers
         /// <summary>
         /// Show user profile page.
         /// </summary>
-        /// <param name="userId">Application user identifier.</param>
+        /// <param name="id">Author identifier.</param>
         /// <returns>User profile page.</returns>
-        public async Task<ActionResult> Index(int authorId)
+        public async Task<ActionResult> Index(int id)
         {
-            if (authorId == default)
+            if (id == default)
             {
                 return RedirectToAction("Index", "Home");
             }
 
             // Get author current author.
-            var authorQuery = new GetAuthorQuery { Id = authorId };
+            var authorQuery = new GetAuthorQuery { Id = id };
             var authorDTO = await _mediator.Send(authorQuery);
             authorDTO.Email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
 
@@ -97,18 +97,18 @@ namespace WebUI.Controllers
         /// <summary>
         /// Edit author profile.
         /// </summary>
-        /// <param name="userId">Application user identifier.</param>
+        /// <param name="id">Author identifier.</param>
         /// <returns>User profile page.</returns>
         [HttpGet]
-        public async Task<ActionResult> Edit(int authorId)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (authorId == default)
+            if (id == default)
             {
                 return RedirectToAction("Index", "Home");
             }
 
             // Get author current author.
-            var authorQuery = new GetAuthorQuery { Id = authorId };
+            var authorQuery = new GetAuthorQuery { Id = id };
             var authorDTO = await _mediator.Send(authorQuery);
             authorDTO.Email = await _identityService.GetEmailByIdAsync(authorDTO.UserId);
 
@@ -170,7 +170,7 @@ namespace WebUI.Controllers
 
             await _mediator.Send(authorCommand);
 
-            return RedirectToAction("Index", "Profile", new { authorId = model.Id });
+            return RedirectToAction("Index", "Profile", new { id = model.Id });
         }
     }
 }
