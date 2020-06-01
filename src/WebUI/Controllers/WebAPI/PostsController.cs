@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using Application.CQRS.Queries.Get;
 using MediatR;
@@ -76,7 +79,7 @@ namespace WebUI.Controllers.WebAPI
             }
 
             _logger.LogInformation(@"Posts ({posts.Count} were successfully sent.");
-            return Json(postModels);
+            return Json(postModels, GetOptions());
         }
 
         /// <summary>
@@ -120,7 +123,20 @@ namespace WebUI.Controllers.WebAPI
             };
 
             _logger.LogInformation(@"Post with Id={id} was successfully sent.");
-            return Json(postModel);
+            return Json(postModel, GetOptions());
+        }
+
+        /// <summary>
+        /// Prepare options for Json serialization.
+        /// </summary>
+        /// <returns></returns>
+        public JsonSerializerOptions GetOptions()
+        {
+            return new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };
         }
     }
 }
