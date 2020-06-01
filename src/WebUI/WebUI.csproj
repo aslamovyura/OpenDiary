@@ -270,6 +270,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegisterViewModel.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\ForgotPasswordViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\ForgotPasswordViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\ResetPasswordViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPasswordViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\ResetPasswordViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPasswordViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -436,6 +452,18 @@
     </Compile>
     <Compile Update="Resources\ViewModels\Account\RegisterViewModel.ru.Designer.cs">
       <DependentUpon>RegisterViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\ForgotPasswordViewModel.ru.Designer.cs">
+      <DependentUpon>ForgotPasswordViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\ForgotPasswordViewModel.en.Designer.cs">
+      <DependentUpon>ForgotPasswordViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\ResetPasswordViewModel.ru.Designer.cs">
+      <DependentUpon>ResetPasswordViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\ResetPasswordViewModel.en.Designer.cs">
+      <DependentUpon>ResetPasswordViewModel.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

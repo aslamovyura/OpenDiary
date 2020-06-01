@@ -15,18 +15,19 @@ namespace WebUI.ViewModels.Account
         /// <summary>
         /// Password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "Field {0} requires minimum {2} and maximum {1} symbols!", MinimumLength = 5)]
+        [StringLength(20, ErrorMessage = "PasswordLength", MinimumLength = 5)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         /// <summary>
-        /// Подтвердить пароль.
+        /// Confirm password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "PasswordConfirmationRequired")]
+        [Compare("Password", ErrorMessage = "PasswordMismatch")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password))]
+        [Display(Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
         /// <summary>

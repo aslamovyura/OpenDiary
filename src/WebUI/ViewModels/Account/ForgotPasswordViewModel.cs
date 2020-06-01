@@ -10,8 +10,9 @@ namespace WebUI.ViewModels.Account
         /// <summary>
         /// Email adress.
         /// </summary>
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "EmailRequired")]
+        [EmailAddress(ErrorMessage = "EmailTypeRequired")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 }

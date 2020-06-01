@@ -26,7 +26,7 @@ namespace WebUI.ViewModels.Account
         /// User email.
         /// </summary>
         [Required(ErrorMessage = "EmailRequired")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "EmailTypeRequired")]
+        [EmailAddress(ErrorMessage = "EmailTypeRequired")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -44,7 +44,6 @@ namespace WebUI.ViewModels.Account
         /// </summary>
         [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
-        //[StringLength(20, ErrorMessage = "Field {0} requires minimum {2} and maximum {1} symbols!", MinimumLength = 5)]
         [StringLength(20, ErrorMessage = "PasswordLength", MinimumLength = 5)]
         [Display(Name = "Password")]
         public string Password { get; set; }

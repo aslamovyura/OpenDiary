@@ -11,7 +11,7 @@ namespace WebUI.ViewModels.Account
         /// User email.
         /// </summary>
         [Required(ErrorMessage = "EmailRequired")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "EmailTypeRequired")]
+        [EmailAddress(ErrorMessage = "EmailTypeRequired")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

@@ -28,6 +28,7 @@ namespace WebUI.Controllers
         /// <param name="identityService">Application identity service.</param>
         /// <param name="mediator">Mediator to access application entities.</param>
         /// <param name="emailService">Service to manage email activities.</param>
+        /// <param name="localizer">Service for string localization.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public AccountController(IIdentityService identityService,
                                  IEmailService emailService,
