@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebUI.ViewModels
+namespace WebUI.ViewModels.Posts
 {
     /// <summary>
     /// View model for post object.
@@ -12,22 +12,25 @@ namespace WebUI.ViewModels
         /// <summary>
         /// Post title.
         /// </summary>
-        [Required]
-        [MaxLength(100)]
+        [Required(ErrorMessage = "TitleRequired")]
+        [MaxLength(100, ErrorMessage = "TitleMaxLength")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Post topic.
         /// </summary>
-        [Required]
-        [MaxLength(30)]
+        [Required(ErrorMessage = "TopicRequired")]
+        [MaxLength(30, ErrorMessage = "TopicMaxLength")]
+        [Display(Name = "Topic")]
         public string Topic { get; set; }
 
         /// <summary>
         /// Post text.
         /// </summary>
-        [Required]
-        [MinLength(20)]
+        [Required(ErrorMessage = "TextRequired")]
+        [MinLength(20, ErrorMessage = "TextMinLength")]
+        [Display(Name = "Text")]
         public string Text { get; set; }
 
         /// <summary>

@@ -39,6 +39,7 @@
     <Folder Include="Resources\Controllers\" />
     <Folder Include="Resources\ViewModels\" />
     <Folder Include="Resources\ViewModels\Account\" />
+    <Folder Include="Resources\ViewModels\Posts\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -286,6 +287,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResetPasswordViewModel.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Posts\EditPostViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EditPostViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Posts\EditPostViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EditPostViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Posts\CreatePostViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreatePostViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Posts\CreatePostViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreatePostViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -464,6 +481,18 @@
     </Compile>
     <Compile Update="Resources\ViewModels\Account\ResetPasswordViewModel.en.Designer.cs">
       <DependentUpon>ResetPasswordViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Posts\EditPostViewModel.ru.Designer.cs">
+      <DependentUpon>EditPostViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Posts\EditPostViewModel.en.Designer.cs">
+      <DependentUpon>EditPostViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Posts\CreatePostViewModel.ru.Designer.cs">
+      <DependentUpon>CreatePostViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Posts\CreatePostViewModel.en.Designer.cs">
+      <DependentUpon>CreatePostViewModel.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebUI.ViewModels
+namespace WebUI.ViewModels.Posts
 {
     /// <summary>
     /// View model for post object.

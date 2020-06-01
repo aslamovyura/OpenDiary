@@ -15,6 +15,7 @@ using AutoMapper;
 using System.Collections.Generic;
 using Infrastructure.Extentions;
 using WebUI.ViewModels;
+using WebUI.ViewModels.Posts;
 
 namespace WebUI.Controllers
 {
