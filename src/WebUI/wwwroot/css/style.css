@@ -1397,6 +1397,89 @@
         padding: 10px 20px;
     }
 
+    /* ------- Email confirmation ----------- */
+
+    .email-container {
+        min-height: 200px;
+        /* background-color: gray; */
+        text-align: center;
+    }
+
+    .email-wrapper {
+        margin: auto;
+        max-width: 600px;
+        min-width: 400px;
+        padding: 20px;
+    }
+
+    .email-logo {
+        /* background-color: red; */
+    }
+
+    .email-content {
+        background-color: #fefefe;
+        text-align: justify;
+        padding: 0px 20px;
+    }
+
+    .email-container h1 {
+        text-align: center;
+        word-wrap: break-word
+    }
+
+    .email-footer {
+        margin: auto;
+        align-self: flex-start;
+        /* background-color: forestgreen; */
+    }
+
+    .email-logo-img {
+        width: 75px;
+        height: 75px;
+        margin: 0px;
+    }
+
+    .email-header {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        /* margin: 0px 20px; */
+    }
+
+    .email-text {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        /* margin: 10px 20px; */
+        padding: 10px 20px;
+    }
+
+    .email-copyrights {
+        color: gray;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 0 20px;
+        margin: auto;
+    }
+
+    .email-button {
+        height: auto;
+        margin: auto;
+        width: fit-content;
+        padding: 20px
+    }
+
+    .email-mistake {
+        color: #333;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        margin: auto;
+        margin-top: 0;
+    }
 
     /* ------------ Media ------------ */
 

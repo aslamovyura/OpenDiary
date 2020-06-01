@@ -9,6 +9,8 @@ using Application.CQRS.Commands.Create;
 using Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Localization;
+using WebUI.ViewModels;
+using Application.CQRS.Queries.Get;
 
 namespace WebUI.Controllers
 {
@@ -21,6 +23,7 @@ namespace WebUI.Controllers
         private readonly IEmailService _emailService;
         private readonly IMediator _mediator;
         private readonly IStringLocalizer<AccountController> _localizer;
+        private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
 
         /// <summary>
         /// Constructor of account controller.
@@ -29,16 +32,19 @@ namespace WebUI.Controllers
         /// <param name="mediator">Mediator to access application entities.</param>
         /// <param name="emailService">Service to manage email activities.</param>
         /// <param name="localizer">Service for string localization.</param>
+        /// <param name="razorViewToStringRenderer">Renderer for Razor pages (to convert to string format)</param>
         /// <exception cref="ArgumentNullException"></exception>
         public AccountController(IIdentityService identityService,
                                  IEmailService emailService,
                                  IMediator mediator,
-                                 IStringLocalizer<AccountController> localizer)
+                                 IStringLocalizer<AccountController> localizer,
+                                 IRazorViewToStringRenderer razorViewToStringRenderer)
         {
             _identityService = identityService ?? throw new ArgumentNullException();
             _emailService = emailService ?? throw new ArgumentNullException();
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+            _razorViewToStringRenderer = razorViewToStringRenderer ?? throw new ArgumentNullException(nameof(razorViewToStringRenderer));
         }
 
         /// <summary>
@@ -103,8 +109,19 @@ namespace WebUI.Controllers
                                                  new { id = userId, token = token },
                                                  protocol: HttpContext.Request.Scheme);
 
-                    await _emailService.SendEmailAsync(model.Email, "Confirm your account in OpenDiary",
-                        $"Confirm registration by clicking this link: <a href='{callbackUrl}'>link</a>");
+                    var homePageUrl = Url.Action("Index", "Home", null, protocol: HttpContext.Request.Scheme);
+                    var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/Logo-1.png");
+
+                    var emailModel = new EmailViewModel
+                    {
+                        AuthorName = model.FirstName + " " + model.LastName,
+                        CallbackUrl = callbackUrl,
+                        HomePageUrl = homePageUrl,
+                        LogoUrl = logoUrl,
+                    };
+
+                    var body = await _razorViewToStringRenderer.RenderViewToStringAsync("Views/Email/Email_ConfirmEmail.cshtml", emailModel);
+                    await _emailService.SendEmailAsync(model.Email, "Confirm Open Diary account", body);
 
                     return View("ConfirmEmail", model);
                 }
@@ -230,11 +247,23 @@ namespace WebUI.Controllers
                     return View("ForgotPasswordUnknownAccount", model);
                 }
 
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userName, token }, protocol: HttpContext.Request.Scheme);
+                var userId = await _identityService.GetUserIdByNameAsync(userName);
+                var author = await _mediator.Send(new GetAuthorByUserIdQuery { UserId = userId });
 
-                //await _emailService.SendEmailAsync(model.Email, ErrorConstants.AccountResetPassword, body);
-                await _emailService.SendEmailAsync(model.Email, "Reset password of OpenDiary account",
-                        $"Reset password by clicking this link: <a href='{callbackUrl}'>link</a>");
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userName, token }, protocol: HttpContext.Request.Scheme);
+                var homePageUrl = Url.Action("Index", "Home", null, protocol: HttpContext.Request.Scheme);
+                var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/Logo-1.png");
+
+                var emailModel = new EmailViewModel
+                {
+                    AuthorName = author.FirstName + " " + author.LastName,
+                    CallbackUrl = callbackUrl,
+                    HomePageUrl = homePageUrl,
+                    LogoUrl = logoUrl,
+                };
+
+                var body = await _razorViewToStringRenderer.RenderViewToStringAsync("Views/Email/Email_ResetPassword.cshtml", emailModel);
+                await _emailService.SendEmailAsync(model.Email, "Reset password of OpenDiary account", body);
 
                 ViewData["IsAccontExist"] = true;
                 return View("ForgotPasswordConfirmation", model);

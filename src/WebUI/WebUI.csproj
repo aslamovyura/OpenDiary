@@ -40,6 +40,7 @@
     <Folder Include="Resources\ViewModels\" />
     <Folder Include="Resources\ViewModels\Account\" />
     <Folder Include="Resources\ViewModels\Posts\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
 
   <ItemGroup>
