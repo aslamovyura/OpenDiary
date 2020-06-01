@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Title">
+        <value>Подтверждение электронной почты</value>
+    </data>
+    <data name="Hi">
+        <value>Привет</value>
+    </data>
+    <data name="TapToReset">
+        <value>Нажмине на кнопку ниже, чтобы подтвердить вашу электронную почту.</value>
+    </data>
+    <data name="IfDidNotCreate">
+        <value>Усли вы не создавали учетную запить на</value>
+    </data>
+    <data name="YourCanDelete">
+        <value>, то можете просто удалть данное письмо.</value>
+    </data>
+    <data name="ClickToVerify">
+        <value>Подтверждить почту.</value>
+    </data>
+    <data name="MistakeMessage">
+        <value>Если вы получили данное письмо по ошибке, можете просто удалить его. Ваша почта не будет использована для регистрации, если вы не нажмете по кнопке выше.</value>
+    </data>
+</root>

@@ -13,14 +13,14 @@
         </div>
         <div class="email-content">
             <div class="email-header">
-                <h1>Confirm Your Email Address</h1>
+                <h1>@Localizer["Title"]</h1>
             </div>
             <div class="email-text">
-                <p>Hi @Model.AuthorName,</p>
-                <p>Tap the button below to confirm your email address.<br> If you didn't create an account with <a href="@Model.HomePageUrl" target="_blank">OpenDiary</a>, you can safely delete this email.</p>
+                <p>@Localizer["Hi"] @Model.AuthorName,</p>
+                <p>@Localizer["TapToReset"]<br>@Localizer["IfDidNotCreate"] <a href="@Model.HomePageUrl" target="_blank">OpenDiary</a>@Localizer["YourCanDelete"]</p>
             </div>
             <div class="email-button">
-                <a class="btn-main" href="@Model.CallbackUrl" target="_blank">Click to verify email</a>
+                <a class="btn-main" href="@Model.CallbackUrl" target="_blank">@Localizer["ClickToVerify"]</a>
             </div>
             <div class="email-copyrights">
                 <p>Open Diary © 2020</p>
@@ -29,7 +29,7 @@
         <div class="email-footer">
             <hr class="separator" />
             <div class="email-mistake">
-                <p>If you received this email by mistake, simply delete it. You won't be confirmed your email if you don't click the confirmation link below.</p>
+                <p>@Localizer["MistakeMessage"]</p>
             </div>
         </div>
     </div>

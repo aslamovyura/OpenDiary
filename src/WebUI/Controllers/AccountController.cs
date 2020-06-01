@@ -121,7 +121,7 @@ namespace WebUI.Controllers
                     };
 
                     var body = await _razorViewToStringRenderer.RenderViewToStringAsync("Views/Email/Email_ConfirmEmail.cshtml", emailModel);
-                    await _emailService.SendEmailAsync(model.Email, "Confirm Open Diary account", body);
+                    await _emailService.SendEmailAsync(model.Email, _localizer["ConfirmEmail"], body);
 
                     return View("ConfirmEmail", model);
                 }
@@ -263,7 +263,7 @@ namespace WebUI.Controllers
                 };
 
                 var body = await _razorViewToStringRenderer.RenderViewToStringAsync("Views/Email/Email_ResetPassword.cshtml", emailModel);
-                await _emailService.SendEmailAsync(model.Email, "Reset password of OpenDiary account", body);
+                await _emailService.SendEmailAsync(model.Email, _localizer["ResetPassword"], body);
 
                 ViewData["IsAccontExist"] = true;
                 return View("ForgotPasswordConfirmation", model);

@@ -12,28 +12,25 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="IncorrectPassword">
-        <value>Incorrect password!</value>
+    <data name="Title">
+        <value>Confirm Your Email Address</value>
     </data>
-    <data name="UserExist">
-        <value>User is already exists!</value>
+    <data name="Hi">
+        <value>Hi</value>
     </data>
-    <data name="UserNotFound">
-        <value>User is not found!</value>
+    <data name="TapToReset">
+        <value>Tap the button below to confirm your email address.</value>
     </data>
-    <data name="EmailNotVerified">
-        <value>Email adress is not verified yet!</value>
+    <data name="IfDidNotCreate">
+        <value>If you didn't create an account with</value>
     </data>
-    <data name="Success">
-        <value>Success</value>
+    <data name="YourCanDelete">
+        <value>, you can safely delete this email.</value>
     </data>
-    <data name="TokenIssues">
-        <value>Token issues...</value>
+    <data name="ClickToVerify">
+        <value>Click to verify email.</value>
     </data>
-    <data name="ResetPassword">
-        <value>Reset password of Open Diary account</value>
-    </data>
-    <data name="ConfirmEmail">
-        <value>Confirm Open Diary account</value>
+    <data name="MistakeMessage">
+        <value>If you received this email by mistake, simply delete it. You won't be confirmed your email if you don't click on the button above.</value>
     </data>
 </root>

@@ -30,4 +30,10 @@
     <data name="TokenIssues">
         <value>Проблемы с токеном...</value>
     </data>
+    <data name="ResetPassword">
+        <value>Сброс пароля учетной записи на Open Diary</value>
+    </data>
+    <data name="ConfirmEmail">
+        <value>Подтверждение учетной записи на Open Diary</value>
+    </data>
 </root>

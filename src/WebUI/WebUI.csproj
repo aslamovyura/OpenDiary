@@ -27,7 +27,6 @@
     <Folder Include="Resources\Views\Home\" />
     <Folder Include="Resources\Views\Posts\" />
     <Folder Include="Resources\Views\Profile\" />
-    <Folder Include="Resources\Views\Users\" />
     <Folder Include="Resources\Views\Shared\" />
     <Folder Include="Controllers\WebAPI\" />
     <Folder Include="Models\" />
@@ -41,6 +40,7 @@
     <Folder Include="Resources\ViewModels\Account\" />
     <Folder Include="Resources\ViewModels\Posts\" />
     <Folder Include="Views\Email\" />
+    <Folder Include="Resources\Views\Email\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -304,6 +304,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CreatePostViewModel.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Email\Email_ConfirmEmail.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Email_ConfirmEmail.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Email\Email_ConfirmEmail.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Email_ConfirmEmail.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Email\Email_ResetPassword.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Email_ResetPassword.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Email\Email_ResetPassword.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Email_ResetPassword.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -494,6 +510,18 @@
     </Compile>
     <Compile Update="Resources\ViewModels\Posts\CreatePostViewModel.en.Designer.cs">
       <DependentUpon>CreatePostViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Email\Email_ConfirmEmail.ru.Designer.cs">
+      <DependentUpon>Email_ConfirmEmail.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Email\Email_ConfirmEmail.en.Designer.cs">
+      <DependentUpon>Email_ConfirmEmail.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Email\Email_ResetPassword.ru.Designer.cs">
+      <DependentUpon>Email_ResetPassword.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Email\Email_ResetPassword.en.Designer.cs">
+      <DependentUpon>Email_ResetPassword.en.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

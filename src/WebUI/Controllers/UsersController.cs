@@ -171,7 +171,7 @@ namespace CustomIdentityApp.Controllers
         /// <param name="id">User identifier.</param>
         /// <returns></returns>
         [Authorize(Roles = "admin")]
-        [HttpPost]
+        //[HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var authorQuery = new GetAuthorQuery { Id = id };
@@ -187,7 +187,7 @@ namespace CustomIdentityApp.Controllers
                 await _mediator.Send(authorCommand);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Authors");
         }
 
         /// <summary>
