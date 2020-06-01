@@ -10,15 +10,15 @@ namespace WebUI.ViewModels.Account
         /// <summary>
         /// User email.
         /// </summary>
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "EmailRequired")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "EmailTypeRequired")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         /// <summary>
         /// User password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

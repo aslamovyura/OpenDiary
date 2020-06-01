@@ -11,50 +11,51 @@ namespace WebUI.ViewModels.Account
         /// <summary>
         /// User first name.
         /// </summary>
-        [Required]
-        [Display(Name = "First name")]
+        [Required(ErrorMessage = "FirstNameRequired")]
+        [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// User last name.
         /// </summary>
-        [Required]
-        [Display(Name = "Last name")]
+        [Required(ErrorMessage = "LastNameRequired")]
+        [Display(Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// User email.
         /// </summary>
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "EmailRequired")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "EmailTypeRequired")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         /// <summary>
         /// User's birth date.
         /// </summary>
-        [Required]
-        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "BirthDateRequired")]
+        [DataType(DataType.Date, ErrorMessage = "DateTypeRequired")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = "Birth date")]
+        [Display(Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// User's password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "Field {0} requires minimum {2} and maximum {1} symbols!", MinimumLength = 5)]
+        //[StringLength(20, ErrorMessage = "Field {0} requires minimum {2} and maximum {1} symbols!", MinimumLength = 5)]
+        [StringLength(20, ErrorMessage = "PasswordLength", MinimumLength = 5)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         /// <summary>
         /// Possword confirmation.
         /// </summary>
-        [Required]
-        [Compare("Password", ErrorMessage = "Password mismatch!")]
+        [Required(ErrorMessage = "PasswordConfirmationRequired")]
+        [Compare("Password", ErrorMessage = "PasswordMismatch")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "ConfirmPassword")]
         public string PasswordConfirm { get; set; }
     }
 }

@@ -37,6 +37,8 @@
     <Folder Include="Resources\Views\Authors\" />
     <Folder Include="ViewModels\Author\" />
     <Folder Include="Resources\Controllers\" />
+    <Folder Include="Resources\ViewModels\" />
+    <Folder Include="Resources\ViewModels\Account\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -252,10 +254,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AccountController.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\LoginViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\LoginViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\RegisterViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Account\RegisterViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
     <Compile Remove="Resources\Views\Shared\AddComment.ru.Designer.cs" />
+    <Compile Remove="Resources\ViewModels\Account\LoginViewModel.en.Designer.cs" />
+    <Compile Remove="Resources\ViewModels\Account\LoginViewModel.ru.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Views\Profile\Index.ru.Designer.cs">
@@ -404,6 +424,18 @@
     </Compile>
     <Compile Update="Resources\Controlllers\AccountController.en.Designer.cs">
       <DependentUpon>AccountController.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\LoginViewModel.ru.Designer.cs">
+      <DependentUpon>LoginViewModel.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\LoginViewModel.en.Designer.cs">
+      <DependentUpon>LoginViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\RegisterViewModel.en.Designer.cs">
+      <DependentUpon>RegisterViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Account\RegisterViewModel.ru.Designer.cs">
+      <DependentUpon>RegisterViewModel.ru.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

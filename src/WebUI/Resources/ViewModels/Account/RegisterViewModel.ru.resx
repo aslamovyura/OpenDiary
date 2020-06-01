@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="FirstName">
+        <value>Имя</value>
+    </data>
+    <data name="FirstNameRequired">
+        <value>Необходимо ввести имя!</value>
+    </data>
+    
+    <data name="LastName">
+        <value>Фамилия</value>
+    </data>
+    <data name="LastNameRequired">
+        <value>Необходимо ввести фамилию!</value>
+    </data>
+    
+    <data name="Email">
+        <value>Электронный адрес</value>
+    </data>
+    <data name="EmailRequired">
+        <value>Необходимо ввести электронный адрес!</value>
+    </data>
+    <data name="EmailTypeRequired">
+        <value>Введите, пожалуйста, корректный электронный адрес!</value>
+    </data>
+    
+    <data name="BirthDate">
+        <value>Дата рождения</value>
+    </data>
+    <data name="BirthDateRequired">
+        <value>Необходимо ввести дату рождения!</value>
+    </data>
+    <data name="DateTypeRequired">
+        <value>Введите, пожалуйста, дату рождения в корректном формате!</value>
+    </data>
+    
+    <data name="Password">
+        <value>Пароль</value>
+    </data>
+    <data name="PasswordRequired">
+        <value>Необходимо ввести пароль!</value>
+    </data>
+    <data name="PasswordLength">
+        <value>{0} должет содержить от {2} до {1} символов!</value>
+    </data>
+       
+    <data name="ConfirmPassword">
+        <value>Подствердите пароль</value>
+    </data>
+    <data name="PasswordConfirmationRequired">
+        <value>Необходимо подтвердить пароль!</value>
+    </data>
+    <data name="PasswordMismatch">
+        <value>Пароли не совпадают!</value>
+    </data>
+    
+</root>
