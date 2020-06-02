@@ -113,6 +113,7 @@ namespace WebUI.Controllers
 
             // Create post view model.
             var model = _mapper.Map<PostDTO, PostViewModel>(post);
+            model.AuthorAvatar = author.Avatar;
 
             // Check current user if he/she is an author of the current post.
             var userName = HttpContext.User.Identity.Name;
@@ -144,6 +145,7 @@ namespace WebUI.Controllers
                 (var age, var units) = comment.Date.Age();
                 comment.Age = age;
                 comment.AgeUnits = units;
+                comment.AuthorAvatar = commentAuthor.Avatar;
             }
 
             return View(model);

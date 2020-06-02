@@ -11,7 +11,7 @@
         <div class="profile-author-wrapper">
 
             <div class="profile-logo-container">
-                @if (Model.Avatar == null)
+                @if (Model.Avatar == null || Model.Avatar.Count() == 0)
                 {
                     <img class="profile-image" src="/Resources/user-3.png">
                 }
@@ -48,6 +48,7 @@
 
             <div class="profile-edit-info-container">
                 <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Avatar" />
 
                 <h2 class="profile-about-info-title">@Localizer["FirstName"]</h2>
                 <input asp-for="FirstName" class="profile-about-info-input" placeholder="@Model.FirstName">

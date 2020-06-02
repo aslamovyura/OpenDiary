@@ -11,7 +11,7 @@
             <div class="profile-author-wrapper">
 
                 <div class="profile-logo-container">
-                    @if (Model.Avatar == null)
+                    @if (Model.Avatar == null || Model.Avatar.Count() == 0)
                     {
                         <img class="profile-image" src="~/resources/user-3.png">
                     }

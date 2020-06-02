@@ -41,6 +41,11 @@ namespace WebUI.ViewModels
         public string Author { get; set; }
 
         /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] AuthorAvatar { get; set; } = null;
+
+        /// <summary>
         /// Comment Age [ceil].
         /// </summary>
         public int Age { get; set; }

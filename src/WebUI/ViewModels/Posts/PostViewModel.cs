@@ -49,6 +49,11 @@ namespace WebUI.ViewModels.Posts
         public string Author { get; set; }
 
         /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] AuthorAvatar { get; set; } = null;
+
+        /// <summary>
         /// Current reader Id.
         /// </summary>
         public int CurrentReaderId { get; set; }

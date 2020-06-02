@@ -4,7 +4,14 @@
 {
     <ul class="nav-right">
         <li>
-            <img class="dropdown-img" src="~/resources/UserLogo.png" alt="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+            @if (Model.Avatar == null || Model.Avatar.Count() == 0)
+            {
+                <img class="dropdown-img" src="~/resources/UserLogo.png" alt="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+            }
+            else
+            {
+                <img class="dropdown-img" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Avatar))" alt="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+            }
 
             <div class="dropdown-menu">
                 <form class="dropdown-item" asp-area="">
