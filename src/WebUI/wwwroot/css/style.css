@@ -950,6 +950,7 @@
         height: 75px;
         width: 75px;
         padding: 5px;
+        border-radius: 50%;
     }
 
     .comment-info {
@@ -1041,6 +1042,7 @@
         height: 75px;
         width: 75px;
         padding: 5px;
+        border-radius: 50%;
     }
 
     .author-logo-container {
@@ -1169,6 +1171,7 @@
         height: 200px;
         width: 200px;
         padding: 10px;
+        border-radius: 50%;
     }
 
     .profile-author-info-container {

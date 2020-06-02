@@ -60,6 +60,7 @@ namespace Application.CQRS.Commands.Update
                 author.About = request.Model.About;
                 author.Profession = request.Model.Profession;
                 author.Hobbies = request.Model.Hobbies;
+                author.Avatar = request.Model.Avatar;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

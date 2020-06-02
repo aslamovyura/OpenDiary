@@ -51,5 +51,10 @@ namespace Application.DTO
         /// Profession informations.
         /// </summary>
         public string Profession { get; set; }
+
+        /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] Avatar { get; set; }
     }
 }

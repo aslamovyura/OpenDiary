@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
+
 namespace WebUI.ViewModels
 {
     /// <summary>
@@ -45,5 +47,10 @@ namespace WebUI.ViewModels
         /// Comments number.
         /// </summary>
         public int CommentsNumber { get; set; }
+
+        /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] Avatar { get; set; } = null;
     }
 }

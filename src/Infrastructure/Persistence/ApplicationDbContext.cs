@@ -27,9 +27,9 @@ namespace Infrastructure.Persistence
             : base(options)
         {
             //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
 
-            Database.Migrate();
+            //Database.Migrate();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

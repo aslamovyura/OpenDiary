@@ -20,7 +20,16 @@
                 {
                 <div class="author-wrapper">
                     <div class="author-logo-container">
-                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@author.AuthorId"><img src="/Resources/user-3.png" alt="author" class="author-image"></a>
+                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@author.AuthorId">
+                            @if (author.Avatar == null)
+                            {
+                                <img src="/Resources/user-3.png" alt="author" class="author-image">
+                            }
+                            else
+                            {
+                                <img alt="author" class="author-image" src="data:image/jpg;base64,@(Convert.ToBase64String(author.Avatar))">
+                            }
+                        </a>
                     </div>
                     <div class="author-info-container">
                         <a asp-controller="Profile" asp-action="Index" asp-route-id="@author.AuthorId" class="author-info-name">@author.FirstName @author.LastName</a>

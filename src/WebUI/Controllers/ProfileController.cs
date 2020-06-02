@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Application.CQRS.Commands.Update;
 using Application.CQRS.Queries.Get;
@@ -166,8 +167,18 @@ namespace WebUI.Controllers
             }
 
             var authorDTO = _mapper.Map<ProfileViewModel, AuthorDTO>(model);
-            var authorCommand = new UpdateAuthorCommand { Model = authorDTO };
 
+            if (model.UploadedData != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(model.UploadedData.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.UploadedData.Length);
+                }
+                authorDTO.Avatar = imageData;
+            }
+
+            var authorCommand = new UpdateAuthorCommand { Model = authorDTO };
             await _mediator.Send(authorCommand);
 
             return RedirectToAction("Index", "Profile", new { id = model.Id });

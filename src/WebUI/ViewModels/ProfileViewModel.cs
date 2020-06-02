@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Application.DTO;
+using Microsoft.AspNetCore.Http;
 
 namespace WebUI.ViewModels
 {
@@ -64,6 +65,16 @@ namespace WebUI.ViewModels
         /// Total number of number comments.
         /// </summary>
         public int TotalCommentsNumber { get; set; }
+
+        /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] Avatar { get; set; } = null;
+
+        /// <summary>
+        /// Uploaded data.
+        /// </summary>
+        public IFormFile UploadedData { get; set; } = null;
 
         /// <summary>
         /// Latest posts

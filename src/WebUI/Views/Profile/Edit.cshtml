@@ -11,7 +11,14 @@
         <div class="profile-author-wrapper">
 
             <div class="profile-logo-container">
-                <img class="profile-image" src="/Resources/user-3.png">
+                @if (Model.Avatar == null)
+                {
+                    <img class="profile-image" src="/Resources/user-3.png">
+                }
+                else
+                {
+                    <img class="profile-image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Avatar))">
+                }
             </div>
 
             <div class="profile-author-info-container">
@@ -24,7 +31,7 @@
             </div>
         </div>
 
-        <form class="profile-edit-wrapper" asp-controller="Profile" asp-action="Edit">
+        <form class="profile-edit-wrapper" asp-controller="Profile" asp-action="Edit" enctype="multipart/form-data">
 
             <div class="profile-about-controls-container">
                 <div class="profile-profile-controls ">
@@ -61,7 +68,7 @@
                 <textarea asp-for="Hobbies" class="profile-about-info-input">@Model.Hobbies</textarea>
 
                 <h2 class="profile-about-info-title">@Localizer["ProfileImage"]</h2>
-                <input type="file" class="profile-about-info-input" value="image">
+                <input asp-for="UploadedData" type="file" class="profile-about-info-input" value="image">
             </div>
 
             <div class="profile-save-controls-container">
