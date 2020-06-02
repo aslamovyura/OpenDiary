@@ -49,6 +49,11 @@ namespace Domain.Entities
         public string Profession { get; set; }
 
         /// <summary>
+        /// Author avatar.
+        /// </summary>
+        public byte[] Avatar { get; set; }
+
+        /// <summary>
         /// The collection of posts.
         /// </summary>
         public virtual ICollection<Post> Posts { get; set; }
