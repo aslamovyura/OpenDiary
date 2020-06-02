@@ -67,13 +67,14 @@
                                 </div>
                                 <div class="comment-content-container">
                                     <p class="comment-content-text">@comment.Text</p>
+                                    <input type="hidden" class="comment-id" value="@comment.Id" />
                                 </div>
 
                                 @if (Model.CurrentReaderId == comment.AuthorId)
                                 {
                                     <div class="comment-edit-container">
-                                        <a href="#" class="comment-edit-text">@Localizer["Edit"]</a>
-                                        <a asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" asp-route-returnUrl="@Url.Action("Read", "Posts", new { id = Model.Id })" class="comment-edit-text">@Localizer["Remove"]</a>
+                                        <a href="#" onclick="editCommentView(event)" class="comment-edit-text">@Localizer["Edit"]</a>
+                                        <a asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" asp-route-returnUrl="@Url.Action("Read", "Posts", new { id = Model.Id })" class="comment-edit-text comment-remove-btn">@Localizer["Remove"]</a>
                                     </div>
                                 }
                             </div>
@@ -84,3 +85,4 @@
             }
         </div>     
     </div>
+    <script src="~/js/editComment.js"></script>

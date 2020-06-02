@@ -1397,6 +1397,52 @@
         padding: 10px 20px;
     }
 
+    /* ------------ Edit Comment -------- */
+
+    .edit-comment-wrapper {
+        grid-area: add-comment;
+        display: grid;
+        grid-template: 1fr / repeat(20, 1fr);
+        width: 400px;
+        margin: auto;
+    }
+
+    .edit-comment-field-container {
+        grid-area: 1 / 1 / span 1 / span 16;
+        display: inline-block;
+        height: 35%;
+        justify-items: middle;
+        margin-right: 10px;
+        margin-top: 1px;
+    }
+
+    .edit-comment-field {
+        width: 100%;
+        align-self: center;
+        border: 2px solid #333;
+        border-radius: 5px;
+    }
+
+    textarea.edit-comment-field {
+        padding: 10px;
+        resize: vertical;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: 1.3px;
+        margin-bottom: 10px;
+    }
+
+        textarea.edit-comment-field:focus {
+            outline: none;
+        }
+
+    .edit-comment-button-container {
+        grid-area: 1 / 18 / span 1 / span 3;
+        text-align: end;
+        display: inline-block;
+    }
+
     /* ------------ Media ------------ */
 
     @media(max-width: 900px) {

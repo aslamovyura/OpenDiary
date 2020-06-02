@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Application.CQRS.Commands.Create;
 using Application.CQRS.Commands.Delete;
+using Application.CQRS.Commands.Update;
 using Application.DTO;
 using Application.Exceptions;
 using AutoMapper;
@@ -84,6 +83,29 @@ namespace WebUI.Controllers
                 return RedirectToAction("Index", "Posts");
             else
                 return Redirect(returnUrl);
+        }
+
+        /// <summary>
+        /// Edit comment.
+        /// </summary>
+        /// <param name="id">Comment identifier.</param>
+        /// <param name="text">Comment new text.</param>
+        /// <returns>Post page with edited comment.</returns>
+        public async Task<IActionResult> Edit(int id, string text)
+        {
+            if (id != default)
+            {
+                var model = new CommentDTO
+                {
+                    Id = id,
+                    Text = text,
+                };
+
+                var commentCommand = new UpdateCommentCommand { Model = model };
+                await _mediator.Send(commentCommand);
+            }
+
+            return Ok();
         }
     }
 }
