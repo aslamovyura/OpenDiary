@@ -47,6 +47,10 @@ namespace UnitTests
                     FirstName = "FirstName_One",
                     LastName = "LastName_One",
                     BirthDate = new DateTime(1988, 01, 01),
+                    About = "About_One",
+                    Hobbies = "Hobbies_One",
+                    Profession = "Profession_One",
+                    Avatar = null,
                 },
 
                 new Author
@@ -56,6 +60,9 @@ namespace UnitTests
                     FirstName = "FirstName_Two",
                     LastName = "LastName_Two",
                     BirthDate = new DateTime(1989, 01, 01),
+                    About = "About_Two",
+                    Profession = "Profession_Two",
+                    Avatar = null,
                 },
 
                 new Author
@@ -65,6 +72,7 @@ namespace UnitTests
                     FirstName = "FirstName_Three",
                     LastName = "LastName_Three",
                     BirthDate = new DateTime(1990, 01, 01),
+                    Profession = "Profession_Three",
                 },
             };
 

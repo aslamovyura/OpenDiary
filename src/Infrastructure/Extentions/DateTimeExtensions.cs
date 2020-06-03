@@ -13,8 +13,14 @@ namespace Infrastructure.Extentions
         /// </summary>
         /// <param name="startDate">Start date.</param>
         /// <returns>Age and units.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static (int age, AgeUnits units) Age(this DateTime startDate)
         {
+            if (DateTime.Now < startDate)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startDate));
+            }
+
             var zeroTime = new DateTime(1, 1, 1);
             var span = zeroTime + (DateTime.Now - startDate);
 
@@ -49,39 +55,25 @@ namespace Infrastructure.Extentions
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static int Age(this DateTime startDate, AgeUnits units)
         {
-            var zeroTime = new DateTime(1, 1, 1);
             if(DateTime.Now < startDate)
             {
                 throw new ArgumentOutOfRangeException(nameof(startDate));
             }
+
+            var zeroTime = new DateTime(1, 1, 1);
             var span = zeroTime + (DateTime.Now - startDate);
 
-            switch(units)
+            return units switch
             {
-                case AgeUnits.Year:
-                    return span.Year - 1;
-
-                case AgeUnits.Month:
-                    return span.Month - 1;
-
-                case AgeUnits.Week:
-                    return span.Day%7 - 1;
-
-                case AgeUnits.Day:
-                    return span.Day - 1;
-
-                case AgeUnits.Hour:
-                    return span.Hour - 1;
-
-                case AgeUnits.Minute:
-                    return span.Minute - 1;
-
-                case AgeUnits.Second:
-                    return span.Second - 1;
-
-                default:
-                    return span.Year - 1;
-            }
+                AgeUnits.Year => span.Year - 1,
+                AgeUnits.Month => span.Month - 1,
+                AgeUnits.Week => span.Day % 7 - 1,
+                AgeUnits.Day => span.Day - 1,
+                AgeUnits.Hour => span.Hour - 1,
+                AgeUnits.Minute => span.Minute - 1,
+                AgeUnits.Second => span.Second - 1,
+                _ => throw new ArgumentException(nameof(startDate)),
+            };
         }
     }
 }

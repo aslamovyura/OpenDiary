@@ -24,6 +24,7 @@
     <Folder Include="Queries\Get\" />
     <Folder Include="Common\" />
     <Folder Include="Common\Mapping\" />
+    <Folder Include="Common\Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebUI\WebUI.csproj" />
