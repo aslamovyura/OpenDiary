@@ -14,7 +14,15 @@ namespace Application.Mapping
         /// </summary>
         public ProfileViewModelProfile()
         {
-            CreateMap<ProfileViewModel, AuthorDTO>().ReverseMap();
+            CreateMap<AuthorDTO, ProfileViewModel>()
+                .ForMember(model => model.Age, opt => opt.Ignore())
+                .ForMember(model => model.CurrentReaderId, opt => opt.Ignore())
+                .ForMember(model => model.TotalCommentsNumber, opt => opt.Ignore())
+                .ForMember(model => model.TotalPostsNumber, opt => opt.Ignore())
+                .ForMember(model => model.UploadedData, opt => opt.Ignore())
+                .ForMember(model => model.Posts, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(dto => dto.UserId, opt => opt.Ignore());
         }
     }
 }

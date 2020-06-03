@@ -14,7 +14,12 @@ namespace Application.Mapping
         /// </summary>
         public EditPostViewModelProfile()
         {
-            CreateMap<PostDTO, EditPostViewModel>().ReverseMap();
+            CreateMap<PostDTO, EditPostViewModel>()
+                .ForMember(model => model.Topics, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(dto => dto.Date, opt => opt.Ignore())
+                .ForMember(dto => dto.AuthorId, opt => opt.Ignore())
+                .ForMember(dto => dto.Author, opt => opt.Ignore());
         }
     }
 }

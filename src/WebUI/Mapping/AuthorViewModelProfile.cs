@@ -16,8 +16,13 @@ namespace Application.Mapping
         {
             CreateMap<AuthorViewModel, AuthorDTO>()
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(model => model.AuthorId))
+                .ForMember(dto => dto.About, opt => opt.Ignore())
+                .ForMember(dto => dto.Hobbies, opt => opt.Ignore())
+                .ForMember(dto => dto.Profession, opt => opt.Ignore())
                 .ReverseMap()
-                .ForPath(model => model.AuthorId, opt => opt.MapFrom(dto => dto.Id));
+                .ForPath(model => model.AuthorId, opt => opt.MapFrom(dto => dto.Id))
+                .ForMember(model => model.PostsNumber, opt => opt.Ignore())
+                .ForMember(model => model.CommentsNumber, opt => opt.Ignore());
         }
     }
 }

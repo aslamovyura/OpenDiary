@@ -30,10 +30,5 @@ namespace Application.DTO
         /// Author identifier.
         /// </summary>
         public int AuthorId { get; set; }
-
-        ///// <summary>
-        ///// Comment author.
-        ///// </summary>
-        //public string Author { get; set; }
     }
 }

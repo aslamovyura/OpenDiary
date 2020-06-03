@@ -22,6 +22,8 @@
     <Folder Include="Commands\Delete\" />
     <Folder Include="Queries\" />
     <Folder Include="Queries\Get\" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Mapping\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebUI\WebUI.csproj" />
