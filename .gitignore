@@ -350,3 +350,6 @@ MigrationBackup/
 .ionide/
 emailsettings.json
 src/WebUI/emailsettings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/settings.json
