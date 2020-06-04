@@ -20,8 +20,8 @@ namespace Infrastructure.Persistence
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static async Task SeedAsync( UserManager<ApplicationUser> userManager,
-                                                  RoleManager<IdentityRole> roleManager,
-                                                  ApplicationDbContext context)
+                                            RoleManager<IdentityRole> roleManager,
+                                            ApplicationDbContext context)
         {
             userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
