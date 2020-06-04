@@ -30,7 +30,7 @@ namespace WebUI.Controllers
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Constructor
+        /// Constructor of Posts Controller.
         /// </summary>
         /// <param name="mediator"></param>
         /// <param name="identityService"></param>
@@ -204,7 +204,7 @@ namespace WebUI.Controllers
         /// <returns>Create new post and redirect to the page with posts.</returns>
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(PostViewModel model)
+        public async Task<IActionResult> Create(CreatePostViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -244,9 +244,10 @@ namespace WebUI.Controllers
 
                 var postCommand = new CreatePostCommand { Model = postDTO };
 
+                int postId;
                 try
                 {
-                    await _mediator.Send(postCommand);
+                    postId = await _mediator.Send(postCommand);
                 }
                 catch (RequestValidationException failures)
                 {
@@ -257,7 +258,7 @@ namespace WebUI.Controllers
                     return View(model);
                 }
                 
-                return RedirectToAction("Index", "Posts");
+                return RedirectToAction("Read", "Posts", new { id = postId });
             }
 
             return View(model);
@@ -274,6 +275,11 @@ namespace WebUI.Controllers
             // Get post.
             var postQuery = new GetPostQuery { Id = id };
             var postDTO = await _mediator.Send(postQuery);
+
+            if (postDTO == null)
+            {
+                return NotFound(id);
+            }
 
             // Get topic.
             var topicId = postDTO.TopicId;
@@ -340,10 +346,8 @@ namespace WebUI.Controllers
                     }
                     return View(model);
                 }
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Read", "Posts", new { id = postDTO.Id });
             }
-
             return View(model);
         }
 
@@ -356,7 +360,6 @@ namespace WebUI.Controllers
         {
             var postCommand = new DeletePostCommand { Id = id };
             await _mediator.Send(postCommand);
-
 
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
                 return RedirectToAction("Index", "Posts");

@@ -11,25 +11,25 @@ namespace IntegrationTests.HomeController
     {
         public HttpClient Client { get; }
 
-        public IndexTests(WebTestFixture factory)
-        {   
-            factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            Client = factory.CreateClient();
-        }
+        //public IndexTests(WebTestFixture factory)
+        //{   
+        //    factory = factory ?? throw new ArgumentNullException(nameof(factory));
+        //    Client = factory.CreateClient();
+        //}
 
-        [Fact]
-        public async Task Index_ReturnPage_WithMainScreen()
-        {
-            // Arrange
-            HttpResponseMessage response = await Client.GetAsync("/");
+        //[Fact]
+        //public async Task Index_ReturnPage_WithMainScreen()
+        //{
+        //    // Arrange
+        //    HttpResponseMessage response = await Client.GetAsync("/");
 
-            // Act
-            response.EnsureSuccessStatusCode();
-            var stringResponce = await response.Content.ReadAsStringAsync();
+        //    // Act
+        //    response.EnsureSuccessStatusCode();
+        //    var stringResponce = await response.Content.ReadAsStringAsync();
 
-            // Assert
-            stringResponce.Should().Contain("Open Diary");
+        //    // Assert
+        //    stringResponce.Should().Contain("Open Diary");
 
-        }
+        //}
     }
 }

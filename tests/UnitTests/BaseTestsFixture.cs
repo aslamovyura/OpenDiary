@@ -11,6 +11,16 @@ namespace UnitTests
     public class BaseTestsFixture : IDisposable
     {
         /// <summary>
+        /// Context of sample database.
+        /// </summary>
+        public ApplicationDbContext Context { get; }
+
+        /// <summary>
+        /// AutoMapper для DTO и основных моделей.
+        /// </summary>
+        public IMapper Mapper { get; }
+
+        /// <summary>
         /// Define base tests fixture.
         /// </summary>
         public BaseTestsFixture()
@@ -27,16 +37,6 @@ namespace UnitTests
 
             Mapper = configurationProvider.CreateMapper();
         }
-
-        /// <summary>
-        /// Context of sample database.
-        /// </summary>
-        public ApplicationDbContext Context { get; }
-
-        /// <summary>
-        /// AutoMapper для DTO и основных моделей.
-        /// </summary>
-        public IMapper Mapper { get; }
 
         /// <summary>
         /// Разрушить контекст.
