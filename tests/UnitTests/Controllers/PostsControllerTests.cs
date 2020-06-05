@@ -7,7 +7,6 @@ using Application.CQRS.Commands.Create;
 using Application.CQRS.Commands.Delete;
 using Application.CQRS.Queries.Get;
 using Application.DTO;
-using Application.Enums;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -21,7 +20,7 @@ using Xunit;
 
 namespace UnitTests.Controllers
 {
-    public class PostsControllerTests
+    public class PostsControllerTests : ControllerTestsFixture
     {
         [Fact]
         public void Index_WhenIdIsNull_Return_ViewResultWithAllPosts()
@@ -420,44 +419,6 @@ namespace UnitTests.Controllers
             Assert.Equal("Posts", redirectToActionResult.ControllerName);
         }
 
-        // Get single post.
-        private PostDTO GetPost()
-{
-    var post = new PostDTO
-    {
-        Id = 1,
-        Author = "Author_One",
-        AuthorId = 1,
-        Date = DateTime.Parse("01/01/2020"),
-        Text = "Text_One",
-        Title = "Title_One",
-        Topic = "Topic_One",
-        TopicId = 1,
-    };
-    return post;
-}
-
-        // Get single post.
-        private PostViewModel GetPostViewModel()
-        {
-            var post = new PostViewModel
-            {
-                Id = 1,
-                Author = "Author_One",
-                AuthorId = 1,
-                Date = DateTime.Parse("01/01/2020"),
-                Text = "Text_One",
-                Title = "Title_One",
-                Topic = "Topic_One",
-                TopicId = 1,
-                AuthorAvatar = null,
-                Comments = GetCommentViewModels(),
-                CurrentReaderId = 1,
-
-            };
-            return post;
-        }
-
         [Fact]
         public void Delete_WithInvalidReturnUrl_Return_RedirectToPostsAction()
         {
@@ -482,214 +443,6 @@ namespace UnitTests.Controllers
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectToActionResult.ActionName);
             Assert.Equal("Posts", redirectToActionResult.ControllerName);
-        }
-
-        // Get single post.
-        private EditPostViewModel GetEditPostViewModel()
-        {
-            var post = new EditPostViewModel()
-            {
-                Id = 1,
-                Text = "Text_One",
-                Title = "Title_One",
-                Topic = "Topic_One",
-                TopicId = 1,
-            };
-            return post;
-        }
-
-        // Generate posts 
-        private ICollection<PostDTO> GetPosts()
-        {
-            var posts = new List<PostDTO>()
-            {
-                new PostDTO
-                {
-                    Id = 1,
-                    Author = "Author_One",
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    Text = "Text_One",
-                    Title = "Title_One",
-                    Topic = "Topic_One",
-                    TopicId = 1,
-                },
-
-                new PostDTO
-                {
-                    Id = 2,
-                    Author = "Author_One",
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    Text = "Text_Two",
-                    Title = "Title_Two",
-                    Topic = "Topic_Two",
-                    TopicId = 1,
-                }
-            };
-            return posts;
-        }
-
-        // Generate post view models
-        private ICollection<PostViewModel> GetPostViewModels()
-        {
-            var posts = new List<PostViewModel>()
-            {
-                new PostViewModel
-                {
-                    Id = 1,
-                    Author = "Author_One",
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    Text = "Text_One",
-                    Title = "Title_One",
-                    Topic = "Topic_One",
-                    TopicId = 1,
-                    AuthorAvatar = null,
-                    Comments = null,
-                    CurrentReaderId = 1,
-                },
-
-                new PostViewModel
-                {
-                    Id = 2,
-                    Author = "Author_One",
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    Text = "Text_Two",
-                    Title = "Title_Two",
-                    Topic = "Topic_Two",
-                    TopicId = 1,
-                    AuthorAvatar = null,
-                    Comments = null,
-                    CurrentReaderId = 1,
-                }
-            };
-            return posts;
-        }
-
-        // Generate author dto 
-        private AuthorDTO GetAuthor()
-        {
-            return new AuthorDTO
-            {
-                Id = 1,
-                UserId = "someId",
-                FirstName = "FirstName",
-                LastName = "LastName",
-                BirthDate = DateTime.Parse("01/01/2020"),
-                Email = "some@email.com",
-            };
-        }
-
-        // Generate topic dto 
-        private TopicDTO GetTopic()
-        {
-            return new TopicDTO
-            {
-                Id = 1,
-                Text = "Topic"
-            };
-        }
-
-        // Generate list of topic dto 
-        private IEnumerable<TopicDTO> GetTopics()
-        {
-            var topics = new List<TopicDTO>()
-            {
-                new TopicDTO
-                {
-                    Id = 1,
-                    Text = "Topic_One",
-                },
-
-                new TopicDTO
-                {
-                    Id = 2,
-                    Text = "Topic_Two",
-                },
-            };
-            return topics;
-        }
-
-        // Generate list of topic view models 
-        private ICollection<TopicViewModel> GetTopicViewModels()
-        {
-            var topics = new List<TopicViewModel>()
-            {
-                new TopicViewModel
-                {
-                    Id = 1,
-                    Text = "Topic_One",
-                },
-
-                new TopicViewModel
-                {
-                    Id = 2,
-                    Text = "Topic_Two",
-                },
-            };
-            return topics;
-        }
-
-        // Generate comments dto.
-        private ICollection<CommentDTO> GetComments()
-        {
-            var comments = new List<CommentDTO>()
-            {
-                new CommentDTO
-                {
-                    Id = 1,
-                    AuthorId = 1,
-                    Date = DateTime.Parse("10/01/2020"),
-                    PostId = 1,
-                    Text = "Comment_One",
-                },
-
-                new CommentDTO
-                {
-                    Id = 2,
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    PostId = 1,
-                    Text = "Comment_One",
-                },
-            };
-            return comments;
-        }
-
-        // Generate comments dto.
-        private ICollection<CommentViewModel> GetCommentViewModels()
-        {
-            var comments = new List<CommentViewModel>()
-            {
-                new CommentViewModel
-                {
-                    Id = 1,
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    PostId = 1,
-                    Text = "Comment_One",
-                    Age = 1,
-                    AgeUnits = AgeUnits.Day,
-                    Author = "Author_One",
-                    AuthorAvatar = null,
-                },
-
-                new CommentViewModel
-                {
-                    Id = 2,
-                    AuthorId = 1,
-                    Date = DateTime.Parse("01/01/2020"),
-                    PostId = 1,
-                    Text = "Comment_One",
-                    Age = 2,
-                    AgeUnits = AgeUnits.Day,
-                    Author = "Author_One",
-                    AuthorAvatar = null,
-                },
-            };
-            return comments;
         }
     }
 }
