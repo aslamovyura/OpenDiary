@@ -23,7 +23,7 @@ namespace UnitTests.Controllers
     public class PostsControllerTests : ControllerTestsFixture
     {
         [Fact]
-        public void Index_WhenIdIsNull_Return_ViewResultWithAllPosts()
+        public void Index_WithoutId_Return_ViewResultWithAllPosts()
         {
             // Arrange
             var mediatorMock = new Mock<IMediator>();
@@ -150,18 +150,7 @@ namespace UnitTests.Controllers
                 .Send(It.IsAny<GetAuthorByUserIdQuery>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(GetAuthor()));
 
-            var fakeContext = new Mock<HttpContext>();
-            var fakeIdentity = new GenericIdentity("User");
-            var principal = new GenericPrincipal(fakeIdentity, null);
-            fakeContext.Setup(x => x.User).Returns(principal);
-
-            var context = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext
-                {
-                    User = principal
-                }
-            };
+            var context = GetFakeContext();
 
             var identityMock = new Mock<IIdentityService>();
             identityMock.Setup(identity => identity.GetUserIdByNameAsync(It.IsAny<string>()))
@@ -255,19 +244,7 @@ namespace UnitTests.Controllers
             var identityMock = new Mock<IIdentityService>();
             var mapperMock = new Mock<IMapper>();
 
-            var fakeContext = new Mock<HttpContext>();
-            var fakeIdentity = new GenericIdentity("User");
-            var principal = new GenericPrincipal(fakeIdentity, null);
-            fakeContext.Setup(x => x.User).Returns(principal);
-
-            var context = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext
-                {
-                    User = principal
-                }
-            };
-
+            var context = GetFakeContext();
             var controller = new PostsController(mediatorMock.Object,
                                                  identityMock.Object,
                                                  mapperMock.Object);

@@ -41,18 +41,7 @@ namespace UnitTests.Controllers
                 .GetEmailByIdAsync(It.IsAny<string>()))
                 .Returns(Task.FromResult("some@email.com"));
 
-            var fakeContext = new Mock<HttpContext>();
-            var fakeIdentity = new GenericIdentity("User");
-            var principal = new GenericPrincipal(fakeIdentity, null);
-            fakeContext.Setup(x => x.User).Returns(principal);
-
-            var context = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext
-                {
-                    User = principal
-                }
-            };
+            var context = GetFakeContext();
 
             var mapperMock = new Mock<IMapper>();
             mapperMock.Setup(mapper => mapper.Map<IEnumerable<AuthorDTO>, ICollection<AuthorViewModel>>(It.IsAny<IEnumerable<AuthorDTO>>()))

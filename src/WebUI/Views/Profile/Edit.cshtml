@@ -47,8 +47,13 @@
             </div>
 
             <div class="profile-edit-info-container">
+
+                <div class="validation-message" asp-validation-summary="All"></div>
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Avatar" />
+                <input type="hidden" asp-for="BirthDate" />
+                @* TODO: Remove the line below, when enable to edit user email address *@
+                <input type="hidden" asp-for="Email" />
 
                 <h2 class="profile-about-info-title">@Localizer["FirstName"]</h2>
                 <input asp-for="FirstName" class="profile-about-info-input" placeholder="@Model.FirstName">
@@ -57,7 +62,7 @@
                 <input asp-for="LastName" class="profile-about-info-input" placeholder="@Model.LastName">
 
                 <h2 class="profile-about-info-title">@Localizer["Email"]</h2>
-                <input asp-for="Email" class="profile-about-info-input" placeholder="@Model.Email" disabled>
+                <input asp-for="Email" class="profile-about-info-input" placeholder="@Model.Email" disabled/>
 
                 <h2 class="profile-about-info-title">@Localizer["Profession"]</h2>
                 <textarea asp-for="Profession" class="profile-about-info-input">@Model.Profession</textarea>

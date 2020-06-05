@@ -45,7 +45,7 @@ namespace WebUI.Controllers
         /// <returns>User profile page.</returns>
         public async Task<ActionResult> Index(int id)
         {
-            if (id == default)
+            if (id <= 0)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -103,7 +103,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            if (id == default)
+            if (id <= 0)
             {
                 return RedirectToAction("Index", "Home");
             }

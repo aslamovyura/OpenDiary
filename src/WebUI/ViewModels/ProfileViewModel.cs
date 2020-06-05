@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Application.DTO;
 using Microsoft.AspNetCore.Http;
 
@@ -14,21 +15,32 @@ namespace WebUI.ViewModels
         /// <summary>
         /// User first name.
         /// </summary>
+        [Required(ErrorMessage = "FirstNameRequired")]
+        [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// User last name.
         /// </summary>
+        [Required(ErrorMessage = "LastNameRequired")]
+        [Display(Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// User's email.
         /// </summary>
+        [Required(ErrorMessage = "EmailRequired")]
+        [EmailAddress(ErrorMessage = "EmailTypeRequired")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         /// <summary>
         /// User's birth date.
         /// </summary>
+        [Required(ErrorMessage = "BirthDateRequired")]
+        [DataType(DataType.Date, ErrorMessage = "DateTypeRequired")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "BirthDate")]
         public string BirthDate { get; set; }
 
         /// <summary>

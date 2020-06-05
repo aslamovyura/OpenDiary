@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using Application.DTO;
 using Application.Enums;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using WebUI.ViewModels;
 using WebUI.ViewModels.Posts;
 
@@ -194,7 +198,29 @@ namespace UnitTests.Controllers
             return authors;
         }
 
-                /// <summary>
+        /// <summary>
+        /// Generate author view model. 
+        /// </summary>
+        /// <returns>Author view model.</returns>
+        public AuthorViewModel GetAuthorVieModel()
+        {
+            var author = new AuthorViewModel
+            {
+                AuthorId = 1,
+                UserId = "someId",
+                FirstName = "FirstName",
+                LastName = "LastName",
+                BirthDate = DateTime.Parse("01/01/2020"),
+                Email = "some@email.com",
+                Avatar = null,
+                PostsNumber = 2,
+                CommentsNumber = 2,
+            };
+            return author;
+        }
+
+
+        /// <summary>
         /// Generate collection of author view models. 
         /// </summary>
         /// <returns>Collection of author view models.</returns>
@@ -334,26 +360,72 @@ namespace UnitTests.Controllers
                     Date = DateTime.Parse("01/01/2020"),
                     PostId = 1,
                     Text = "Comment_One",
-                    Age = 1,
+                    Age = 2,
                     AgeUnits = AgeUnits.Day,
                     Author = "Author_One",
                     AuthorAvatar = null,
                 },
-
                 new CommentViewModel
                 {
                     Id = 2,
                     AuthorId = 1,
                     Date = DateTime.Parse("01/01/2020"),
                     PostId = 1,
-                    Text = "Comment_One",
+                    Text = "Comment_Two",
                     Age = 2,
                     AgeUnits = AgeUnits.Day,
                     Author = "Author_One",
                     AuthorAvatar = null,
                 },
-            };
+            }; 
             return comments;
+        }
+
+        /// <summary>
+        /// Generate profile view model. 
+        /// </summary>
+        /// <returns>Profile view model.</returns>
+        public ProfileViewModel GetProfileViewModel()
+        {
+            var profile = new ProfileViewModel
+            {
+                    Id = 1,
+                    FirstName = "FirstName",
+                    LastName = "LastName",
+                    BirthDate = "01/01/2020",
+                    Email = "some@email.com",
+                    Age = 1,
+                    About = "About",
+                    Hobbies = "Hobbies",
+                    Profession = "Profession",
+                    CurrentReaderId = 1,
+                    Avatar = null,
+                    TotalPostsNumber = 2,
+                    TotalCommentsNumber = 2,
+
+            };
+            return profile;
+        }
+
+        /// <summary>
+        /// Generate fake controller context.
+        /// </summary>
+        /// <returns>Fake controller context.</returns>
+        public ControllerContext GetFakeContext()
+        {
+            var fakeContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("User");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+            fakeContext.Setup(x => x.User).Returns(principal);
+
+            var context = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext
+                {
+                    User = principal
+                }
+            };
+            return context;
         }
     }
 }
