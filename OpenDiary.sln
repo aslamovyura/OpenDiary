@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "tests\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "src\WebUI\WebUI.csproj", "{A114811E-F055-4510-8729-7F9E8C4E4080}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose.dcproj", "{652A63FD-0791-43DB-AB41-21C7B0BD7DC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{A114811E-F055-4510-8729-7F9E8C4E4080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A114811E-F055-4510-8729-7F9E8C4E4080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A114811E-F055-4510-8729-7F9E8C4E4080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652A63FD-0791-43DB-AB41-21C7B0BD7DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652A63FD-0791-43DB-AB41-21C7B0BD7DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652A63FD-0791-43DB-AB41-21C7B0BD7DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652A63FD-0791-43DB-AB41-21C7B0BD7DC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5C278FBA-D73A-4638-97B9-435A009EC6F5} = {2CE302EA-8011-4BDA-8E9B-11ACBEAE4561}
