@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebUI.ViewModels;
 using WebUI.ViewModels.Posts;
+using WebUI.ViewModels.Profile;
 
 namespace UnitTests.Controllers
 {

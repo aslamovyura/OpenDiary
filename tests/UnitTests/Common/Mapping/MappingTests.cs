@@ -4,6 +4,7 @@ using AutoMapper;
 using Domain.Entities;
 using WebUI.ViewModels;
 using WebUI.ViewModels.Posts;
+using WebUI.ViewModels.Profile;
 using Xunit;
 
 namespace UnitTests.Common.Mapping
@@ -14,6 +15,7 @@ namespace UnitTests.Common.Mapping
         private readonly IMapper _mapper;
 
         public MappingTests(MappingTestsFixture fixture)
+
         {
             _configuration = fixture.ConfigurationProvider;
             _mapper = fixture.Mapper;

@@ -41,6 +41,7 @@
     <Folder Include="Resources\ViewModels\Posts\" />
     <Folder Include="Views\Email\" />
     <Folder Include="Resources\Views\Email\" />
+    <Folder Include="ViewModels\Profile\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -320,6 +321,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Email_ResetPassword.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Profile\ProfileViewModel.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileViewModel.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewModels\Profile\ProfileViewModel.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileViewModel.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Resources\Views\Shared\AddComment.en.Designer.cs" />
@@ -522,6 +531,12 @@
     </Compile>
     <Compile Update="Resources\Views\Email\Email_ResetPassword.en.Designer.cs">
       <DependentUpon>Email_ResetPassword.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Profile\ProfileViewModel.en.Designer.cs">
+      <DependentUpon>ProfileViewModel.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewModels\Profile\ProfileViewModel.ru.Designer.cs">
+      <DependentUpon>ProfileViewModel.ru.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Application.DTO;
 using Microsoft.AspNetCore.Http;
 
-namespace WebUI.ViewModels
+namespace WebUI.ViewModels.Profile
 {
     public class ProfileViewModel
     {

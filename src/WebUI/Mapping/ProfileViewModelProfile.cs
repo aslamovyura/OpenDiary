@@ -1,6 +1,6 @@
 ﻿using Application.DTO;
 using AutoMapper;
-using WebUI.ViewModels;
+using WebUI.ViewModels.Profile;
 
 namespace Application.Mapping
 {

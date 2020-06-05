@@ -10,7 +10,7 @@ using AutoMapper;
 using Infrastructure.Extentions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebUI.ViewModels;
+using WebUI.ViewModels.Profile;
 
 namespace WebUI.Controllers
 {
