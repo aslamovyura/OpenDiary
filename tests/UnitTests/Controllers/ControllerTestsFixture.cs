@@ -150,7 +150,7 @@ namespace UnitTests.Controllers
         /// <summary>
         /// Generate author DTO. 
         /// </summary>
-        /// <returns>author DTO.</returns>
+        /// <returns>Author DTO.</returns>
         public AuthorDTO GetAuthor()
         {
             return new AuthorDTO
@@ -162,6 +162,73 @@ namespace UnitTests.Controllers
                 BirthDate = DateTime.Parse("01/01/2020"),
                 Email = "some@email.com",
             };
+        }
+
+        /// <summary>
+        /// Generate collection of author DTO. 
+        /// </summary>
+        /// <returns>Collection of author DTO.</returns>
+        public IEnumerable<AuthorDTO> GetAuthors()
+        {
+            var authors = new List<AuthorDTO>()
+            {
+                new AuthorDTO
+                {
+                    Id = 1,
+                    UserId = "someId",
+                    FirstName = "FirstName",
+                    LastName = "LastName",
+                    BirthDate = DateTime.Parse("01/01/2020"),
+                    Email = "some@email.com",
+                },
+                new AuthorDTO
+                {
+                    Id = 2,
+                    UserId = "someId_Two",
+                    FirstName = "FirstName_Two",
+                    LastName = "LastName_Two",
+                    BirthDate = DateTime.Parse("01/01/2020"),
+                    Email = "some@email.com",
+                },
+            };
+            return authors;
+        }
+
+                /// <summary>
+        /// Generate collection of author view models. 
+        /// </summary>
+        /// <returns>Collection of author view models.</returns>
+        public ICollection<AuthorViewModel> GetAuthorVieModels()
+        {
+            var authors = new List<AuthorViewModel>()
+            {
+                new AuthorViewModel
+                {
+                    AuthorId = 1,
+                    UserId = "someId",
+                    FirstName = "FirstName",
+                    LastName = "LastName",
+                    BirthDate = DateTime.Parse("01/01/2020"),
+                    Email = "some@email.com",
+                    Avatar = null,
+                    PostsNumber = 2,
+                    CommentsNumber = 2,
+
+                },
+                new AuthorViewModel
+                {
+                    AuthorId = 2,
+                    UserId = "someId_Two",
+                    FirstName = "FirstName_Two",
+                    LastName = "LastName_Two",
+                    BirthDate = DateTime.Parse("01/01/2020"),
+                    Email = "some@email.com",
+                    Avatar = null,
+                    PostsNumber = 0,
+                    CommentsNumber = 0,
+                },
+            };
+            return authors;
         }
 
         /// <summary>
