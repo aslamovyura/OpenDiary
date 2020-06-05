@@ -24,7 +24,7 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Infrastructure")));
 
             services.AddApplication();
@@ -47,7 +47,7 @@ namespace WebUI
 
             app.UseLocalization();
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -353,3 +353,4 @@ src/WebUI/emailsettings.json
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/settings.json
+src/WebUI/appsettings.json
