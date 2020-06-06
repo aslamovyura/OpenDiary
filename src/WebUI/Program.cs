@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,5 +43,14 @@ namespace WebUI
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        // public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        // {
+        //     var port = Environment.GetEnvironmentVariable("PORT");
+
+        //     return WebHost.CreateDefaultBuilder(args)
+        //         .UseStartup<Startup>()
+        //         .UseUrls("http://*:"+port);
+        // }
     }
 }
