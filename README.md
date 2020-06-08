@@ -6,7 +6,7 @@ The main idea of the application is to develop web-based diary (like a blog) to 
 
 ## Getting Started
 
-<Empty>
+The application is free-to-use, so just login to start creating amaizing posts!
 
 ## Application settings
 
