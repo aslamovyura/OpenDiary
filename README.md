@@ -28,6 +28,27 @@ For the correct deploy, it is necessary to update the [appsettnigs.json](https:/
 }
 ```
 
+SQL Server connection string example (Linux/MacOS)
+```
+"ConnectionStrings": {
+      "Server=127.0.0.1,1433;Database=OpenDiaryDb;User Id=sqlUser;Password=reallyStrongPwd123"
+  }
+```
+
+SQL Server connection string example (Windows)
+```
+"ConnectionStrings": {
+      "Server=(localdb)\\mssqllocaldb;Database=OpenDiaryDb;Trusted_Connection=True;MultipleActiveResultsSets=true"
+  }
+```
+
+Postgre SQL connection string example (Linux/MacOS) -- *not verified*
+```
+"ConnectionStrings": {
+    "DefaultConnection": "Server=127.0.0.1,5432;Port=5432;Database=OpenDiaryDb;User Id=postgres;Password=reallyStrongPwd123"
+  }
+```
+
 ## Deployment Docker container on Heroku
 
 To start the entire infrastructure, you should run the following commands from the project folder:
