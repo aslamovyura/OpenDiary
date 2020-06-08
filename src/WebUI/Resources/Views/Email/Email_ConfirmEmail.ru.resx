@@ -19,13 +19,13 @@
         <value>Привет</value>
     </data>
     <data name="TapToReset">
-        <value>Нажмине на кнопку ниже, чтобы подтвердить вашу электронную почту.</value>
+        <value>Нажмите на кнопку ниже, чтобы подтвердить вашу электронную почту.</value>
     </data>
     <data name="IfDidNotCreate">
-        <value>Усли вы не создавали учетную запить на</value>
+        <value>Если вы не создавали учетную запить на</value>
     </data>
     <data name="YourCanDelete">
-        <value>, то можете просто удалть данное письмо.</value>
+        <value>, то можете просто удалить данное письмо.</value>
     </data>
     <data name="ClickToVerify">
         <value>Подтверждить почту.</value>
