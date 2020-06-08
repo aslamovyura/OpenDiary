@@ -1,56 +1,46 @@
-using System;
-using System.Threading.Tasks;
-using Infrastructure.Identity;
-using Infrastructure.Persistence;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebUI.Extensions;
 
 namespace WebUI
 {
+    /// <summary>
+    /// Define program class.
+    /// </summary>
     public class Program
     {
-        public static async Task Main(string[] args)
+        /// <summary>
+        /// Run application.
+        /// </summary>
+        /// <param name="args">Application arguments.</param>
+        public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
-            using (IServiceScope scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    await ApplicationDbContextSeed.SeedAsync(userManager, rolesManager, context);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
-                }
-            }
+            // TODO: (ASLM) - Add serilog instead!
+            var serviceProvider = new ServiceCollection()
+                      .AddLogging()
+                      .BuildServiceProvider();
+
+            var logger = serviceProvider.GetService<ILoggerFactory>()
+                        .CreateLogger<Program>();
+
+            InitialServicesScopeFactory.Build(host, logger);
 
             host.Run();
         }
 
+        /// <summary>
+        /// Host builder configuration.
+        /// </summary>
+        /// <param name="args"></param>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
-        // public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        // {
-        //     var port = Environment.GetEnvironmentVariable("PORT");
-
-        //     return WebHost.CreateDefaultBuilder(args)
-        //         .UseStartup<Startup>()
-        //         .UseUrls("http://*:"+port);
-        // }
     }
 }

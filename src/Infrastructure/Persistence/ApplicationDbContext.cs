@@ -26,17 +26,26 @@ namespace Infrastructure.Persistence
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+    // ------- Do not use lines below, when runtime migration is enable -------- //
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
-
+            //Database.EnsureCreated();
             //Database.Migrate();
         }
 
+        /// <summary>
+        /// Save changes in DB context asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        /// <summary>
+        /// Configure DB on model creating.
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

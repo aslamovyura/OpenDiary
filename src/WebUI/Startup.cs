@@ -11,20 +11,34 @@ using WebUI.Extensions;
 
 namespace WebUI
 {
+    /// <summary>
+    /// Define startup class for application configuration.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Constructor with parameters.
+        /// </summary>
+        /// <param name="configuration">Application configuration.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Configuration property.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Method to add services to the DI container.
+        /// </summary>
+        /// <param name="services">Application services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"),
+                //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), // use for heroku.com
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Infrastructure")));
 
             services.AddApplication();
@@ -32,7 +46,11 @@ namespace WebUI
             services.AddWebUI();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        /// <param name="env">Host enviroment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -44,6 +44,7 @@
     <Folder Include="Views\Email\" />
     <Folder Include="Resources\Views\Email\" />
     <Folder Include="ViewModels\Profile\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
 
   <ItemGroup>
