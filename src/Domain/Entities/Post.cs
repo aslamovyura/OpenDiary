@@ -52,13 +52,5 @@ namespace Domain.Entities
         /// Comments for the topic.
         /// </summary>
         public ICollection<Comment> Comments { get; set; }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public Post()
-        {
-            Comments = new List<Comment>();
-        }
     }
 }

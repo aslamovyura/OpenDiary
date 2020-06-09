@@ -21,13 +21,5 @@ namespace Domain.Entities
         /// Post.
         /// </summary>
         public ICollection<Post> Posts { get; set; }
-
-        /// <summary>
-        /// Topic constructor.
-        /// </summary>
-        public Topic()
-        {
-            Posts = new List<Post>();
-        }
     }
 }

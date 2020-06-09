@@ -62,14 +62,5 @@ namespace Domain.Entities
         /// User comments.
         /// </summary>
         public virtual ICollection<Comment> Comments { get; set; }
-
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public Author()
-        {
-            Posts = new List<Post>();
-            Comments = new List<Comment>();
-        }
     }
 }

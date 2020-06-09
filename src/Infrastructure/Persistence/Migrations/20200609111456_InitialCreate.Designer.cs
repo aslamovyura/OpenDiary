@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200602103506_InitialCreate")]
+    [Migration("20200609111456_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace Infrastructure.Persistence.Migrations
 
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Avatar")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");

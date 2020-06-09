@@ -26,7 +26,7 @@ namespace Infrastructure.Persistence
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-    // ------- Do not use lines below, when runtime migration is enable -------- //
+            // ------- Do not use lines below, when runtime migration is enable -------- //
             //Database.EnsureDeleted();
             //Database.EnsureCreated();
             //Database.Migrate();
