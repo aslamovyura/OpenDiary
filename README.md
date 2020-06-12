@@ -2,7 +2,7 @@
 
 ![.NET Core](https://github.com/aslamovyura/OpenDiary/workflows/.NET%20Core/badge.svg)
 
-The main idea of the application is to develop web-based diary (like a blog) to create, read & comment posts. Each new user is invited to create his account and fill out information about himself. Then the user can write his/her thoughts and share them with other authors. The application also allows users to comment on each other's posts.
+The main idea of the application is to develop web-based diary (like a blog) to create, read & comment posts. Each new user is invited to create his account and fill out information about himself. Then the user can write their posts and share them with other authors. The application also allows users to comment on each other's posts.
 
 ## Getting Started
 
@@ -66,7 +66,7 @@ heroku container:release web -a application_name
 
 ## Author
 
-[Yury Aslamov]()
+[Yury Aslamov](https://aslamovyura.github.io/)
 
 ## License
 
