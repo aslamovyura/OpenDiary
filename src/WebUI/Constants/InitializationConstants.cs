@@ -24,5 +24,15 @@
         /// Database seed success.
         /// </summary>
         public const string SeedSuccess = "The database is successfully seeded.";
+
+        /// <summary>
+        /// Web host is staring.
+        /// </summary>
+        public const string WebHostStarting = "Web host is starting.";
+
+        /// <summary>
+        /// Web host was terminated unexpectedly.
+        /// </summary>
+        public const string WebHostTerminated = "Web host was terminated unexpectedly!";
     }
 }

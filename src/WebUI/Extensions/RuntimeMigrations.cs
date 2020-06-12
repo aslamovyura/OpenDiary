@@ -3,6 +3,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using WebUI.Contants;
 
 namespace WebUI.Extensions
@@ -16,10 +17,8 @@ namespace WebUI.Extensions
         /// Implement runtime migration.
         /// </summary>
         /// <param name="serviceProvider">Services provider.</param>
-        /// <param name="logger">Logging service.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void Initialize(IServiceProvider serviceProvider,
-                                      ILogger logger)
+        public static void Initialize(IServiceProvider serviceProvider)
         {
             serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
@@ -28,11 +27,11 @@ namespace WebUI.Extensions
                 var appContextService = serviceProvider.GetRequiredService<ApplicationDbContext>();
                 appContextService.Database.Migrate();
 
-                logger.LogInformation(InitializationConstants.MigrationSuccess);
+                Log.Information(InitializationConstants.MigrationSuccess);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, InitializationConstants.MigrationError);
+                Log.Error(ex, InitializationConstants.MigrationError);
             }
         }
     }

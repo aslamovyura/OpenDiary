@@ -4,7 +4,7 @@ using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using WebUI.Contants;
 
 namespace WebUI.Extensions
@@ -18,8 +18,7 @@ namespace WebUI.Extensions
         /// Fill database with initial date.
         /// </summary>
         /// <param name="serviceProvider">Service provider.</param>
-        /// <param name="logger">Logging service.</param>
-        public static void Initialize(IServiceProvider serviceProvider, ILogger logger)
+        public static void Initialize(IServiceProvider serviceProvider)
         {
             try
             {
@@ -30,11 +29,11 @@ namespace WebUI.Extensions
                 using var applicationContext = new ApplicationDbContext(contextOptions);
                 ApplicationDbContextSeed.SeedAsync(userManager, roleManager, applicationContext).GetAwaiter().GetResult();
 
-                logger.LogInformation(InitializationConstants.SeedSuccess);
+                Log.Information(InitializationConstants.SeedSuccess);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, InitializationConstants.SeedError);
+                Log.Error(ex, InitializationConstants.SeedError);
             }
         }
     }

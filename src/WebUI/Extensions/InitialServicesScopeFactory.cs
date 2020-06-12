@@ -14,16 +14,15 @@ namespace WebUI.Extensions
         /// Build services factory.
         /// </summary>
         /// <param name="host">Application Host.</param>
-        /// <param name="logger">Logging service.</param>
-        public static void Build(IHost host, ILogger logger)
+        public static void Build(IHost host)
         {
             host = host ?? throw new ArgumentNullException(nameof(host));
 
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
-            RuntimeMigrations.Initialize(services, logger);
-            IdentityContextSeed.Initialize(services, logger);
+            RuntimeMigrations.Initialize(services);
+            IdentityContextSeed.Initialize(services);
         }
     }
 }

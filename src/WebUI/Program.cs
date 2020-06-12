@@ -1,7 +1,11 @@
+using Infrastructure.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using System;
+using WebUI.Contants;
 using WebUI.Extensions;
 
 namespace WebUI
@@ -17,19 +21,27 @@ namespace WebUI
         /// <param name="args">Application arguments.</param>
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
 
-            // TODO: (ASLM) - Add serilog instead!
-            var serviceProvider = new ServiceCollection()
-                      .AddLogging()
-                      .BuildServiceProvider();
+            Log.Logger = SerilogConfiguration.LoggerConfig();
 
-            var logger = serviceProvider.GetService<ILoggerFactory>()
-                        .CreateLogger<Program>();
+            try
+            {
+                Log.Information(InitializationConstants.WebHostStarting);
 
-            InitialServicesScopeFactory.Build(host, logger);
+                var host = CreateHostBuilder(args).Build();
 
-            host.Run();
+                InitialServicesScopeFactory.Build(host);
+
+                host.Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, InitializationConstants.WebHostTerminated);
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         /// <summary>
@@ -41,6 +53,7 @@ namespace WebUI
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSerilog();
                 });
     }
 }
