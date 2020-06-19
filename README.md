@@ -8,6 +8,12 @@ The main idea of the application is to develop web-based diary (like a blog) to 
 
 The application is free-to-use, so just login to start creating amaizing posts!
 
+If you have problems completing the registration (heroku may have problems sending emails via smtp.gmail.com), you can use the following login credentials:
+```
+login: user@gmail.com
+pass:  ctyjdfkbnh
+```
+
 ## Application settings
 
 For the correct deploy, it is necessary to update the [appsettings.json](https://github.com/aslamovyura/OpenDiary/blob/master/src/WebUI/appsettings.json) in the project WebUI directory according to the template below.
@@ -28,14 +34,6 @@ For the correct deploy, it is necessary to update the [appsettings.json](https:/
 }
 ```
 
-## Add Heroku PorgreSQL database 
-
-For the web-site correct work, a database is required. To add PortgreQSL database on [Heroku](https://heroku.com/), you should run the following command:
-
-```
-heroku addons:create heroku-postgresql:hobby-dev
-```
-
 ## Deployment of Docker container on Heroku
 
 To start the entire infrastructure, you should run the following commands from the project folder:
@@ -45,6 +43,16 @@ docker build -t application_name .
 docker tag application_name registry.heroku.com/application_name/web
 heroku container:push web -a application_name
 heroku container:release web -a application_name
+```
+
+When deploying to Heroku from Linux, use `sudo` for the commands above.
+
+## Add Heroku PorgreSQL database 
+
+For the web-site correct work, a database is required. To add PortgreQSL database on [Heroku](https://heroku.com/), you should run the following command:
+
+```
+heroku addons:create heroku-postgresql:hobby-dev --app:application_name
 ```
 
 ## Built with
