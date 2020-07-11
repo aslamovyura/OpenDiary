@@ -11,6 +11,8 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using WebUI.ViewModels;
 using Application.CQRS.Queries.Get;
+using Microsoft.AspNetCore.Http;
+using System.Text.RegularExpressions;
 
 namespace WebUI.Controllers
 {
@@ -52,7 +54,17 @@ namespace WebUI.Controllers
         /// </summary>
         /// <returns>View for user registration.</returns>
         [HttpGet]
-        public IActionResult SignUp() => View();
+        public IActionResult SignUp()
+        {
+            // Get info on current user agent. If it is 'Safari', use specific datepicker.
+            var userAgent = Request.Headers["User-Agent"].ToString();
+            if (Regex.IsMatch(userAgent, "Safari") && !Regex.IsMatch(userAgent, "Chrome"))
+                ViewBag.isSafari = true;
+            else
+                ViewBag.isSafari = false;
+            
+            return View();
+        }
         
         /// <summary>
         /// Process user input on the registration view.

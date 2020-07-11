@@ -28,10 +28,10 @@
         <value>Comments</value>
     </data>
     <data name="FirstName">
-        <value>Имя</value>
+        <value>First name</value>
     </data>
     <data name="LastName">
-        <value>Фамилия</value>
+        <value>Last name</value>
     </data>
     <data name="Date">
         <value>Date</value>

@@ -36,14 +36,22 @@
         </div>
 
         <div class="input-group form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text margin-right-negative">@Localizer["BirthDate"]</span>
 
-                <input class="form-control" asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" id="datepicker" />
-                <script>$('#datepicker').datepicker({
-                        uiLibrary: 'bootstrap4'
-                    });</script>
-            </div>
+            @if (ViewBag.isSafari)
+            {
+                <div class="input-group-prepend">
+                    <span class="input-group-text margin-right-negative">@Localizer["BirthDate"]</span>
+                    <input class="form-control" asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" id="datepicker" />
+                    <script>$('#datepicker').datepicker({ uiLibrary: 'bootstrap4' });</script>
+                </div>
+            }
+            else
+            {
+                <div class="input-group-prepend">
+                    <span class="input-group-text margin-right-negative">@Localizer["BirthDate"]</span>
+                </div>
+                <input class="form-control" asp-for="BirthDate" placeholder=@Localizer["BirthDatePlaceholder"] type="date" aria-label="BirthDate" />
+            }
         </div>
 
         <div class="input-group form-group">
