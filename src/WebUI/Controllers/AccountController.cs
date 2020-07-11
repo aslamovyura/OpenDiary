@@ -122,7 +122,7 @@ namespace WebUI.Controllers
                                                  protocol: HttpContext.Request.Scheme);
 
                     var homePageUrl = Url.Action("Index", "Home", null, protocol: HttpContext.Request.Scheme);
-                    var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/Logo-1.png");
+                    var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/logo-1.png");
 
                     var emailModel = new EmailViewModel
                     {
@@ -264,7 +264,7 @@ namespace WebUI.Controllers
 
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userName, token }, protocol: HttpContext.Request.Scheme);
                 var homePageUrl = Url.Action("Index", "Home", null, protocol: HttpContext.Request.Scheme);
-                var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/Logo-1.png");
+                var logoUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, "/resources/logo-1.png");
 
                 var emailModel = new EmailViewModel
                 {

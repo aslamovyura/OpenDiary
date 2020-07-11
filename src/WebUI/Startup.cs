@@ -37,8 +37,8 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), // use for heroku.com
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), // Use PostgreSQL for deployment of heroku.com.
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), // Use MS SQL Server for local debug.
                     x => x.MigrationsAssembly("Infrastructure")));
 
             services.AddApplication();
@@ -64,10 +64,7 @@ namespace WebUI
             }
 
             app.UseLocalization();
-
-            // app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
